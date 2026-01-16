@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="bfGiftScene.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="boyfriend attack0000" x="0" y="0" width="1514" height="400" frameX="0" frameY="-285" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0001" x="0" y="0" width="1514" height="400" frameX="0" frameY="-285" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0002" x="1514" y="0" width="1308" height="398" frameX="-214" frameY="-287" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0003" x="2822" y="0" width="1202" height="522" frameX="-320" frameY="-163" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0004" x="0" y="522" width="1087" height="616" frameX="-437" frameY="-69" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0005" x="0" y="522" width="1087" height="616" frameX="-437" frameY="-69" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0006" x="1087" y="522" width="797" height="685" frameX="-728" frameY="-1" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0007" x="1087" y="522" width="797" height="685" frameX="-728" frameY="-1" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0008" x="1884" y="522" width="640" height="686" frameX="-885" frameY="0" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0009" x="1884" y="522" width="640" height="686" frameX="-885" frameY="0" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0010" x="2524" y="522" width="598" height="660" frameX="-927" frameY="-26" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0011" x="3122" y="522" width="625" height="479" frameX="-900" frameY="-207" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack0012" x="3122" y="522" width="625" height="479" frameX="-900" frameY="-207" frameWidth="1525" frameHeight="686"/>
+	<SubTexture name="boyfriend attack paused0000" x="0" y="1208" width="1514" height="400"/>
+	<SubTexture name="boyfriend attack paused0001" x="0" y="1208" width="1514" height="400"/>
+</TextureAtlas>

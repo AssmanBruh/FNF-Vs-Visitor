@@ -1,0 +1,19 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.MultiAnimateAtlasCharacter;
+import funkin.play.character.SparrowCharacter;
+
+class PlayablePioConfig extends MultiSparrowCharacter {
+	function new() {
+		super('pico-playable');
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		switch (event.note.kind) {
+			case "cheerNote":
+				holdTimer = 0;
+				this.playAnimation("burpSmile", true, '');
+				return;
+		}
+		super.onNoteHit(event);
+	}
+}

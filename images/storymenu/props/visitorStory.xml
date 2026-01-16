@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="visitorStory.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="visitorTitle instancia 10000" x="0" y="0" width="338" height="354" frameX="0" frameY="-36" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10001" x="0" y="0" width="338" height="354" frameX="0" frameY="-36" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10002" x="338" y="0" width="320" height="379" frameX="0" frameY="-11" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10003" x="338" y="0" width="320" height="379" frameX="0" frameY="-11" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10004" x="658" y="0" width="317" height="382" frameX="0" frameY="-8" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10005" x="658" y="0" width="317" height="382" frameX="0" frameY="-8" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10006" x="0" y="382" width="314" height="386" frameX="0" frameY="-4" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10007" x="0" y="382" width="314" height="386" frameX="0" frameY="-4" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10008" x="314" y="382" width="312" height="388" frameX="0" frameY="-2" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10009" x="314" y="382" width="312" height="388" frameX="0" frameY="-2" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10010" x="314" y="382" width="312" height="388" frameX="0" frameY="-2" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10011" x="314" y="382" width="312" height="388" frameX="0" frameY="-2" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10012" x="314" y="382" width="312" height="388" frameX="0" frameY="-2" frameWidth="338" frameHeight="390"/>
+	<SubTexture name="visitorTitle instancia 10013" x="626" y="382" width="308" height="390" frameX="0" frameY="0" frameWidth="338" frameHeight="390"/>
+</TextureAtlas>

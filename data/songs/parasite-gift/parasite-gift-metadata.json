@@ -1,0 +1,62 @@
+{
+  "version": "2.2.4",
+  "songName": "Parasite Gift",
+  "artist": "Runwait",
+  "charter": "LeonPROpapuh + AssmanBruh!",
+  "looped": false,
+  "offsets": {
+    "instrumental": 0,
+    "altInstrumentals": {    },
+    "vocals": {    },
+    "altVocals": {    }
+  },
+  "playData": {
+    "songVariations": [  "erect"  ],
+    "stickerPack": "visitorStickers",
+    "difficulties": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "characters": {
+      "player": "bf-christmas",
+      "girlfriend": "gf-christmas",
+      "opponent": "visitor-christmas",
+      "instrumental": "",
+      "altInstrumentals": [ ],
+      "opponentVocals": [
+        "visitor"
+      ],
+      "playerVocals": [
+        "bf"
+      ]
+    },
+    "stage": "visitorForestChristmas",
+    "noteStyle": "funkin",
+    "ratings": {
+      "easy": 5,
+      "normal": 6,
+      "hard": 7
+    },
+    "album": "visitor-xmas",
+    "previewStart": 0,
+    "previewEnd": 0
+  },
+  "generatedBy": "Friday Night Funkin' - v0.6.4",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "b": 0,
+      "bpm": 100,
+      "n": 4,
+      "d": 4,
+      "bt": [
+        4,
+        4,
+        4,
+        4
+      ]
+    }
+  ]
+}

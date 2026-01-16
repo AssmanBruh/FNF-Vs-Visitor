@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "name": "VISITOR OST VOL 1",
+  "artists": [
+    "Runwait"
+  ],
+  "albumArtAsset": "freeplay/albumRoll/visitor-album",
+  "albumTitleAsset": "freeplay/albumRoll/visitor-ost-text",
+  "albumTitleOffsets": [-22,0]
+}

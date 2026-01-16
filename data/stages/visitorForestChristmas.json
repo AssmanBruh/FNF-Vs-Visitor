@@ -1,0 +1,124 @@
+{
+  "props": [
+    {
+      "zIndex": 0,
+      "position": [
+        -1423.6,
+        -1540.2
+      ],
+      "name": "sky",
+      "alpha": 1,
+      "assetPath": "visitorForest/CHRISTMAS/skyFreezed",
+      "startingAnimation": "static",
+      "animations": []
+    },  
+    {
+      "zIndex": 10,
+      "position": [
+        35.8,
+        -553.75
+      ],
+      "name": "house",
+      "alpha": 1,
+      "assetPath": "visitorForest/CHRISTMAS/houseChristmas",
+      "scroll": [
+        0.73,
+        0.73
+      ],
+      "startingAnimation": "idle",
+      "animations": [    
+        {
+          "name": "idle",
+          "prefix": "houseChristmas",
+          "looped": true
+        }
+      ]
+    },
+    {
+      "zIndex": 20,
+      "position": [
+        -772,
+         243.95
+      ],
+      "name": "grass",
+      "alpha": 1,
+      "assetPath": "visitorForest/CHRISTMAS/grassChristmas",
+      "startingAnimation": "static",
+      "animations": []
+    },
+    {
+      "zIndex": 120,
+      "position": [
+        -548.65,
+        -587.55
+      ],
+      "name": "tree",
+      "alpha": 1,
+      "assetPath": "visitorForest/CHRISTMAS/treeChristmas",
+      "startingAnimation": "static",
+      "animations": []
+    },
+    {
+      "zIndex": 320,
+      "position": [
+        77.25,
+        555.65
+      ],
+      "name": "snowFG",
+      "alpha": 1,
+      "assetPath": "visitorForest/CHRISTMAS/snowFG",
+      "startingAnimation": "static",
+      "animations": []
+    },
+    {
+      "zIndex": 330,
+      "position": [
+        -1203.35, -627.4
+      ],
+      "name": "ambientShading",
+      "alpha": 1,
+      "blend": "screen",
+      "assetPath": "visitorForest/CHRISTMAS/christmasScreenShade_HIGH",
+      "startingAnimation": "static",
+      "animations": []
+    }
+  ],
+  "cameraZoom": 0.67,
+  "version": "1.0.0",
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        1253,
+        679
+      ],
+      "cameraOffsets": [
+        -495,
+        -130
+      ]
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        212,
+        724.4
+      ],
+      "cameraOffsets": [
+        200,
+        -130
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        -102,
+        15
+      ],
+      "position": [
+        752,
+        592
+      ]
+    }
+  },
+  "name": "Visitor Forest (Christmas)"
+}

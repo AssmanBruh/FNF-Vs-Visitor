@@ -1,0 +1,27 @@
+import funkin.ui.story.Level;
+import funkin.save.Save;
+import flixel.FlxG;
+
+class VisitorXMasWeekConfig extends Level
+{
+	function new()
+	{
+		super('visitor_xmas');
+	}
+
+  override function isUnlocked():Bool {
+    return true;
+  }
+
+  function unlockedPG():Bool {
+    return !FlxG.save.data.GiftfirstTime;
+  }
+
+  override function getSongDisplayNames(difficultyId:String):Array<String> {
+    if (unlockedPG){
+      return ["Parasite Gift"];
+    }else{
+      return [];
+    }
+  }
+}

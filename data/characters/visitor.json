@@ -1,0 +1,163 @@
+{
+	
+	"version": "1.0.0",
+	"renderType": "multisparrow",
+	"offsets": [
+		0,
+		0
+	],
+	"danceEvery": 1,
+	"scale": 1,
+	"name": "Visitor",
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"flipX": false,
+	"singTime": 5,
+	"startingAnimation": "idle",
+	"isPixel": false,
+	"assetPath": "characters/VISITOR_FNF_ASSETS",
+	"healthIcon": {
+		"isPixel": false,
+		"offsets": [
+			-4,
+			7
+		],
+		"scale": 1.324,
+		"id": "visitor",
+		"flipX": false
+	},
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"prefix": "idle",
+			"name": "idle",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				85,
+				28
+			],
+			"flipY": false,
+			"assetPath": "characters/visitorDance",
+			"frameRate": 24,
+			"prefix": "danceLeft",
+			"name": "danceLeft-alt",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-27,
+				62
+			],
+			"flipY": false,
+			"assetPath": "characters/visitorDance",
+			"frameRate": 24,
+			"prefix": "danceRight",
+			"name": "danceRight-alt",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-1,
+				22
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"prefix": "visitorSeePlayer",
+			"name": "idle-see",
+			"looped": true,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				2,
+				22
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"prefix": "VisitorPreSeeU",
+			"name": "preSee",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-5,
+				25
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"frameIndices": [
+				5,
+				4,
+				3,
+				2,
+				1,
+				0
+			],
+			"prefix": "VisitorPreSeeU",
+			"name": "preSeeReverb",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				117,
+				52
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"prefix": "left",
+			"name": "singLEFT",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-10,
+				-70
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"prefix": "down",
+			"name": "singDOWN",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				59,
+				160
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"prefix": "up",
+			"name": "singUP",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-25,
+				47
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"prefix": "right",
+			"name": "singRIGHT",
+			"looped": false,
+			"flipX": false
+		}
+	]
+}

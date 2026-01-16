@@ -1,0 +1,59 @@
+import flixel.FlxG;
+import funkin.graphics.shaders.AdjustColorShader;
+import funkin.play.PlayState;
+import funkin.play.stage.Stage;
+import StringTools;
+
+class VisitorForestStage extends Stage {
+    function new() {
+        super('visitorForest');
+        FlxG.save.data.GiftfirstTime ??= true;
+    }
+
+    function adjustPropColor(prop, hue, saturation, contrast, brightness){
+        var shad = new AdjustColorShader();
+        shad.hue = hue;
+        shad.saturation = saturation;
+        shad.contrast = contrast;
+        shad.brightness = brightness;
+        prop.shader = shad;
+    }
+    
+    override function onCountdownStart(event) {
+        super.onCountdownStart(event);
+        // This is a feature was i named as "Showcase Mode", test it on your mod bro!
+        // - assmanBruh.
+        //PlayState.instance.camHUD.alpha = 0;
+        //PlayState.instance.isBotPlayMode = true;
+
+        for (props in ["tree", "grass"]) {
+            adjustPropColor(getNamedProp(props), 15, -29, -11, -6);
+        }
+        adjustPropColor(getNamedProp("frontPlants"), -169, -58, 4, -16);
+
+        if (getBoyfriend() != null){
+            if (StringTools.startsWith(getBoyfriend()?.characterId, "visitor"))
+            adjustPropColor(getBoyfriend(), 0, -21, -8, -4);
+            else
+            adjustPropColor(getBoyfriend(), -8, -40, 4, -30);
+            getBoyfriend().idleSuffix = "";
+        }
+        if (getGirlfriend() != null){
+            adjustPropColor(getGirlfriend(), -18, -41, -11, -16);
+            getGirlfriend().idleSuffix = "";
+            getBoyfriend().shouldAlternate = false;
+        }
+
+        if (getDad() != null){
+            adjustPropColor(getDad(), 0, -21, -8, -4);
+            getDad().idleSuffix = "";
+            getDad().shouldAlternate = false;
+        }
+
+        if (PlayState.instance.comboPopUps != null)
+        PlayState.instance.comboPopUps.offsets = [60, 300];
+         
+        if (PlayState.instance.iconP2 != null)
+        PlayState.instance.iconP2.zIndex = 851;
+    }
+}

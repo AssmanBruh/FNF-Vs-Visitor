@@ -1,0 +1,63 @@
+{
+  "version": "2.2.4",
+  "songName": "Bloody Guest (Pico Mix)",
+  "artist": "Alex",
+  "charter": "LeonPROpapuh + AssmanBruh!",
+  "divisions": 96,
+  "looped": false,
+  "offsets": {
+    "instrumental": 0,
+    "altInstrumentals": {    },
+    "vocals": {    },
+    "altVocals": {    }
+  },
+  "playData": {
+    "songVariations": [    ],
+    "stickerPack": "visitorStickers_PicoVersion",
+    "difficulties": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "characters": {
+      "player": "pico-playable",
+      "girlfriend": "nene",
+      "opponent": "visitor",
+      "instrumental": "pico",
+      "altInstrumentals": [   ""   ],
+      "opponentVocals": [
+        "dad"
+      ],
+      "playerVocals": [
+        "bf"
+      ]
+    },
+    "stage": "visitorForestErect",
+    "noteStyle": "funkin",
+    "ratings": {
+      "easy": 5,
+      "normal": 6,
+      "hard": 7
+    },
+    "album": "visitor-xmas",
+    "previewStart": 0,
+    "previewEnd": 0
+  },
+  "generatedBy": "Friday Night Funkin' - v0.6.4",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "b": 0,
+      "bpm": 130,
+      "n": 4,
+      "d": 4,
+      "bt": [
+        4,
+        4,
+        4,
+        4
+      ]
+    }
+  ]
+}

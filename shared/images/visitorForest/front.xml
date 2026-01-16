@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="front.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="front instancia 10000" x="0" y="0" width="2269" height="829" frameX="0" frameY="-119" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10001" x="0" y="0" width="2269" height="829" frameX="0" frameY="-119" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10002" x="2269" y="0" width="2255" height="829" frameX="0" frameY="-119" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10003" x="4524" y="0" width="2255" height="869" frameX="0" frameY="-79" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10004" x="0" y="869" width="2252" height="869" frameX="0" frameY="-79" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10005" x="0" y="869" width="2252" height="869" frameX="0" frameY="-79" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10006" x="2252" y="869" width="2248" height="922" frameX="0" frameY="-26" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10007" x="2252" y="869" width="2248" height="922" frameX="0" frameY="-26" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10008" x="2252" y="869" width="2248" height="922" frameX="0" frameY="-26" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10009" x="4500" y="869" width="2248" height="938" frameX="0" frameY="-10" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10010" x="4500" y="869" width="2248" height="938" frameX="0" frameY="-10" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10011" x="4500" y="869" width="2248" height="938" frameX="0" frameY="-10" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10012" x="0" y="1807" width="2248" height="948" frameX="0" frameY="0" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10013" x="2248" y="1807" width="2252" height="948" frameX="0" frameY="0" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10014" x="2248" y="1807" width="2252" height="948" frameX="0" frameY="0" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10015" x="4500" y="1807" width="2269" height="944" frameX="0" frameY="-4" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10016" x="4500" y="1807" width="2269" height="944" frameX="0" frameY="-4" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10017" x="0" y="2755" width="2255" height="944" frameX="0" frameY="-4" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10018" x="2255" y="2755" width="2255" height="934" frameX="0" frameY="-14" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10019" x="4510" y="2755" width="2252" height="934" frameX="0" frameY="-14" frameWidth="2269" frameHeight="948"/>
+	<SubTexture name="front instancia 10020" x="4510" y="2755" width="2252" height="934" frameX="0" frameY="-14" frameWidth="2269" frameHeight="948"/>
+</TextureAtlas>

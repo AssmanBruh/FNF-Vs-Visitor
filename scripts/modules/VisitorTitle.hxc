@@ -1,0 +1,50 @@
+import flixel.FlxG;
+import flixel.FlxSprite;
+import funkin.modding.module.Module;
+import funkin.ui.title.TitleState;
+
+class BeatPressureModule extends Module
+{
+
+    public function new()
+    {
+        super('VisitorTitleState', "TitleState", 99997);
+    }
+
+    override function fetchAssetPaths():Array<String>
+    {
+        var results:Array<String> = super.fetchAssetPaths();
+        results.push(Paths.image("visitorTitle"));
+        results.push(Paths.txt("visitorTitle"));
+        results.push(Paths.image("visitorLogoBumpin"));
+        results.push(Paths.txt("visitorLogoBumpin"));
+        return results;
+    }
+
+    var updateOneTime = true;
+    override function onUpdate(elapsed:Float):Void
+    {
+        super.onUpdate(elapsed);
+        if (FlxG.state.gfDance != null){
+            if (updateOneTime){
+                FlxG.state.logoBl.frames = Paths.getSparrowAtlas("visitorLogoBumpin");
+                FlxG.state.logoBl.animation.addByPrefix("bump", "logo bumpin", 24, false);
+
+                FlxG.state.gfDance.frames = Paths.getSparrowAtlas("visitorTitle");
+                FlxG.state.gfDance.animation.addByPrefix("idling", "visitorTitle", 18, true);
+                FlxG.state.gfDance.animation.play("idling");
+                FlxG.state.gfDance.antialiasing = true;
+                FlxG.state.gfDance.updateHitbox();
+                FlxG.state.gfDance.setPosition(810.35, 81.35);
+                FlxG.state.gfDance.x = FlxG.width - (FlxG.state.gfDance.width+ 18);
+                updateOneTime = false;
+            }
+        }
+    }
+
+    override function onStateChangeEnd(event:StateChangeScriptEvent)
+    {
+        super.onStateChangeEnd(event);
+        updateOneTime = true;
+    }
+}

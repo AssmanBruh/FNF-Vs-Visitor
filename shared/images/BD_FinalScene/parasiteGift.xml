@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="parasiteGift.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="gift0000" x="0" y="0" width="298" height="323"/>
+	<SubTexture name="giftAppear0000" x="298" y="0" width="331" height="329" frameX="0" frameY="0" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftAppear0001" x="298" y="0" width="331" height="329" frameX="0" frameY="0" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftAppear0002" x="629" y="0" width="354" height="323" frameX="-85" frameY="-1" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftAppear0003" x="629" y="0" width="354" height="323" frameX="-85" frameY="-1" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftAppear0004" x="983" y="0" width="346" height="323" frameX="-82" frameY="-1" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftAppear0005" x="983" y="0" width="346" height="323" frameX="-82" frameY="-1" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftAppear0006" x="983" y="0" width="346" height="323" frameX="-82" frameY="-1" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftAppear0007" x="983" y="0" width="346" height="323" frameX="-82" frameY="-1" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftAppear0008" x="983" y="0" width="346" height="323" frameX="-82" frameY="-1" frameWidth="439" frameHeight="329"/>
+	<SubTexture name="giftOpened0000" x="1329" y="0" width="366" height="538"/>
+	<SubTexture name="giftOpened0001" x="1695" y="0" width="366" height="538"/>
+	<SubTexture name="giftOpened0002" x="2061" y="0" width="366" height="538"/>
+	<SubTexture name="giftOpened0003" x="2427" y="0" width="366" height="538"/>
+	<SubTexture name="giftOpened0004" x="2793" y="0" width="366" height="538"/>
+	<SubTexture name="giftOpened0005" x="3159" y="0" width="366" height="538"/>
+	<SubTexture name="giftOpened0006" x="1329" y="0" width="366" height="538"/>
+	<SubTexture name="giftOpened0007" x="1329" y="0" width="366" height="538"/>
+	<SubTexture name="giftOpened0008" x="1329" y="0" width="366" height="538"/>
+	<SubTexture name="giftWa0000" x="3525" y="0" width="344" height="323"/>
+	<SubTexture name="giftWa0001" x="0" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0002" x="344" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0003" x="688" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0004" x="1032" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0005" x="1376" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0006" x="1720" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0007" x="2064" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0008" x="2408" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0009" x="2752" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0010" x="3096" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0011" x="3440" y="538" width="344" height="323"/>
+	<SubTexture name="giftWa0012" x="0" y="861" width="344" height="323"/>
+	<SubTexture name="giftWa0013" x="344" y="861" width="344" height="323"/>
+	<SubTexture name="giftWa0014" x="688" y="861" width="344" height="323"/>
+	<SubTexture name="giftWa0015" x="1032" y="861" width="344" height="323"/>
+	<SubTexture name="giftWa0016" x="1376" y="861" width="344" height="323"/>
+	<SubTexture name="giftWa0017" x="1720" y="861" width="344" height="323"/>
+	<SubTexture name="giftWa0018" x="2064" y="861" width="344" height="323"/>
+	<SubTexture name="giftWa0019" x="2408" y="861" width="344" height="323"/>
+	<SubTexture name="giftWa0020" x="0" y="0" width="298" height="323"/>
+</TextureAtlas>

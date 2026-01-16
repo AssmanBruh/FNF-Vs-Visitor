@@ -1,0 +1,362 @@
+import flixel.FlxG;
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import funkin.graphics.FunkinSprite;
+import funkin.graphics.shaders.AdjustColorShader;
+import funkin.modding.base.ScriptedFlxRuntimeShader;
+import funkin.modding.module.ModuleHandler;
+import funkin.play.PlayState;
+import funkin.play.PlayStatePlaylist;
+import funkin.play.character.AnimateAtlasCharacter;
+import funkin.play.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+import funkin.play.cutscene.CutsceneType;
+import funkin.play.cutscene.VideoCutscene;
+import funkin.play.stage.Stage;
+import funkin.util.Constants;
+import funkin.util.WindowUtil;
+import openfl.filters.ShaderFilter;
+import funkin.graphics.shaders.DropShadowShader;
+import funkin.Conductor;
+
+class VisitorForestStageErect extends Stage {
+    function new() {
+        super('visitorForestErect');
+    }
+
+	function onCreate(event:ScriptEvent):Void {
+		super.onCreate(event);
+	}
+
+    var frogElapsed = 0.0;
+    var frogging = false;
+    override function update(elapsed:Float){
+        super.update(elapsed);
+        if (frogging && !paussed_bby){
+            frogElapsed+=elapsed;
+            getNamedProp("frogFlashback").y += Math.sin(frogElapsed*3.19)*2.888;
+            getNamedProp("frogFlashback").velocity.x = -137;
+            if (getNamedProp("frogFlashback").x < -((getNamedProp("frogFlashback").width*FlxG.camera.zoom)*2.3)){
+                 frogging = false;
+                 getNamedProp("frogFlashback").visible = false;
+            }
+        }
+
+        if (paussed_bby){
+            if (transitionTimer != null)
+            transitionTimer.active = false;
+            if (frogAngelTween != null)
+            frogAngelTween.active = false;
+            if (blackScreenTween != null)
+            blackScreenTween.active =false;
+        }else{
+            if (transitionTimer != null)
+            transitionTimer.active = true;
+            if (frogAngelTween != null)
+            frogAngelTween.active = true;
+            if (blackScreenTween != null)
+            blackScreenTween.active = true;
+        }
+    }
+    var adjustCamColorShader:AdjustColorShader;
+    override function buildStage() {
+        super.buildStage();
+
+        getNamedProp("frogFlashback").cameras = [PlayState.instance.camHUD];
+        getNamedProp("frogFlashback").scale.set(0.58,0.58);
+        setupCamColor();
+    }
+
+    function setBlackScene(){
+        adjustCamColorShader.hue = -32;
+        adjustCamColorShader.saturation = 50;
+        adjustCamColorShader.contrast = 0;
+        adjustCamColorShader.brightness = -300;
+    }
+
+    function setupCamColor(){
+        adjustCamColorShader = new AdjustColorShader();
+        var adjustColorFilter = new ShaderFilter(adjustCamColorShader);
+        FlxG.camera.filters = [adjustColorFilter];
+        switch (PlayState.instance.currentVariation){
+            case "pico":
+                setBlackScene();
+                var delay = (((60 / Conductor.instance.bpm)*2))*5;
+                FlxTween.num(adjustCamColorShader.hue, -24, 4, { ease: FlxEase.quadInOut, startDelay: delay }, function(value:Float)
+                {
+                    adjustCamColorShader.hue = value;
+                });
+                FlxTween.num(adjustCamColorShader.saturation, 13, 4, { ease: FlxEase.quadInOut, startDelay: delay }, function(value:Float)
+                {
+                    adjustCamColorShader.saturation = value;
+                });
+                FlxTween.num(adjustCamColorShader.brightness, 11, 4, { ease: FlxEase.linear, startDelay: delay }, function(value:Float)
+                {
+                    adjustCamColorShader.brightness = value;
+                });
+                FlxTween.num(adjustCamColorShader.contrast, -11, 4, { ease: FlxEase.linear, startDelay: delay }, function(value:Float)
+                {
+                    adjustCamColorShader.contrast = value;
+                });
+
+            default:
+                adjustCamColorShader.hue =-18;
+                adjustCamColorShader.saturation = 13;
+                adjustCamColorShader.contrast = -12;
+                adjustCamColorShader.brightness = 11;
+
+                // Another configuration I liked
+                // adjustCamColorShader.hue =-32;
+                // adjustCamColorShader.saturation = 14;
+                // adjustCamColorShader.contrast = -12;
+                // adjustCamColorShader.brightness = 8;
+
+                // Another configuration I liked
+                // adjustCamColorShader.hue =-18;
+                // adjustCamColorShader.saturation = 10;
+                // adjustCamColorShader.contrast = -10;
+                // adjustCamColorShader.brightness = -5;
+        }
+    }
+
+    override function onSongLoaded(event) {
+        super.onSongLoaded(event);
+        transitionTimer = new FlxTimer();
+    }
+   
+    override function onBeatHit(event:SongTimeScriptEvent):Void { 
+        super.onBeatHit(event);
+    }
+
+    function fetchAssetPaths():Array<String> 
+	{
+		var results:Array<String> = super.fetchAssetPaths();
+
+		results.push(Paths.image("frogFlashback"));
+		return results;
+	}
+
+    var blackScreenTween:FlxTween = null;
+    var frogAngelTween:FlxTween = null;
+    var transitionTimer:FlxTimer = null;
+    override public function onSongEvent(event:SongEventScriptEvent):Void {
+        super.onSongEvent(event);
+
+        switch (event.eventData.eventKind) {
+            case "visitorZoomIn":
+                    var leBlack = getNamedProp("blackScreen");
+                    var daRibbit = getNamedProp("frogFlashback");
+                    daRibbit.updateHitbox();
+                    daRibbit.y = (FlxG.height - daRibbit.height)/2;
+                    daRibbit.x = FlxG.width+(daRibbit.width+12);
+                    daRibbit.alpha = 1;
+                    daRibbit.visible = true;
+                    daRibbit.scrollFactor.set();
+                    var daDurInSteps = event.eventData.value.duration;
+                    // var durationReal = (daDurInSteps/4) * (Conductor.instance.bpm/60);
+                    var durationReal = (daDurInSteps) * ((150/60)/4);
+                    durationReal /= 4.5;
+                    hudAlpha(0.38, false);
+                    if (blackScreenTween != null){
+                        blackScreenTween.cancel();
+                    }
+                    PlayState.instance.mayPauseGame = false;
+                    blackScreenTween = FlxTween.tween(leBlack, {alpha: 1}, durationReal/5.4, {ease: FlxEase.quadIn, onComplete: function(twn){
+                        frogging = true;
+                       
+                        transitionTimer.start(durationReal/3, function(tmr){
+                            hudAlpha(0.67, false);
+                            if (blackScreenTween != null){
+                                blackScreenTween.cancel();
+                            }
+                            blackScreenTween = FlxTween.tween(leBlack, {alpha: 0.32}, durationReal/3, {ease: FlxEase.quadOut});
+                        });
+                    }});
+            case "visitorCameraFlash":
+                getNamedProp("blackScreen").alpha = 0;
+                hudAlpha(1, true);
+                var colorShit = 0xFFFFFFFF;
+                switch (event.eventData.value.color){
+                    case "WHITE":
+                          colorShit = 0xFFFFFFFF;
+                }
+                FlxG.camera.flash(0xFFCBCBCB, 0.75);
+                PlayState.instance.mayPauseGame = true;
+        }
+    }
+
+    // taked from QT Rewired Crew!!
+    private function hudAlpha(alphaInt:Float, instant:Bool) {
+		var objects = [
+			PlayState.instance.healthBar,
+			PlayState.instance.healthBarBG,
+			PlayState.instance.scoreText,
+			PlayState.instance.opponentStrumline,
+			PlayState.instance.playerStrumline,
+			PlayState.instance.iconP2,
+			PlayState.instance.iconP1
+		];
+		
+		for (object in objects) {
+			if (!instant) {
+				FlxTween.tween(object, {alpha: alphaInt}, 2.2, {ease: FlxEase.quadInOut});
+			} else {
+				object.alpha = alphaInt;
+			}
+		}
+	}
+
+    function adjustPropColor(prop, hue, saturation, contrast, brightness){
+        var shad = new AdjustColorShader();
+        shad.hue = hue;
+        shad.saturation = saturation;
+        shad.contrast = contrast;
+        shad.brightness = brightness;
+        prop.shader = shad;
+    }
+
+    function onSongRetry(event:ScriptEvent)
+	{
+		super.onSongRetry(event);
+        hudAlpha(1,true);
+        var leBlack = getNamedProp("blackScreen");
+        var daRibbit = getNamedProp("frogFlashback");
+        daRibbit.velocity.x = 0;
+        daRibbit.updateHitbox();
+        daRibbit.y = (FlxG.height - daRibbit.height)/2;
+        daRibbit.x = FlxG.width+(daRibbit.width+12);
+        daRibbit.alpha = 0;
+        daRibbit.visible = false;
+         if (transitionTimer != null)
+        transitionTimer.active = true;
+        if (frogAngelTween != null)
+        frogAngelTween.active = true;
+        if (blackScreenTween != null)
+        blackScreenTween.active = true;
+        leBlack.alpha = 0;
+        PlayState.instance.mayPauseGame = true;
+	}
+    
+    function onSongRestart(event:ScriptEvent)
+	{
+		super.onSongRestart(event);
+        hudAlpha(1,true);
+        var leBlack = getNamedProp("blackScreen");
+        var daRibbit = getNamedProp("frogFlashback");
+        daRibbit.velocity.x = 0;
+        daRibbit.updateHitbox();
+        daRibbit.y = (FlxG.height - daRibbit.height)/2;
+        daRibbit.x = FlxG.width+(daRibbit.width+12);
+        daRibbit.alpha = 0;
+        daRibbit.visible = false;
+         if (transitionTimer != null)
+        transitionTimer.active = true;
+        if (frogAngelTween != null)
+        frogAngelTween.active = true;
+        if (blackScreenTween != null)
+        blackScreenTween.active = true;
+        leBlack.alpha = 0;
+        PlayState.instance.mayPauseGame = true;
+	}
+    override function onCountdownStart(event) {
+        super.onCountdownStart(event);
+
+        for (props in ["tree", "grass"]) {
+            adjustPropColor(getNamedProp(props), -43, 8, 32, 0);
+        }
+        getNamedProp("blackScreen").scale.set(FlxG.width,FlxG.height);
+        adjustPropColor(getNamedProp("sky"), 142, 100, -17, 63);
+        adjustPropColor(getNamedProp("house"), -39, 1, 0, 0);
+        adjustPropColor(getNamedProp("frontPlants"), -13, 25, 7, -24);
+
+        if (getGirlfriend() != null){
+            adjustPropColor(getGirlfriend(), 38, 12, -18, -45); 
+            getGirlfriend().idleSuffix = "";
+        }
+        if (getBoyfriend() != null){
+            getBoyfriend().idleSuffix = "";
+            getBoyfriend().shouldAlternate = false;
+        }
+        if (getDad() != null){
+            getDad().idleSuffix = "";
+            getDad().shouldAlternate = false;
+        }
+
+        if (PlayState.instance.comboPopUps != null)
+        PlayState.instance.comboPopUps.offsets = [60, 300];
+         
+        if (PlayState.instance.iconP2 != null)
+        PlayState.instance.iconP2.zIndex = 851;
+    }
+
+    public function onGameOver(event:ScriptEvent) {
+		super.onGameOver(event);
+		getBoyfriend().shader = null;
+	}
+
+	override function addCharacter(character:BaseCharacter, charType:CharacterType):Void {
+		super.addCharacter(character, charType);
+        if (charType == CharacterType.GF) return;
+
+		var rim = new DropShadowShader();
+		rim.setAdjustColor(-65, 11, -17, 4);
+        rim.color = 0xFFe0741b;
+		character.shader = rim;
+		rim.attachedSprite = character;
+
+		switch(charType){
+			case CharacterType.BF:
+				rim.angle = 126;
+				character.animation.onFrameChange.add(function() {
+                if (getBoyfriend() != null)
+                {
+      			    rim.updateFrameInfo(getBoyfriend().frame);
+                }
+    		});
+
+			case CharacterType.GF:
+				rim.angle = 90;
+                rim.color = 0xFF1c2b16;
+				rim.threshold = -2.975;
+                character.shader = rim;
+                character.animation.onFrameChange.add(function() {
+                if (getGirlfriend() != null)
+                {
+                    rim.updateFrameInfo(getGirlfriend().frame);
+                }
+    		});
+			case CharacterType.DAD:
+				rim.angle = 137;
+				rim.threshold = 0.29;
+				character.animation.onFrameChange.add(function() {
+                rim.updateFrameInfo(getDad().frame);
+                });
+			default:
+		}
+
+	}
+
+    var paussed_bby:Bool = false;
+    override function onPauseSong(event){
+        super.onPauseSong(event);
+        paussed_bby = true;
+        if (transitionTimer != null)
+        transitionTimer.active = false;
+        if (frogAngelTween != null)
+        frogAngelTween.active = false;
+    }
+
+    override function onResume(event){
+        super.onResume(event);
+        paussed_bby = false;
+        if (transitionTimer != null)
+        transitionTimer.active = true;
+        if (frogAngelTween != null)
+        frogAngelTween.active = true;
+        if (blackScreenTween != null)
+        blackScreenTween.active = true;
+    }
+}

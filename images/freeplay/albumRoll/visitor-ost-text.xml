@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="visitor-ost-text.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="idle0000" x="0" y="0" width="334" height="140"/>
+	<SubTexture name="switch0000" x="0" y="140" width="330" height="136" frameX="0" frameY="0" frameWidth="330" frameHeight="141"/>
+	<SubTexture name="switch0001" x="0" y="140" width="330" height="136" frameX="0" frameY="0" frameWidth="330" frameHeight="141"/>
+	<SubTexture name="switch0002" x="0" y="276" width="330" height="136" frameX="0" frameY="-5" frameWidth="330" frameHeight="141"/>
+	<SubTexture name="switch0003" x="0" y="276" width="330" height="136" frameX="0" frameY="-5" frameWidth="330" frameHeight="141"/>
+</TextureAtlas>

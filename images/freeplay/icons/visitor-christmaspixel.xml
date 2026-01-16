@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="visitor-christmaspixel.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="confirm-hold0000" x="44" y="45" width="47" height="45" frameX="0" frameY="0" frameWidth="48" frameHeight="45"/>
+	<SubTexture name="confirm0000" x="0" y="0" width="45" height="45" frameX="-2" frameY="0" frameWidth="48" frameHeight="45"/>
+	<SubTexture name="confirm0001" x="45" y="0" width="48" height="45"/>
+	<SubTexture name="confirm0002" x="0" y="45" width="44" height="45" frameX="-3" frameY="0" frameWidth="48" frameHeight="45"/>
+	<SubTexture name="confirm0003" x="44" y="45" width="47" height="45" frameX="-1" frameY="0" frameWidth="48" frameHeight="45"/>
+	<SubTexture name="idle0000" x="0" y="0" width="45" height="45" frameX="0" frameY="0" frameWidth="48" frameHeight="45"/>
+</TextureAtlas>

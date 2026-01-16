@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="visitor-x_mas-special-ost.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="idle0000" x="0" y="284" width="390" height="142" frameX="0" frameY="0" frameWidth="391" frameHeight="147"/>
+	<SubTexture name="switch0000" x="0" y="0" width="390" height="142" frameX="-1" frameY="0" frameWidth="391" frameHeight="147"/>
+	<SubTexture name="switch0001" x="0" y="0" width="390" height="142" frameX="-1" frameY="0" frameWidth="391" frameHeight="147"/>
+	<SubTexture name="switch0002" x="0" y="142" width="390" height="142" frameX="0" frameY="-5" frameWidth="391" frameHeight="147"/>
+	<SubTexture name="switch0003" x="0" y="284" width="390" height="142" frameX="0" frameY="-4" frameWidth="391" frameHeight="147"/>
+	<SubTexture name="switch0004" x="0" y="284" width="390" height="142" frameX="0" frameY="-4" frameWidth="391" frameHeight="147"/>
+	<SubTexture name="switch0005" x="0" y="284" width="390" height="142" frameX="0" frameY="-4" frameWidth="391" frameHeight="147"/>
+	<SubTexture name="switch0006" x="0" y="284" width="390" height="142" frameX="0" frameY="-4" frameWidth="391" frameHeight="147"/>
+</TextureAtlas>

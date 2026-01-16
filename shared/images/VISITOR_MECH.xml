@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="VISITOR_MECH.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="visitor_face_mech instancia 10000" x="0" y="0" width="1280" height="720"/>
+	<SubTexture name="visitor_face_mech instancia 10001" x="1280" y="0" width="1280" height="720"/>
+	<SubTexture name="visitor_face_mech instancia 10002" x="2560" y="0" width="1280" height="720"/>
+	<SubTexture name="visitor_face_mech instancia 10003" x="0" y="720" width="1280" height="720"/>
+</TextureAtlas>

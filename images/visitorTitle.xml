@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="visitorTitle.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="visitorTitle0000" x="0" y="0" width="498" height="741" frameX="-7" frameY="0" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0001" x="498" y="0" width="498" height="741" frameX="-6" frameY="0" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0002" x="996" y="0" width="498" height="741" frameX="-6" frameY="-1" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0003" x="1494" y="0" width="499" height="740" frameX="-5" frameY="-2" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0004" x="1993" y="0" width="500" height="739" frameX="-4" frameY="-3" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0005" x="2493" y="0" width="500" height="739" frameX="-4" frameY="-4" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0006" x="2993" y="0" width="501" height="738" frameX="-3" frameY="-5" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0007" x="3494" y="0" width="501" height="738" frameX="-3" frameY="-6" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0008" x="0" y="741" width="502" height="737" frameX="-2" frameY="-7" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0009" x="502" y="741" width="502" height="737" frameX="-2" frameY="-8" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0010" x="1004" y="741" width="502" height="736" frameX="-1" frameY="-9" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0011" x="1506" y="741" width="501" height="736" frameX="-1" frameY="-10" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0012" x="2007" y="741" width="502" height="734" frameX="0" frameY="-12" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0013" x="2509" y="741" width="502" height="733" frameX="0" frameY="-13" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0014" x="3011" y="741" width="502" height="735" frameX="0" frameY="-11" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0015" x="3513" y="741" width="501" height="736" frameX="-1" frameY="-10" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0016" x="0" y="1478" width="502" height="736" frameX="-1" frameY="-9" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0017" x="502" y="1478" width="502" height="737" frameX="-2" frameY="-8" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0018" x="1004" y="1478" width="502" height="736" frameX="-2" frameY="-7" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0019" x="1506" y="1478" width="501" height="738" frameX="-3" frameY="-6" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0020" x="2007" y="1478" width="501" height="738" frameX="-3" frameY="-5" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0021" x="2508" y="1478" width="500" height="739" frameX="-4" frameY="-4" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0022" x="3008" y="1478" width="498" height="739" frameX="-5" frameY="-3" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0023" x="3506" y="1478" width="499" height="740" frameX="-5" frameY="-2" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0024" x="996" y="0" width="498" height="741" frameX="-6" frameY="-1" frameWidth="505" frameHeight="746"/>
+	<SubTexture name="visitorTitle0025" x="498" y="0" width="498" height="741" frameX="-6" frameY="0" frameWidth="505" frameHeight="746"/>
+</TextureAtlas>

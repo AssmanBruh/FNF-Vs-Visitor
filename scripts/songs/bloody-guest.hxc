@@ -1,0 +1,781 @@
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+import funkin.Paths;
+import funkin.play.cutscene.VideoCutscene;
+import funkin.save.Save;
+import funkin.Conductor;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import flixel.text.FlxText;
+import flixel.text.FlxTextFormatMarkerPair;
+import flixel.text.FlxTextFormat;
+import flixel.text.FlxTextBorderStyle;
+import flixel.FlxCamera;
+import funkin.play.PlayStatePlaylist;
+import openfl.filters.ShaderFilter;
+import funkin.graphics.shaders.AdjustColorShader;
+import flixel.addons.display.FlxRuntimeShader;
+import lime.app.Application;
+import flixel.math.FlxMath;
+
+class BloodySong extends Song {
+  var hasPlayedCutscene:Bool;
+  
+  var playState;
+
+  var camOutro:FlxCamera;
+  var sceneAudio:FlxSound;
+	public function new() {
+		super('bloody-guest');
+    playState = PlayState.instance;
+    hasPlayedCutscene = false;
+	}
+
+  override function onSongLoaded(event) {
+    super.onSongLoaded(event);
+
+    if (PlayState.instance.currentVariation == 'pico'){
+        // FlxG.camera.fade(0xFF000000, 0, false);
+    }
+
+    camOutro = new FlxCamera();
+    camOutro.bgColor = 0x00000000;
+    FlxG.cameras.add(camOutro,false);
+    sceneAudio = FlxG.sound.load(Paths.sound("sfxcisit"));
+  }
+    
+  public override function onCountdownStart(event:CountdownScriptEvent):Void {
+		super.onCountdownStart(event);
+
+    if (PlayState.instance.currentVariation == 'erect' || PlayState.instance.currentVariation == 'pico') hasPlayedCutscene = true;
+
+    if (!hasPlayedCutscene) {
+      trace('Pausing countdown to play a video cutscene (`bloody-guest`)');
+
+      hasPlayedCutscene = true;
+
+      event.cancel(); // CANCEL THE COUNTDOWN!
+
+      startVideo();
+    }
+
+    if (PlayState.instance.currentVariation == 'pico'){
+        new FlxTimer().start((((60 / Conductor.instance.bpm)*2))*5, function(t:FlxTimer)
+        {
+            // FlxG.camera.fade(0xFF000000, 4, true);
+        });  
+    }
+	}
+
+  function startVideo() {
+    VideoCutscene.play(Paths.videos('visitorCutscene'));
+  }
+
+  /**
+   * Don't replay the cutscene between restarts.
+   */
+  function onSongRetry(event:ScriptEvent)
+  {
+    super.onSongRetry(event);
+
+    hasPlayedCutscene = true;
+    if (PlayState.instance.currentVariation == 'pico'){
+        // FlxG.camera.fade(0xFF000000, 0, false);
+    }
+  }
+
+  function onSongRestart(event:ScriptEvent)
+	{
+		super.onSongRestart(event);
+
+    if (PlayState.instance.currentVariation == 'pico'){
+        // FlxG.camera.fade(0xFF000000, 0, true);
+    }
+  }
+
+  /**
+   * Replay the cutscene after leaving the song.
+   */
+  function onCreate(event:ScriptEvent):Void
+  {
+    super.onCreate(event);
+
+    hasPlayedCutscene = false;
+  }
+
+  public override function listAltInstrumentalIds(difficultyId: String, variationId: String): Array<String>
+	{
+		if (difficultyId == 'easy' || difficultyId == 'normal' || difficultyId == 'hard')
+		{
+			var hasBeatenPicoMix = Save.instance.hasBeatenSong(this.id, null, 'pico');
+
+			switch (variationId)
+			{
+				case 'pico':
+					return [''];
+				default:
+					return hasBeatenPicoMix ? ['pico'] : [];
+			}
+		}
+	}
+
+  public override function isSongNew(currentDifficulty: String, currentVariation: String): Bool
+	{
+    var hasBeatenPicoMix = Save.instance.hasBeatenSong(this.id, null, 'pico');
+
+    if (currentVariation == "pico"){
+      if (!hasBeatenPicoMix){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+		  return false;
+    }
+	}
+
+  var hasPlayedOutro:Bool = false;
+  var visitorScene:FlxSprite;
+  public function onSongEnd(event):Void 
+  {
+    super.onSongEnd(event);
+      if (PlayState.instance.currentVariation == "pico"){
+        if (!hasPlayedOutro)
+        {
+          hasPlayedOutro = true;
+          event.cancel();  
+          event.stopPropagation();
+          FlxG.camera.fade(0xFF000000, 0, false);
+          quickTimer(0.4, function(tmr){
+            PlayState.instance.camHUD.alpha = 0;
+          });
+          quickTimer(0.5, function(tmr){
+            FlxG.sound.play(Paths.sound("pico se muere"), 1, false, null, true, function(){
+                quickTimer(1, function(tmr){  
+                  PlayState.instance.endSong(true);
+                });  
+            });
+          });
+        }else
+          hasPlayedOutro = false;
+      }else if (PlayState.instance.currentVariation != "erect"){
+        if (!hasPlayedOutro)
+        {
+              hasPlayedOutro = true;
+
+              event.cancel();
+              event.stopPropagation();
+              if (FlxG.save.data.GiftfirstTime){
+                  visitorGiftCinematic();
+              }else{    
+                  visitorCinematic();
+              }
+          }
+      else
+        hasPlayedOutro = false;
+    }
+  }
+
+  function quickTimer(t, f, ?r=1){
+      new FlxTimer().start(t, f, r);
+  }
+
+  var firstPreAttack:Bool = true;
+  var danced:Bool = false;
+  var confettiSpawner:FlxTimer;
+
+  function visitorGiftCinematic(){
+    var hudTweenDur = 1;
+    var stage = PlayState.instance.currentStage;
+    if (stage == null) return;
+    quickTimer(1.3, function(tmr){
+    sceneAudio.play();
+    sceneAudio.fadeIn(0.5, 0, 1);
+    });
+    FlxTween.tween(PlayState.instance.camHUD, {alpha: 0}, hudTweenDur);
+    quickTimer(hudTweenDur+3, function(tmr){
+        var bf = stage.getBoyfriend();
+        var gf = stage.getGirlfriend();
+        var visitor = stage.getDad();
+        clickSound = FlxG.sound.load(Paths.sound("confirmMenu"));
+        confettiSpawner = new FlxTimer();
+ 
+        if (bf == null)return;
+        if (gf == null)return;
+        if (visitor == null)return;
+
+        var anotherBF = new FlxSprite(bf.x+22, bf.y+80);
+        anotherBF.frames = Paths.getSparrowAtlas("characters/BOYFRIEND");
+        anotherBF.animation.addByPrefix("preAttack","bf pre attack",24,false);
+        anotherBF.shader = bf.shader;
+        anotherBF.visible = false;
+        anotherBF.zIndex = bf.zIndex+1;
+
+        var bfScene = new FlxSprite(-64, -7);
+        bfScene.frames = Paths.getSparrowAtlas("BD_FinalScene/bfGiftScene");
+        bfScene.animation.addByPrefix("attack","boyfriend attack0",24,false);
+        bfScene.animation.addByPrefix("attackPaused","boyfriend attack paused",24,true);
+        bfScene.shader = bf.shader;
+        bfScene.visible = false;
+        bfScene.zIndex = bf.zIndex+1;
+
+        bf.holdTimer = 0;
+        bf.visible = false;
+        anotherBF.visible = true;
+        anotherBF.animation.play("preAttack", true);
+        anotherBF.offset.set(-17, -36);
+        stage.add(anotherBF);
+
+        visitorScene = new FlxSprite(-148, 283);
+        visitorScene.frames = Paths.getSparrowAtlas("BD_FinalScene/bloodyGuestFinalScene");
+        visitorScene.animation.addByPrefix("hurt","visitorHurt",24,true);
+        visitorScene.animation.addByPrefix("hurt2","visitor2Hurt",24,true);
+        visitorScene.animation.addByPrefix("falling","visitorFalling",24,false);
+        visitorScene.animation.play("hurt");
+        visitorScene.zIndex = visitor.zIndex+1;
+        stage.add(visitorScene);
+        visitorScene.shader = visitor.shader;
+        visitorScene.visible = false;
+        visitorScene.animation.onFinish.add(function(animName){
+          switch (animName){
+            case "falling":
+              visitorScene.visible = false;
+              stage.remove(visitorScene);
+          }
+        });
+        stage.add(bfScene);
+          
+        anotherBF.animation.onFinish.add(function(animName){
+          switch (animName){
+            case "preAttack":
+              quickTimer(0.11, function(tmr){
+               if (firstPreAttack){
+                  anotherBF.visible = false;
+                  bfScene.visible = true;
+                  bfScene.animation.play("attackPaused",true);
+                  bfScene.offset.set(1,-285);
+
+                  visitor.visible = false;
+                  visitorScene.animation.play("hurt", true);
+                  visitorScene.offset.set(0,0);
+                  visitorScene.visible = true;
+                  FlxG.camera.shake(0.05, 0.15);
+                  firstPreAttack = false;
+                }else{
+                  anotherBF.visible = false;
+                  bf.visible = true;
+                  // bf.holdTimer = 0;
+                  bf.playAnimation("hey", true);
+                  gf.playAnimation("cheer", true);
+                }
+              });
+          }
+        });
+        
+          quickTimer(0.72, function(tmr){
+            var bfPos = [
+              bf.cameraFocusPoint.x,
+              bf.cameraFocusPoint.y
+            ];
+            var gfPos = [
+              gf.cameraFocusPoint.x,
+              gf.cameraFocusPoint.y
+            ];
+            var visitorPos = [
+              visitor.cameraFocusPoint.x, 
+              visitor.cameraFocusPoint.y
+            ];
+              var visitorCamOffsets = {
+                x: -210
+            }
+
+             
+            quickTimer(0.85, function(tmr){
+               PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom+0.51, 0.14, true, FlxEase.linear);  
+               // FlxG.camera.scroll.x = visitorPos[0]+visitorCamOffsets.x;
+               PlayState.instance.tweenCameraToPosition(visitorPos[0]+visitorCamOffsets.x, visitorPos[1], 0.14, FlxEase.linear);
+               quickTimer(0.11, function(tmr){
+                   PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom+0.29, 3.5, true, FlxEase.quadInOut);  
+               });  
+            });
+          quickTimer(3, function(tmr){
+                visitorScene.animation.play("hurt2", true);
+                var gift = new FlxSprite(387, 445);
+                gift.frames = Paths.getSparrowAtlas("BD_FinalScene/parasiteGift");
+                gift.animation.addByPrefix("gift","gift0",24,true);
+                gift.animation.addByPrefix("idle","giftWa",24,false);
+                gift.animation.addByPrefix("appear","giftAppear",24,false);
+                gift.animation.play("appear");
+                gift.offset.set(84,1);
+                gift.zIndex = bfScene.zIndex-1;
+                gift.shader = bfScene.shader;
+                PlayState.instance.add(gift);
+                gift.animation.onFinish.add(function(animName){
+                  switch (animName){
+                    case "idle":
+                      gift.animation.play("gift");
+                      gift.offset.set(0,0);
+                  }
+                });
+                visitorScene.offset.set(22,-11);
+                PlayState.instance.tweenCameraToPosition(gfPos[0]-240, gfPos[1], 0.3, FlxEase.quadInOut);
+                PlayState.instance.tweenCameraZoom(PlayState.instance.stageZoom-0.21, 0.3, true, FlxEase.quadInOut);    
+                visitor.visible = false;
+                quickTimer(0.09, function(tmr){
+                  visitorScene.animation.play("falling", true);
+                  visitorScene.offset.set(1065,35);
+                  bfScene.animation.play("attack",true);
+                  bfScene.offset.set(0,0);
+                  bfScene.animation.onFinish.add(function(animName){
+                    switch (animName){
+                      case "attack":
+                        bfScene.visible = false;
+                        PlayState.instance.remove(bfScene);
+                        bf.visible = false;
+                        bf.holdTimer = 0;
+                        anotherBF.visible = true;
+                        anotherBF.animation.play("preAttack",true);
+                    }
+                  });
+                  quickTimer(5.22, function(tmr){
+                    gift.animation.play("idle");
+                    gift.offset.set(0,0);
+                  });
+                  quickTimer(6.22, function(tmr){
+                    // showUpGiftBox();
+                    FlxTween.tween(gift, {y: -800}, 0.18, {ease: FlxEase.linear});
+                    quickTimer(1.22, function(tmr){
+                       showUpGiftBox();
+                    });
+                  });
+                });
+              });
+          });
+    });
+  }
+
+  function visitorCinematic(){
+    var hudTweenDur = 1;
+    var stage = PlayState.instance.currentStage;
+    if (stage == null) return;
+    FlxTween.tween(PlayState.instance.camHUD, {alpha: 0}, hudTweenDur);
+    quickTimer(1.3, function(tmr){
+      sceneAudio.play();
+      sceneAudio.fadeIn(0.5, 0, 1);
+    });
+    quickTimer(hudTweenDur+3, function(tmr){
+        var bf = stage.getBoyfriend();
+        var gf = stage.getGirlfriend();
+        var visitor = stage.getDad();
+        clickSound = FlxG.sound.load(Paths.sound("confirmMenu"));
+        confettiSpawner = new FlxTimer();
+       
+        if (bf == null)return;
+        if (gf == null)return;
+        if (visitor == null)return;
+
+        var anotherBF = new FlxSprite(bf.x+22, bf.y+80);
+        anotherBF.frames = Paths.getSparrowAtlas("characters/BOYFRIEND");
+        anotherBF.animation.addByPrefix("preAttack","bf pre attack",24,false);
+        anotherBF.shader = bf.shader;
+        anotherBF.visible = false;
+        anotherBF.zIndex = bf.zIndex+1;
+
+        var bfScene = new FlxSprite(-64, -7);
+        bfScene.frames = Paths.getSparrowAtlas("BD_FinalScene/bfGiftScene");
+        bfScene.animation.addByPrefix("attack","boyfriend attack0",24,false);
+        bfScene.animation.addByPrefix("attackPaused","boyfriend attack paused",24,true);
+        bfScene.shader = bf.shader;
+        bfScene.visible = false;
+        bfScene.zIndex = bf.zIndex+1;
+
+        bf.holdTimer = 0;
+        bf.visible = false;
+        anotherBF.visible = true;
+        anotherBF.animation.play("preAttack", true);
+        anotherBF.offset.set(-17, -36);
+        stage.add(anotherBF);
+
+        visitorScene = new FlxSprite(-148, 283);
+        visitorScene.frames = Paths.getSparrowAtlas("BD_FinalScene/bloodyGuestFinalScene");
+        visitorScene.animation.addByPrefix("hurt","visitorHurt",24,true);
+        visitorScene.animation.addByPrefix("hurt2","visitor2Hurt",24,true);
+        visitorScene.animation.addByPrefix("falling","visitorFalling",24,false);
+        visitorScene.animation.play("hurt");
+        visitorScene.zIndex = visitor.zIndex+1;
+        stage.add(visitorScene);
+        visitorScene.shader = visitor.shader;
+        visitorScene.visible = false;
+        visitorScene.animation.onFinish.add(function(animName){
+          switch (animName){
+            case "falling":
+              visitorScene.visible = false;
+              stage.remove(visitorScene);
+          }
+        });
+        stage.add(bfScene);
+          
+        anotherBF.animation.onFinish.add(function(animName){
+          switch (animName){
+            case "preAttack":
+              new FlxTimer().start(0.11, function(tmr){
+                if (firstPreAttack){
+                  anotherBF.visible = false;
+                  bfScene.visible = true;
+                  bfScene.animation.play("attackPaused",true);
+                  bfScene.offset.set(1,-285);
+
+                  visitor.visible = false;
+                  visitorScene.animation.play("hurt", true);
+                  visitorScene.offset.set(0,0);
+                  visitorScene.visible = true;
+                  FlxG.camera.shake(0.05, 0.15);
+                  firstPreAttack = false;
+                }else{
+                  anotherBF.visible = false;
+                  bf.visible = true;
+                  // bf.holdTimer = 0;
+                  bf.playAnimation("hey", true);
+                  gf.playAnimation("cheer", true);
+                }
+              });
+          }
+        });
+        
+          quickTimer(0.72, function(tmr){
+            var bfPos = [
+              bf.cameraFocusPoint.x,
+              bf.cameraFocusPoint.y
+            ];
+            var gfPos = [
+              gf.cameraFocusPoint.x,
+              gf.cameraFocusPoint.y
+            ];
+            var visitorPos = [
+              visitor.cameraFocusPoint.x, 
+              visitor.cameraFocusPoint.y
+            ];
+              var visitorCamOffsets = {
+                x: -210
+            }
+
+             
+            quickTimer(0.85, function(tmr){
+               PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom+0.51, 0.14, true, FlxEase.linear);  
+               // FlxG.camera.scroll.x = visitorPos[0]+visitorCamOffsets.x;
+               PlayState.instance.tweenCameraToPosition(visitorPos[0]+visitorCamOffsets.x, visitorPos[1], 0.14, FlxEase.linear);
+               quickTimer(0.11, function(tmr){
+                   PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom+0.29, 3.5, true, FlxEase.quadInOut);  
+               });  
+            });
+          quickTimer(3, function(tmr){
+                visitorScene.animation.play("hurt2", true);
+                visitorScene.offset.set(22,-11);
+                PlayState.instance.tweenCameraToPosition(gfPos[0]-240, gfPos[1], 0.3, FlxEase.quadInOut);
+                PlayState.instance.tweenCameraZoom(PlayState.instance.stageZoom-0.21, 0.3, true, FlxEase.quadInOut);    
+                visitor.visible = false;
+                quickTimer(0.09, function(tmr){
+                  visitorScene.animation.play("falling", true);
+                  visitorScene.offset.set(1065,35);
+                  bfScene.animation.play("attack",true);
+                  bfScene.offset.set(0,0);
+                  bfScene.animation.onFinish.add(function(animName){
+                    switch (animName){
+                      case "attack":
+                        bfScene.visible = false;
+                        PlayState.instance.remove(bfScene);
+                        bf.visible = false;
+                        bf.holdTimer = 0;
+                        anotherBF.visible = true;
+                        anotherBF.animation.play("preAttack",true);
+                    }
+                  });
+                  quickTimer(6.22, function(tmr){
+                     FlxG.camera.fade(0xFF000000, 4.22, false);
+                      quickTimer(5.28, function(tmr){
+                        PlayState.instance.endSong(true);
+                      });
+                  });
+                });
+              });
+          });
+    });
+  }
+
+  var clicksCount:Int = 0;
+  var giftTime:Bool = false;
+  var clicksNeeded = 1;
+  var giftBox:FlxSprite;
+
+  var baseScale:Float = 1;
+
+  function showUpGiftBox(){
+    clicksNeeded = FlxG.random.int(40, 47);
+    giftTime = true;
+    
+    var black = new FlxSprite().makeGraphic(Std.int(FlxG.width), Std.int(FlxG.height),0xFF000000);
+    black.screenCenter();
+    black.scrollFactor.set();
+    black.alpha = 0.6;
+    black.cameras = [camOutro];
+    PlayState.instance.add(black);
+
+    giftBox = new FlxSprite(387, 445);
+    giftBox.frames = Paths.getSparrowAtlas("BD_FinalScene/parasiteGift");
+    giftBox.animation.addByPrefix("gift","gift0",24,true);
+    giftBox.animation.addByPrefix("idle","giftWa",24,false);
+    giftBox.animation.addByPrefix("opened","giftOpened",24,true);
+    giftBox.animation.play("gift");
+    // giftBox.screenCenter();
+    giftBox.x = (FlxG.width-giftBox.width)/2;
+    giftBox.y = -giftBox.height;
+    giftBox.y -= 10;
+    var centerY = (FlxG.height-giftBox.height)/2;
+    FlxTween.tween(giftBox, {y: centerY+25}, 0.22, {ease: FlxEase.elasticInOut, 
+    onComplete: function (twn){
+      if (!FlxG.onMobile){
+        if (!FlxG.mouse.visible)
+            FlxG.mouse.visible = true;
+      }
+    }});
+    giftBox.cameras = [camOutro];
+    giftBox.scale.set(1.22,1.22);
+    baseScale = giftBox.scale.x;
+    PlayState.instance.add(giftBox);
+
+    var info = new FlxText(0,0, 0, "Click the Gift!",20);
+    info.setFormat(Paths.font("vcr.ttf"), 29, 0xFFFFFFFF, FlxTextBorderStyle.CENTER);
+    info.setBorderStyle(FlxTextBorderStyle.OUTLINE, 0xFF000000, 1.2);
+    info.x = info.x + ((FlxG.width-info.width)/2);
+    info.y = 30;
+    info.cameras = [camOutro];
+    PlayState.instance.add(info);
+    FlxTween.tween(info, {alpha: 0}, 0.8, {ease: FlxEase.linear, startDelay: 2,
+    onComplete: function(twn){
+        PlayState.instance.remove(info);
+    }});
+  }
+
+  var confettiList:Array<FlxSprite>= [];
+  var confettiTime:Bool = false;
+  function startConfetti(){
+    confettiSpawner.start(0.17, function(tmr){
+      if (!confettiTime) return;
+      if (confettiList.length >= 100) return;
+
+      var confetti = new FlxSprite();
+      confetti.loadGraphic(Paths.image("BD_FinalScene/confetti"));
+      confetti.updateHitbox();
+      confetti.y = -(confetti.height/FlxG.camera.zoom);
+      confetti.y-=80;
+      confetti.x = FlxG.random.float(0, FlxG.width);
+      confetti.cameras = [camOutro];
+      confetti.velocity.y = FlxG.random.int(350, 390);
+      confetti.angularVelocity = FlxG.random.float(65, -65);
+      confetti.acceleration.y = 50;
+      confetti.flipX = FlxG.random.bool(50);
+      confetti.flipY = FlxG.random.bool(50);
+      var shader = new AdjustColorShader();
+      shader.hue = FlxG.random.int(-100, 100);
+      shader.saturation = FlxG.random.int(0, 100);
+      shader.contrast = FlxG.random.int(0, 100);
+      shader.brightness = FlxG.random.int(0, 100);
+      confetti.shader = shader;
+      PlayState.instance.add(confetti);
+      confettiList.push(confetti);
+    },0);
+  }
+
+  function destroyConfettis(){
+      confettiList = [];
+      confettiTime = false;
+
+      for (i in 0...confettiList.length) {
+          var daConfetti = confettiList[i];
+          if (daConfetti == null)break;
+          FlxTween.tween(daConfetti, {alpha: 0}, 0.88, {ease: FlxEase.linear, onComplete: function(twn){
+              daConfetti.active = false;
+              daConfetti.visible = false;
+              daConfetti.kill();
+              daConfetti.destroy();
+              PlayState.instance.remove(daConfetti);
+          }});
+      }
+  }
+
+  var clickSound:FlxSound;
+  override function onUpdate(event){
+    super.onUpdate(event);
+
+    if (PlayState.instance.currentVariation == "erect") return;
+    
+    if (giftBox != null){
+        var formula = FlxMath.lerp(giftBox.scale.x, baseScale, event.elapsed*9);
+        giftBox.scale.set(formula, formula); 
+    }
+
+     if (confettiTime){
+            for (i in 0...confettiList.length) {
+            var daConfetti = confettiList[i];
+            if (daConfetti == null) continue; 
+
+            if (daConfetti.y > (FlxG.height/FlxG.camera.zoom)) {
+                PlayState.instance.remove(daConfetti);
+                // FlxG.camera.flash(0xFF000000,0.2);
+                confettiList.splice(i, 1);
+                confettiList.remove(daConfetti,true);
+                i--;
+                continue;
+            }else{
+                if (daConfetti.x > FlxG.width+daConfetti.width || daConfetti.x < -daConfetti.width) {
+                    daConfetti.active = false;
+                    daConfetti.visible = false;
+                }else{
+                    daConfetti.active = true;
+                    daConfetti.visible = true;
+                }
+            }
+        }
+    }
+
+    if (FlxG.mouse.justPressed && giftTime && clicksCount <= clicksNeeded){
+        clicksCount++;
+        clickSound.play(true);
+        clickSound.pitch = 1 + (clicksCount/10);
+        if (clicksCount == clicksNeeded){
+        //     camOutro.flash(0xFFFFFFFF, 0.3);
+        camOutro.flash(0xFFFFFFFF, 1);
+        }
+        giftBox.scale.set(baseScale-0.08,baseScale-0.08);
+        giftBox.scale.set(baseScale+0.22, baseScale+0.22);
+    }
+    
+    if (clicksCount >= clicksNeeded && giftTime){
+        // FlxG.camera.fade(0xFF000000, 0.88, false);
+        camOutro.flash(0xFFFFFFFF, 1);
+        giftBox.animation.play("opened");
+        giftBox.offset.set(46,201);
+        // FlxTween.tween(giftBox, {alpha: 0}, 0.88, {ease: FlxEase.linear});
+        clickSound.pitch = 1.4;
+        clickSound.play(true);
+        startConfetti();
+        confettiTime = true;
+        if (!FlxG.onMobile)
+        FlxG.mouse.visible = false;
+        FlxTween.tween(giftBox, {alpha: 0}, 3, {ease: FlxEase.linear, startDelay: 7});
+        quickTimer(10, function(tmr){
+            clickSound.play(true);
+            clickSound.pitch = 1;
+            FlxG.camera.fade(0xFF000000, 0.88, false);
+            confettiTime = false;
+            destroyConfettis();
+            var tag = new FlxSprite().makeGraphic(FlxG.width-680, 60, 0xFF28b2f7);
+            PlayState.instance.add(tag);
+            tag.cameras = [camOutro];
+            tag.screenCenter();
+            
+            var format1 = new FlxTextFormat(0x43e0b7, false, false, 0x11535e);
+            var tagTxt = new FlxText(tag.x,tag.y, tag.width, "You can now play Parasite Gift song!",20);
+            tagTxt.applyMarkup("You can now play ,/,Parasite Gift,/, Song!", [
+              new FlxTextFormatMarkerPair(format1, ",/,")
+            ]);
+            tagTxt.setFormat(Paths.font("vcr.ttf"), 29, 0xFFFFFFFF, FlxTextBorderStyle.CENTER);
+            tagTxt.setBorderStyle(FlxTextBorderStyle.OUTLINE, 0xFF000000, 1.2);
+            tagTxt.x = tag.x + ((tag.width-tagTxt.width)/2);
+            tagTxt.y = tag.y + ((tag.height-tagTxt.height)/2);
+            tagTxt.x += 42;
+            tagTxt.cameras = [camOutro];
+            PlayState.instance.add(tagTxt);
+            // tagTxt.alpha = 0;
+            // tag.alpha = 0;
+            // FlxTween.tween(tag, {alpha: 1}, 1, {ease: FlxEase.linear});
+            // FlxTween.tween(tagTxt, {alpha: 1}, 1, {ease: FlxEase.linear});
+            quickTimer(7, function(tmr){
+              camOutro.fade(0xFFe6f3fa, 4, false);
+                quickTimer(5, function(tmr){
+                  PlayState.instance.endSong(true);
+                  FlxG.save.data.GiftfirstTime = false;
+                }); 
+              }); 
+        }); 
+        giftTime = false;
+    }
+  }
+
+  override public function onSongEvent(event:SongEventScriptEvent):Void {
+      super.onSongEvent(event);
+
+      switch (event.eventData.eventKind) {
+            case "finalTransitionBlood": //uuuh, would it be correct to do it only for pico mix?
+             
+      }
+  }
+
+  override function onStepHit(event:SongTimeScriptEvent):Void {
+        super.onStepHit(event);
+        // DUR: 1679 to 1790
+        //"finalTransitionBlood": //uuuh, would it be correct to do it only for pico mix?
+        if (event.step == 1679 && PlayState.instance.currentVariation == 'pico'){
+            var adjustColorShader = new AdjustColorShader();
+            var filter = new ShaderFilter(adjustColorShader);
+            FlxG.camera.filters = [filter];
+            // adjustColorShader.strength = 0.5;
+            // FlxG.camera.bgColor.colorTransform.rOffset = 100;
+            // FlxG.camera.bgColor.colorTransform.gOffset = 0;
+            // FlxG.camera.bgColor.colorTransform.bOffset = 0;
+            PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom*1.3, 12.85, true, FlxEase.quadInOut);  
+           
+            FlxTween.num(adjustColorShader.hue, 118, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            {
+                adjustColorShader.hue = value;
+            });
+            FlxTween.num(adjustColorShader.saturation, 100, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            {
+                adjustColorShader.saturation = value;
+            });
+            FlxTween.num(adjustColorShader.contrast, 98, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            {
+                adjustColorShader.contrast = value;
+            });
+            FlxTween.num(adjustColorShader.brightness, -65, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            {
+                adjustColorShader.brightness = value;
+            });
+        }
+  }
+}
+/*
+   if (event.step == 1679 && PlayState.instance.currentVariation == 'pico'){
+            var crushShader = new FlxRuntimeShader(
+              Assets.getText(Paths.frag("shadowCrush"))
+            );
+            var crushfilter = new ShaderFilter(crushShader);
+
+            var adjustColorShader = new AdjustColorShader();
+            var filter = new ShaderFilter(adjustColorShader);
+      
+            FlxG.camera.filters = [crushfilter, filter];
+            // adjustColorShader.strength = 0.5;
+            // FlxG.camera.bgColor.colorTransform.rOffset = 100;
+            // FlxG.camera.bgColor.colorTransform.gOffset = 0;
+            // FlxG.camera.bgColor.colorTransform.bOffset = 0;
+            PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom*1.3, 12.85, true, FlxEase.quadInOut);  
+                      
+            FlxTween.num(crushShader.getFloat("intensity"), 24.3701, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            {
+                crushShader.setFloat("intensity", value);
+            });
+
+            FlxTween.num(adjustColorShader.hue, 118, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            {
+                adjustColorShader.hue = value;
+            });
+            FlxTween.num(adjustColorShader.saturation, 100, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            {
+                adjustColorShader.saturation = value;
+            });
+        }
+        */

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="picoChristmasBlurp.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="burp big pico instancia 10000" x="0" y="0" width="481" height="493" frameX="-84" frameY="0" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10001" x="0" y="0" width="481" height="493" frameX="-84" frameY="0" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10002" x="481" y="0" width="484" height="470" frameX="-2" frameY="-23" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10003" x="965" y="0" width="484" height="470" frameX="-2" frameY="-23" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10004" x="1449" y="0" width="495" height="472" frameX="0" frameY="-21" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10005" x="0" y="493" width="495" height="472" frameX="0" frameY="-21" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10006" x="495" y="493" width="495" height="472" frameX="0" frameY="-21" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10007" x="990" y="493" width="495" height="472" frameX="0" frameY="-21" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10008" x="1449" y="0" width="495" height="472" frameX="0" frameY="-21" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10009" x="0" y="493" width="495" height="472" frameX="0" frameY="-21" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10010" x="1485" y="493" width="492" height="471" frameX="-7" frameY="-22" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10011" x="0" y="965" width="492" height="471" frameX="-7" frameY="-22" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10012" x="492" y="965" width="482" height="478" frameX="-39" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10013" x="492" y="965" width="482" height="478" frameX="-39" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10014" x="492" y="965" width="482" height="478" frameX="-39" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10015" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10016" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10017" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10018" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10019" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10020" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10021" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10022" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10023" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10024" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10025" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10026" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10027" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10028" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10029" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10030" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+	<SubTexture name="burp big pico instancia 10031" x="974" y="965" width="482" height="478" frameX="-42" frameY="-15" frameWidth="565" frameHeight="493"/>
+</TextureAtlas>

@@ -1,0 +1,19 @@
+import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.character.MultiAnimateAtlasCharacter;
+import funkin.play.character.SparrowCharacter;
+
+class VisitorBFCharacter extends MultiAnimateAtlasCharacter {
+	function new() {
+		super('bf');
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		switch (event.note.kind) {
+			case "cheerNote":
+				holdTimer = 0;
+				this.playAnimation("cheer", true, '');
+				return;
+		}
+		super.onNoteHit(event);
+	}
+}

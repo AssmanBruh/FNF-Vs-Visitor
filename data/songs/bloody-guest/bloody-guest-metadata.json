@@ -1,0 +1,57 @@
+{
+  "version": "2.2.4",
+  "songName": "Bloody Guest",
+  "artist": "Runwait",
+  "charter": "LeonPROpapuh + AssmanBruh!",
+  "divisions": 96,
+  "looped": false,
+  "offsets": {
+    "instrumental": 0,
+    "altInstrumentals": {},
+    "vocals": {    },
+    "altVocals": {    }
+  },
+  "playData": {
+    "songVariations": ["erect", "pico"],
+    "stickerPack": "visitorStickers",
+    "difficulties": ["easy", "normal", "hard"],
+    "characters": {
+      "player": "bf",
+      "girlfriend": "gf",
+      "opponent": "visitor",
+      "instrumental": "",
+      "altInstrumentals": [ "pico" ],
+      "opponentVocals": [ "visitor"     ],
+      "playerVocals": [
+        "bf"
+      ]
+    },
+    "stage": "visitorForest",
+    "noteStyle": "funkin",
+    "ratings": {
+      "easy": 4,
+      "normal": 5,
+      "hard": 7
+    },
+    "album": "visitor",
+    "previewStart": 0,
+    "previewEnd": 0
+  },
+  "generatedBy": "AssmanBruh! (by hand, and some generation of the fnf. bruh)",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "b": 0,
+      "bpm": 130,
+      "n": 4,
+      "d": 4,
+      "bt": [
+        4,
+        4,
+        4,
+        4
+      ]
+    }
+  ]
+}

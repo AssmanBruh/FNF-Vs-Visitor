@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="houseChristmas.png">
+	<!-- Created with Adobe Animate version 23.0.2.103 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="houseChristmas0000" x="0" y="0" width="2276" height="1400"/>
+	<SubTexture name="houseChristmas0001" x="2276" y="0" width="2276" height="1400"/>
+	<SubTexture name="houseChristmas0002" x="4552" y="0" width="2276" height="1400"/>
+	<SubTexture name="houseChristmas0003" x="0" y="1400" width="2276" height="1400"/>
+	<SubTexture name="houseChristmas0004" x="2276" y="1400" width="2276" height="1400"/>
+	<SubTexture name="houseChristmas0005" x="4552" y="1400" width="2276" height="1400"/>
+	<SubTexture name="houseChristmas0006" x="0" y="2800" width="2276" height="1400"/>
+	<SubTexture name="houseChristmas0007" x="2276" y="2800" width="2276" height="1400"/>
+	<SubTexture name="houseChristmas0008" x="4552" y="2800" width="2276" height="1400"/>
+</TextureAtlas>

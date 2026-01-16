@@ -1,0 +1,32 @@
+import funkin.play.character.MultiSparrowCharacter;
+
+class VisitorConfigs extends MultiSparrowCharacter {
+	function new() {
+		super('visitor');
+	}
+	
+	override function onCreate(event)
+  	{
+    	super.onCreate(event);
+		animation.onFinish.add(function(animName:String){
+			switch (animName) {	
+				case "preSee":
+					idleSuffix = '-see';
+				case "danceLeft-alt":
+					idleSuffix = '-alt';
+					shouldAlternate = true;
+					playAnimation("danceRight-alt",true);
+				case "preSeeReverb":
+					idleSuffix = '';
+					shouldAlternate = false;
+					playAnimation("idle",true);
+			}
+		});
+	}
+	override function onSongRetry(event:ScriptEvent):Void {
+		super.onSongRetry(event);
+		idleSuffix = "";
+		shouldAlternate = false;
+		this.visible = true;
+	}
+}

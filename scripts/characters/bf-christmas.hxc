@@ -1,0 +1,17 @@
+import funkin.play.character.MultiSparrowCharacter;
+
+class VisitorBFXmasCharacter extends MultiSparrowCharacter {
+	function new() {
+		super('bf-christmas');
+	}
+
+	function onNoteHit(event:HitNoteScriptEvent) {
+		switch (event.note.kind) {
+			case "cheerNote":
+				holdTimer = 0;
+				this.playAnimation("hey", true, '');
+				return;
+		}
+		super.onNoteHit(event);
+	}
+}

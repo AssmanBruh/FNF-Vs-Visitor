@@ -1,0 +1,8 @@
+import funkin.play.notes.notekind.NoteKind;
+
+class CheerNote extends NoteKind {
+
+    function new() {
+        super("cheerNote", "Play Cheer Anim");
+    }
+}

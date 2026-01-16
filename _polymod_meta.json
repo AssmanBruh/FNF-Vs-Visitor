@@ -1,0 +1,40 @@
+{
+    "title": "FNF Vs Visitor!",
+    "description": "Let the plague begin!!",
+    "author": "AssmanBruh!",
+    "contributors": [
+      {
+        "name": "Vs Visitor Mod Account",
+        "role": "the mod!",
+        "url": "https://www.youtube.com/@VisitorModAccount"
+      },
+      {
+        "name": "AssmanBruh!",
+        "role": "Director + Artist + Animator + Coder + Chart Events setter",
+        "url": "https://x.com/Rodrigo8728939"
+      },
+      {
+        "name": "Runwait",
+        "role": "Main Composer",
+        "url": "https://x.com/RunwaiOficcial"
+      },
+      {
+        "name": "LeonproPapuh",
+        "role": "Charting + Chromatic Maker",
+        "url": "https://x.com/PrLeon?t=9SoU3sEaS7tKWgOJerj03A&s=09"
+      },
+      {
+        "name": "Alex cima",
+        "role": "Musician",
+        "url": "https://x.com/cimachannel?s=21"
+      },
+      {
+        "name": "Shunkra",
+        "role": "Artist",
+        "url": "https://x.com/shunkra_on"
+      }
+    ],
+    "api_version": "0.8.0",
+    "mod_version": "2.0.2",
+    "license": "CC BY 4.0,MIT"
+  }

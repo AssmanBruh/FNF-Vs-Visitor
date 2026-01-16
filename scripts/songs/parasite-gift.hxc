@@ -1,0 +1,124 @@
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+import funkin.Paths;
+import funkin.play.cutscene.VideoCutscene;
+import funkin.save.Save;
+import funkin.Conductor;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import flixel.text.FlxText;
+import flixel.text.FlxTextFormatMarkerPair;
+import flixel.text.FlxTextFormat;
+import flixel.text.FlxTextBorderStyle;
+import flixel.FlxCamera;
+import funkin.play.PlayStatePlaylist;
+import openfl.filters.ShaderFilter;
+import funkin.graphics.shaders.AdjustColorShader;
+import flixel.addons.display.FlxRuntimeShader;
+
+class ParasiteGiftConfigs extends Song {
+  var playState;
+  var stage;
+
+  var camOutro:FlxCamera;
+
+	public function new() {
+		super('parasite-gift');
+    playState = PlayState.instance;
+	}
+
+   override function onSongLoaded(event) {
+      super.onSongLoaded(event);
+      camOutro = new FlxCamera();
+      camOutro.bgColor = 0x00000000;
+      FlxG.cameras.add(camOutro,false);
+   
+
+    }
+
+  public override function onCountdownStart(event:CountdownScriptEvent):Void {
+		super.onCountdownStart(event);
+    
+    if (PlayState.instance.currentSong.id == "parasite-gift"){
+        FlxG.camera.fade(0xFFFFFFFF, 2, true);
+    }
+
+    stage = PlayState.instance.currentStage;
+    if (stage == null) return;
+
+    var gf = stage.getGirlfriend();
+    var gfPos = [
+      gf.cameraFocusPoint.x,
+      gf.cameraFocusPoint.y
+    ];
+    PlayState.instance.tweenCameraToPosition(gfPos[0]-120, gfPos[1]-30, 0, FlxEase.quadInOut);
+    PlayState.instance.currentCameraZoom = PlayState.instance.currentStage.camZoom*0.78;
+	}
+
+  /**
+   * Don't replay the cutscene between restarts.
+   */
+  function onSongRetry(event:ScriptEvent)
+  {
+    super.onSongRetry(event);
+  }
+
+  /**
+   * Replay the cutscene after leaving the song.
+   */
+  function onCreate(event:ScriptEvent):Void
+  {
+    super.onCreate(event);
+  }
+  
+  public override function isSongNew(currentDifficulty:String, currentVariation:String):Bool
+  {
+    if (currentVariation == 'erect' || currentVariation == '') return !Save.instance.hasBeatenSong(this.id, null, this.variation);
+
+    return false;
+  }
+  
+  public function onSongEnd(event):Void 
+  {
+    super.onSongEnd(event);
+  }
+
+  override function onStepHit(event:SongTimeScriptEvent):Void {
+      super.onStepHit(event);
+      // if (event.step == 12 && (PlayState.instance.currentVariation != 'erect' || PlayState.instance.currentVariation != 'pico')){
+      switch (PlayState.instance.currentVariation){
+          case "erect":
+              switch (event.step){
+                  case 927:
+                  FlxG.camera.fade(0xFF000000, 9.44, false);
+                  case 1055:
+                  FlxG.camera.fade(0xFF000000, 0, true);
+                  case 1057:
+                  FlxG.camera.flash(0xFFFFFFFF, 1);
+                  if (stage != null)
+                      stage.getDad().playAnimation("preSee",true);
+                  case 1440:
+                    if (stage != null)
+                        stage.getDad().playAnimation("preSeeReverb",true);
+              }
+          default:
+              switch(event.step){
+                  case 1023:
+                    if (stage != null)
+                        stage.getDad().playAnimation("preSee",true);
+
+                    FlxG.camera.flash(0xFFFFFFFF, 0.7);
+                  case 1535:
+                    if (stage != null)
+                        stage.getDad().playAnimation("preSeeReverb",true);
+                  case 1551:
+                    FlxG.camera.fade(0xFFe6f3fa, 15.69, false);
+                  case 1685:
+                    PlayState.instance.endSong(true);
+              }
+      }
+  }
+}

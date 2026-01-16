@@ -1,0 +1,395 @@
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import funkin.graphics.FunkinSprite;
+import funkin.graphics.shaders.AdjustColorShader;
+import funkin.modding.base.ScriptedFlxRuntimeShader;
+import funkin.modding.module.ModuleHandler;
+import funkin.play.PlayState;
+import funkin.play.PlayStatePlaylist;
+import funkin.play.character.AnimateAtlasCharacter;
+import funkin.play.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+import funkin.play.cutscene.CutsceneType;
+import funkin.play.cutscene.VideoCutscene;
+import funkin.play.stage.Stage;
+import funkin.util.Constants;
+import funkin.util.WindowUtil;
+import openfl.filters.ShaderFilter;
+import funkin.Conductor;
+import funkin.modding.events.ScriptEvent;
+import funkin.modding.module.Module;
+import funkin.ui.AtlasText;
+import flixel.util.FlxTimer;
+import funkin.graphics.FunkinSprite;
+import funkin.Paths;
+import openfl.utils.Assets;
+import flixel.tweens.FlxTween;
+import flixel.FlxCamera;
+import flixel.tweens.FlxEase;
+import funkin.util.ReflectUtil;
+import funkin.modding.PolymodErrorHandler;
+import funkin.ui.options.OptionsState;
+import flixel.util.FlxSave;
+import funkin.modding.module.ScriptedModule;
+import funkin.save.Save;
+import openfl.filters.ShaderFilter;
+import lime.app.Application;
+import flixel.addons.display.FlxBackdrop;
+import flixel.math.FlxMath;
+
+//
+import flixel.addons.display.FlxRuntimeShader;
+
+class VisitorForestStageChristmas extends Stage {
+    var currentBeatInterval = 4;
+    var snowLayer1:FlxBackdrop = null;
+    var snowLayer2:FlxBackdrop = null;
+    var pauseGift:Bool = false;
+    var adjustCamColorShader:AdjustColorShader;
+
+    function new() {
+        super('visitorForestChristmas');
+        firstLoad = true; 
+    }
+
+    function fetchAssetPaths():Array<String> 
+	{
+		var results:Array<String> = super.fetchAssetPaths();
+
+		results.push(Paths.image("visitorForest/CHRISTMAS/snowLayer"));
+        results.push(Paths.image("visitorForest/CHRISTMAS/christmasScreenShade_HIGH"));
+        for (i in 0...6){
+        results.push(Paths.image("visitorForest/CHRISTMAS/Gifts/"+["white", "cyan", "magenta", "green", "red", "black"][i]));
+        }
+		return results;
+	}
+
+    function adjustPropColor(prop:FlxSprite, hue, saturation, contrast, brightness){
+        var shad = new AdjustColorShader();
+        shad.hue = hue;
+        shad.saturation = saturation;
+        shad.contrast = contrast;
+        shad.brightness = brightness;
+        prop.shader = shad;
+    }
+
+    var firstLoad:Bool = true;
+    override function buildStage() {
+        super.buildStage();
+
+        setupCamColor();
+        firstLoad = true;
+
+        if (firstLoad) {
+            snowLayer2 = new FlxBackdrop(Paths.image("visitorForest/CHRISTMAS/snowLayer"));
+            snowLayer2.velocity.set(15,60);
+            snowLayer2.alpha = 0.7;
+            snowLayer2.screenCenter();
+            PlayState.instance.currentStage.add(snowLayer2);
+            snowLayer1 = new FlxBackdrop(Paths.image("visitorForest/CHRISTMAS/snowLayer"));     
+            snowLayer1.screenCenter();
+            snowLayer1.blend = 6;
+            snowLayer1.zIndex = getNamedProp("ambientShading").zIndex+5;
+            if (snowLayer2 != null)
+            snowLayer2.zIndex = snowLayer1.zIndex-1;
+            PlayState.instance.currentStage.add(snowLayer1);
+            giftSpawner = new FlxTimer();
+            firstLoad = false;
+        }
+    }
+
+    function setupCamColor(){
+        adjustCamColorShader = new AdjustColorShader();
+        var adjustColorFilter = new ShaderFilter(adjustCamColorShader);
+        FlxG.camera.filters = [adjustColorFilter];
+
+        // test this banger (shader on camhud), looks crazy
+        // PlayState.instance.camHUD.filters = [adjustColorFilter];
+        switch (PlayState.instance.currentVariation){
+            case "erect":
+                adjustCamColorShader.hue = -71;
+                adjustCamColorShader.saturation = -33;
+                adjustCamColorShader.contrast = 48;
+                adjustCamColorShader.brightness = 41;
+            default:
+                adjustCamColorShader.hue = 0;
+                adjustCamColorShader.saturation = 0;
+                adjustCamColorShader.contrast = 0;
+                adjustCamColorShader.brightness = 0; 
+        }
+    }
+
+    override function onSongLoaded(event) {
+        super.onSongLoaded(event);
+        if (PlayState.instance.currentStage.getGirlfriend() != null){
+            var gf = PlayState.instance.currentStage.getGirlfriend();
+            switch (gf.characterId){
+                case "gf-christmas":
+                    gf.y += 59;
+                    gf.x -= 110;
+                case "nene-christmas":
+                    gf.y += 35;
+                    gf.x -= 110;
+            }
+        }
+
+        if (getBoyfriend() != null){
+            switch (getBoyfriend().characterId){
+                case "bf-christmas":
+                    adjustPropColor(getBoyfriend(), -19, -12, -26, -6);
+                default:
+                    adjustPropColor(getBoyfriend(), -19, -27, -26, -20);
+            }
+        }else{
+            adjustPropColor(getBoyfriend(), -19, -27, -26, -20);
+        }
+        
+        if (getGirlfriend() != null)
+        adjustPropColor(getGirlfriend(), -41, -47, -10, -34);
+
+        if (getDad() != null)
+        adjustPropColor(getDad(), -30, -6, -29, 7);
+    }
+
+    var normalized = 0.;
+    var speedX = 0.;
+    var speedY = 0.;
+    override function update(elapsed:Float){
+        super.update(elapsed);
+
+        if (giftTime){
+            for (i in 0...giftsList.length) {
+                var gift = giftsList[i];
+                if (gift == null) continue; 
+
+                if (gift.y > (FlxG.height/FlxG.camera.zoom)) {
+                    remove(gift);
+                    giftsList.splice(i, 1);
+                    giftsList.remove(gift,true);
+                    i--;
+                    continue;
+                }else{
+                    if (gift.x > (FlxG.width/FlxG.camera.zoom) || gift.x < ((FlxG.camera.scroll.x/FlxG.camera.zoom)-300)) {
+                        gift.active = false;
+                        gift.visible = false;
+                    }else{
+                        gift.active = true;
+                        gift.visible = true;
+                    }
+                }
+            }
+        }
+
+        if (PlayState.instance != null)
+        currentBeatInterval = PlayState.instance.cameraZoomRate;
+        if (currentBeatInterval == 0) return;
+        normalized = (currentBeatInterval - 1) / (4 - 1);
+        speedX = -55 + (-220 - (-55)) * (1 - normalized);
+        speedY = 110 * (4 / currentBeatInterval);
+
+        if (snowLayer1 != null){
+            var baseSpeedX = FlxMath.lerp(snowLayer1.velocity.x, -speedX, elapsed*9);
+            var baseSpeedY = FlxMath.lerp(snowLayer1.velocity.y, speedY, elapsed*9);
+            snowLayer1.velocity.set(baseSpeedX,baseSpeedY);
+            if (snowLayer2 != null)
+                snowLayer2.velocity.set(-baseSpeedX/2,baseSpeedY/2);
+        }
+    }
+
+    override function onBeatHit(event:SongTimeScriptEvent):Void {
+        super.onBeatHit(event);
+    }
+
+    override public function onSongEvent(event:SongEventScriptEvent):Void {
+        super.onSongEvent(event);
+    }
+    
+    override function onCountdownStart(event) {
+        super.onCountdownStart(event);
+
+        if (getBoyfriend() != null){
+            getBoyfriend().idleSuffix = "";
+            getBoyfriend().shouldAlternate = false;
+        }
+        
+        if (getGirlfriend() != null){
+            getGirlfriend().idleSuffix = "";
+        }
+
+        if (getDad()){
+            getDad().idleSuffix = "";
+            getDad().shouldAlternate = false;
+        }
+
+        PlayState.instance.comboPopUps.offsets = [60, 300]; 
+        PlayState.instance.iconP2.zIndex = 851;
+    }
+
+    var ambientClone:FlxSprite;
+    override function onStepHit(event:SongTimeScriptEvent):Void {
+        super.onStepHit(event);
+
+        switch (PlayState.instance.currentSong.id){
+            case "parasite-gift":
+                switch (PlayState.instance.currentVariation){
+                    case "erect":
+                        switch (event.step){
+                            case 927:
+                            FlxG.camera.fade(0xFF000000, 9.44, false);
+                            case 1055:
+                            FlxG.camera.fade(0xFF000000, 0, true);
+                            FlxG.camera.flash(0xFFFFFFFF, 1);
+                            initGiftRain();
+                            case 1312:
+                            stopGiftRain();
+                        }
+                    default:
+                        switch(event.step){
+                            case 1023:
+                             initGiftRain();
+                            case 1408:
+                            stopGiftRain();   
+                        }
+                }
+        }
+    }
+
+    function initGiftRain(){
+        pauseGift = false;
+        buildAmbient();
+        giftTime = true;
+        startGiftSection();
+    }
+
+    function buildAmbient(){
+        if (ambientClone == null){
+            ambientClone = new FlxSprite();
+            ambientClone.loadGraphic(Paths.image("visitorForest/CHRISTMAS/christmasScreenShade_HIGH"));
+            ambientClone.zIndex = 9999;
+            ambientClone.setGraphicSize(FlxG.width,FlxG.height);
+            ambientClone.updateHitbox();
+            ambientClone.screenCenter();
+            ambientClone.visible = true;
+            ambientClone.blend = 12;
+            ambientClone.active = true;
+            ambientClone.alpha = 0;
+            PlayState.instance.add(ambientClone);
+            ambientClone.cameras = [PlayState.instance.camHUD];
+            FlxTween.tween(ambientClone, {alpha: 1}, 0.48, {ease: FlxEase.linear});
+        }
+    }
+
+    function stopGiftRain(){
+        FlxTween.tween(ambientClone, {alpha: 0}, 0.88, {ease: FlxEase.linear, onComplete: function(twn){
+        giftsList = [];
+        giftTime = false;
+        pauseGift = true;
+        
+        if (ambientClone != null){
+            PlayState.instance.remove(ambientClone);
+            ambientClone.active = true;
+            ambientClone.visible = false;
+            ambientClone = null;
+        }
+
+        for (i in 0...giftsList.length) {
+            var gift = giftsList[i];
+            if (gift == null)break;
+            FlxTween.tween(gift, {alpha: 0}, 0.88, {ease: FlxEase.linear, onComplete: function(twn){
+                gift.active = false;
+                gift.visible = false;
+                gift.kill();
+                gift.destroy();
+                remove(gift);
+            }});
+        }
+    }});
+    }
+
+    var giftTime:Bool = false;
+    var giftsNames:Array<String> = ["white", "cyan", "magenta", "green", "red", "black"];
+    var giftsList:Array<FlxSprite> = [];
+    var giftSpawner:FlxTimer;
+    function startGiftSection(){
+        // 1.2, sincronized to 4 ticks per beats in a 100 BPM
+        // 0.6, sincronized to 2 ticks per beats in a 100 BPM
+        giftSpawner.start(0.4, function(tmr){
+            if (!giftTime || pauseGift) return;
+            if (giftsList.length >= 80) return;
+
+            var gift = new FlxSprite();
+            
+            // Picking a random gift ID from the list
+            var pickedGift = giftsNames[FlxG.random.int(0, giftsNames.length-1)];
+
+            // Scaling the gift with a different size for simulate proffundity"
+            var giftScale = FlxG.random.float(0.5, 0.7);
+
+            gift.loadGraphic(Paths.image("visitorForest/CHRISTMAS/Gifts/"+pickedGift));
+            gift.scale.set(giftScale, giftScale);
+            gift.updateHitbox();
+            gift.alpha = giftScale+0.3;
+            gift.y = -(gift.height/FlxG.camera.zoom);
+            gift.y-=80;
+            gift.x = FlxG.random.float((FlxG.camera.scroll.x/FlxG.camera.zoom)-300, (FlxG.width/FlxG.camera.zoom)-gift.width);
+            gift.velocity.y = FlxG.random.int(240, 290);
+            gift.angularVelocity = FlxG.random.float(45, -45);
+
+            if (snowLayer1 != null)
+            gift.zIndex = snowLayer1.zIndex-10;
+
+            gift.acceleration.y = 50;
+            add(gift);
+            giftsList.push(gift);
+        },0);
+    }
+    
+    override function onNoteGhostMiss(event) {
+        super.onNoteGhostMiss(event);
+        
+        // im too lazy to make, WITH BLA BLA BLA CONECTED DEVICE... INPUTISHIT AAAAH MAN
+        // i just wanna use on mobile :3
+        if (FlxG.onMobile) return; 
+        if (!giftTime) return;
+        event.cancel();
+        event.stopPropagation();
+    }
+
+    function onPause() {
+		super.onPause();
+		pauseGift = true;
+	}
+    function onResume() {
+		super.onResume();
+		pauseGift = false;
+	}
+
+    function onSongRetry(event)
+    {
+        super.onSongRetry(event);
+        
+        for (i in 0...giftsList.length) {
+            var gift = giftsList[i];
+            if (gift == null)break;
+            gift.active = false;
+            gift.visible = false;
+            gift.kill();
+            gift.destroy();
+            remove(gift);
+        }
+
+        giftsList = [];
+        giftTime = false;
+		pauseGift = true;
+        if (ambientClone != null){
+            PlayState.instance.remove(ambientClone);
+            ambientClone.active = true;
+            ambientClone.visible = false;
+            ambientClone = null;
+        }
+    }
+}

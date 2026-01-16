@@ -1,0 +1,117 @@
+{
+  "props": [
+    {
+      "zIndex": 0,
+      "position": [
+        -1423.6,
+        -1540.2
+      ],
+      "name": "sky",
+      "alpha": 1,
+      "assetPath": "visitorForest/skygrp",
+      "startingAnimation": "static",
+      "animations": []
+    },  
+    {
+      "zIndex": 10,
+      "position": [
+        35.8,
+        -553.75
+      ],
+      "name": "house",
+      "alpha": 1,
+      "assetPath": "visitorForest/house",
+      "scroll": [
+        0.73,
+        0.73
+      ],
+      "startingAnimation": "static",
+      "animations": []
+    },{
+      "zIndex": 20,
+      "position": [
+        -772,
+        249
+      ],
+      "name": "grass",
+      "alpha": 1,
+      "assetPath": "visitorForest/grassfloor",
+      "startingAnimation": "static",
+      "animations": []
+    },
+    {
+      "zIndex": 120,
+      "position": [
+        -497,
+        -575
+      ],
+      "name": "tree",
+      "alpha": 1,
+      "assetPath": "visitorForest/tree",
+      "startingAnimation": "static",
+      "animations": []
+    },
+    {
+      "danceEvery": -1,
+      "zIndex": 399,
+      "position": [
+        -555.2,
+        252
+      ],
+      "name": "frontPlants",
+      "alpha": 1,
+      "isPixel": false,
+      "assetPath": "visitorForest/front",
+      "scroll": [
+        0.77,
+        1
+      ],
+      "startingAnimation": "whind",
+      "animations": [    
+      {
+        "name": "whind",
+        "prefix": "front instancia",
+        "looped": true
+      }
+      ]
+    }
+  ],
+  "cameraZoom": 0.67,
+  "version": "1.0.0",
+  "characters": {
+    "bf": {
+      "zIndex": 300,
+      "position": [
+        1253,
+        679
+      ],
+      "cameraOffsets": [
+        -355,
+        -90
+      ]
+    },
+    "dad": {
+      "zIndex": 200,
+      "position": [
+        212,
+        724.4
+      ],
+      "cameraOffsets": [
+        230,
+        -100
+      ]
+    },
+    "gf": {
+      "zIndex": 100,
+      "cameraOffsets": [
+        -12,
+        15
+      ],
+      "position": [
+        752,
+        592
+      ]
+    }
+  },
+  "name": "Visitor Forest"
+}
