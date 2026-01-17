@@ -17,11 +17,13 @@ class VisitorXMasWeekConfig extends Level
     return !FlxG.save.data.GiftfirstTime;
   }
 
-  override function getSongDisplayNames(difficultyId:String):Array<String> {
-    if (unlockedPG){
-      return ["Parasite Gift"];
-    }else{
-      return [];
-    }
-  }
+   override function getSongs():Array<String> {
+		if (!unlockedPG()) {
+			return[
+                ''
+            ];
+		} else {
+			return _data.songs.copy();
+		}
+	}
 }
