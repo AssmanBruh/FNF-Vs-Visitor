@@ -1,8 +1,12 @@
-** VS VISITOR CHANGELOGS **
+# VS VISITOR CHANGELOGS
 
-#FORMAT: MAJOR.MINOR.PATCH
+## FORMAT: MAJOR.MINOR.PATCH
 
-[2.0.2]
+## [2.0.3]
+- Added Pixel Visitor X-MAS Freeplay Icon
+- Fixed Pico DJ and Pico results bug
+
+## [2.0.2]
 - Added New Stickers for pico mix
 - Adjusted a Better config for the Forest Stage Erect Variant Shader! 
 - Added a Crazy Shader on Parasite Gift Erect Mix Song
@@ -16,7 +20,3 @@
 - Updated Mod Polymod Meta.json 
 - Implemented FULL Pico Death on Pico Xmas Visitor version 
 - Updated BF's (Visitor) script of MultiSparrowCharacter to MultiAnimateAtlasCharacter
-
-[2.0.3]
-- Added Pixel Visitor X-MAS Freeplay Icon
-- Fixed Pico DJ and Pico results bug
