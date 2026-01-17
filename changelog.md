@@ -5,6 +5,7 @@
 ## [2.0.3]
 - Added Pixel Visitor X-MAS Freeplay Icon
 - Fixed Pico DJ and Pico results bug
+- Fixed Parasite Gift Song appear after Unlock Gift in Bloody Guest ending
 
 ## [2.0.2]
 - Added New Stickers for pico mix
