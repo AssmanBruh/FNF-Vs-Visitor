@@ -1,0 +1,48 @@
+{
+ "version": "2.2.4",
+ "songName": "Fresh (Visitor Mix)",
+ "artist": "T.T",
+ "charter": "sPaarw6k + AssmanBruh (Events)",
+ "looped": false,
+ "offsets": {
+  "instrumental": 0,
+  "altInstrumentals": {  },
+  "vocals": {  },
+  "altVocals": {  }
+ },
+ "playData": {
+  "songVariations": [],
+  "difficulties": [
+   "hard"
+  ],
+  "characters": {
+   "player": "visitor-playable",
+   "girlfriend": "gf",
+   "opponent": "dad",
+   "instrumental": "",
+   "opponentVocals": [
+    "dad"
+   ],
+   "playerVocals": [
+    "bf"
+   ]
+  },
+  "stage": "mainStageErect",
+  "noteStyle": "funkin",
+  "ratings": { "hard": 5 },
+  "previewStart": 0,
+  "previewEnd": 0
+ },
+ "generatedBy": "Friday Night Funkin' - v0.8.1",
+ "timeFormat": "ms",
+ "timeChanges": [
+  {
+   "t": 0,
+   "b": 0,
+   "bpm": 120,
+   "n": 4,
+   "d": 4,
+   "bt": [4, 4, 4, 4]
+  }
+ ]
+}

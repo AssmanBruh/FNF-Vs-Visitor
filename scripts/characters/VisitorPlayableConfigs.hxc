@@ -1,4 +1,6 @@
 import funkin.play.character.MultiSparrowCharacter;
+import funkin.play.PlayState;
+import flixel.FlxG;
 
 class VisitorPlayerConfigs extends MultiSparrowCharacter {
 	function new() {
@@ -8,6 +10,13 @@ class VisitorPlayerConfigs extends MultiSparrowCharacter {
 	override function onCreate(event)
   	{
     	super.onCreate(event);
+
+		if (PlayState.instance?.currentStage?.stageName == "Main Stage [Erect]"){
+			characterCameraOffsets[0] -= 190;
+			characterCameraOffsets[1] -= 80;
+			x-=15;
+			y-=8;
+		}
 		animation.onFinish.add(function(animName:String){
 			switch (animName) {	
 				case "preSee":
