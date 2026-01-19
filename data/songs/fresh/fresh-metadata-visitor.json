@@ -19,7 +19,7 @@
    "player": "visitor-playable",
    "girlfriend": "gf",
    "opponent": "dad",
-   "instrumental": "",
+   "instrumental": "visitor",
    "opponentVocals": [
     "dad"
    ],

@@ -4,7 +4,7 @@
   "ownedChars": [
     "visitor-playable"
   ],
-  "showUnownedChars": true,
+  "showUnownedChars": false,
   "unlocked": true,
   "freeplayStyle": "visitor",
   "stickerPack": "visitorStickers",
