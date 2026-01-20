@@ -1,0 +1,57 @@
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+import funkin.Paths;
+import funkin.play.cutscene.VideoCutscene;
+import funkin.save.Save;
+import funkin.Conductor;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import flixel.text.FlxText;
+import flixel.text.FlxTextFormatMarkerPair;
+import flixel.text.FlxTextFormat;
+import flixel.text.FlxTextBorderStyle;
+import flixel.FlxCamera;
+import funkin.play.PlayStatePlaylist;
+import openfl.filters.ShaderFilter;
+import funkin.graphics.shaders.AdjustColorShader;
+import flixel.addons.display.FlxRuntimeShader;
+
+class BopeeboVisitorMixConfig extends Song {
+	public function new() {
+		super('bopeebo');
+	}
+  
+    public override function isSongNew(currentDifficulty: String, currentVariation: String): Bool
+    {
+        var hasBeatenVisitorMix = Save.instance.hasBeatenSong(this.id, null, 'visitor');
+
+        if (currentVariation == "visitor"){
+            if (!hasBeatenVisitorMix){
+            return true;
+            }else{
+            return false;
+            }
+        }else{
+                return false;
+        }
+    }
+  
+  public function onSongEnd(event):Void 
+  {
+    super.onSongEnd(event);
+    // jus- just- just, ok
+  }
+
+  override function onStepHit(event:SongTimeScriptEvent):Void {
+    super.onStepHit(event);
+    if (PlayState.instance.currentVariation == "visitor"){
+        switch (event.step){
+            case 511:
+            PlayState.instance.camHUD.fade(0xFF000000, 0, false);
+        }
+    }
+  }
+}

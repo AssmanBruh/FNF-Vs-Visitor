@@ -1,0 +1,34 @@
+import funkin.modding.module.Module;
+import funkin.modding.events.ScriptEvent;
+import funkin.util.ReflectUtil;
+import flixel.FlxG;
+import funkin.save.Save;
+import funkin.ui.options.OptionsState;
+import funkin.Preferences;
+import funkin.save.Save;
+class VisitorTitleOption extends Module {
+	public function new() {
+		super('VisitorTitleOption');
+	}
+
+	function onCreate(event:ScriptEvent):Void {
+		super.onCreate(event);
+
+		if (FlxG.save.data.visitorTitleDisabled != false && FlxG.save.data.visitorTitleDisabled != true)
+			FlxG.save.data.visitorTitleDisabled = false;
+	}
+
+	public function onStateChangeEnd(event:StateChangeScriptEvent) {
+		if (Std.isOfType(event.targetState, OptionsState)) {
+			if (event.targetState.optionsCodex.pages.get("preferences") != null) {
+				event.targetState.optionsCodex.pages.get("preferences")
+					.createPrefItemCheckbox("Disable Visitor Title menu Design",
+						"If disabled, the visitor design on the title screen will be replaced by the default gf design.",
+						function(value:Bool):Void {
+							FlxG.save.data.visitorTitleDisabled = value;
+							FlxG.save.data.flush;
+						}, FlxG.save.data.visitorTitleDisabled);
+			}
+		}
+	}
+}

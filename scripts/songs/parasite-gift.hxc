@@ -73,12 +73,21 @@ class ParasiteGiftConfigs extends Song {
   {
     super.onCreate(event);
   }
-  
-  public override function isSongNew(currentDifficulty:String, currentVariation:String):Bool
-  {
-    if (currentVariation == 'erect' || currentVariation == '') return !Save.instance.hasBeatenSong(this.id, null, this.variation);
 
-    return false;
+  public override function isSongNew(currentDifficulty: String, currentVariation: String): Bool
+  {
+      var hasBeatenErect = Save.instance.hasBeatenSong(this.id, null, 'erect');
+      var hasBeatenDefault = Save.instance.hasBeatenSong(this.id, null);
+
+      if (currentVariation == "erect"){
+          if (!hasBeatenErect){
+          return true;
+          }else{
+          return false;
+          }
+      }else{
+          return !hasBeatenDefault;
+      }
   }
   
   public function onSongEnd(event):Void 

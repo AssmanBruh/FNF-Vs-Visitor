@@ -13,6 +13,7 @@ class BeatPressureModule extends Module
 
     override function fetchAssetPaths():Array<String>
     {
+        if (FlxG.save.data.visitorTitleDisabled) return[];
         var results:Array<String> = super.fetchAssetPaths();
         results.push(Paths.image("visitorTitle"));
         results.push(Paths.txt("visitorTitle"));
@@ -25,6 +26,7 @@ class BeatPressureModule extends Module
     override function onUpdate(elapsed:Float):Void
     {
         super.onUpdate(elapsed);
+        if (FlxG.save.data.visitorTitleDisabled) return;
         if (FlxG.state.gfDance != null){
             if (updateOneTime){
                 FlxG.state.logoBl.frames = Paths.getSparrowAtlas("visitorLogoBumpin");
@@ -45,6 +47,7 @@ class BeatPressureModule extends Module
     override function onStateChangeEnd(event:StateChangeScriptEvent)
     {
         super.onStateChangeEnd(event);
+        if (FlxG.save.data.visitorTitleDisabled) return;
         updateOneTime = true;
     }
 }

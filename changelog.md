@@ -6,6 +6,8 @@
 - Added Pixel Visitor X-MAS Freeplay Icon
 - Fixed Pico DJ and Pico results bug
 - Fixed Parasite Gift Song appear after Unlock Gift in Bloody Guest ending
+- Fixed Parasite Gift the "new" tag in freeplay
+- Added Option in Preferences Menu for Toggle the Visitor Title State Design
 
 ## [2.0.2]
 - Added New Stickers for pico mix
