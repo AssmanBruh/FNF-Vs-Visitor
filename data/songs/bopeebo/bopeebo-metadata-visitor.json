@@ -18,7 +18,7 @@
   ],
   "characters": {
    "player": "visitor-playable",
-   "girlfriend": "gf",
+   "girlfriend": "frog-speaker",
    "opponent": "dad",
    "instrumental": "visitor",
    "altInstrumentals": [],

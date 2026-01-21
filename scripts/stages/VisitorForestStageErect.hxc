@@ -221,6 +221,9 @@ class VisitorForestStageErect extends Stage {
     function onSongRetry(event:ScriptEvent)
 	{
 		super.onSongRetry(event);
+        if (PlayState.instance.currentVariation == "pico"){
+            setupCamColor();
+        }
         hudAlpha(1,true);
         var leBlack = getNamedProp("blackScreen");
         var daRibbit = getNamedProp("frogFlashback");

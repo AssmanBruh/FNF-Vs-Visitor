@@ -80,11 +80,7 @@ class ParasiteGiftConfigs extends Song {
       var hasBeatenDefault = Save.instance.hasBeatenSong(this.id, null);
 
       if (currentVariation == "erect"){
-          if (!hasBeatenErect){
-          return true;
-          }else{
-          return false;
-          }
+          return !hasBeatenErect;
       }else{
           return !hasBeatenDefault;
       }

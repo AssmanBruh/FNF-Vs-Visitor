@@ -1,0 +1,118 @@
+{
+	"version": "1.0.0",
+	"renderType": "sparrow",
+	"offsets": [
+		20,
+		-10
+	],
+	"danceEvery": 1,
+	"applyStageMatrix": false,
+	"scale": 1,
+	"name": "Frog (Speaker)",
+	"cameraOffsets": [
+		12,
+		8
+	],
+	"flipX": false,
+	"startingAnimation": "danceRight",
+	"isPixel": false,
+	"singTime": 8,
+	"assetPath": "characters/frog speaker bump",
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "frog-speaker",
+		"flipX": false,
+		"isPixel": false,
+		"scale": 1
+	},
+	"atlasSettings": {
+		"applyStageMatrix": false,
+		"useRenderTexture": false,
+		"filterQuality": 1,
+		"cacheOnLoad": false,
+		"swfMode": true
+	},
+	"animations": [
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "frog dance",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "danceLeft"
+		},
+    {
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "frog dance",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "danceRight"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				5,
+				232
+			],
+			"frameRate": 24,
+			"prefix": "frog jump dance",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "jumpDance"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				35
+			],
+			"frameRate": 24,
+			"prefix": "frog cheer",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "cheer"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				30
+			],
+			"frameRate": 24,
+			"prefix": "frog cheer",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "combo50"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "frog sad",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "drop70"
+		}
+	]
+}

@@ -49,7 +49,7 @@ class BopeeboVisitorMixConfig extends Song {
     super.onStepHit(event);
     if (PlayState.instance.currentVariation == "visitor"){
         switch (event.step){
-            case 511:
+            case 514:
             PlayState.instance.camHUD.fade(0xFF000000, 0, false);
         }
     }

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="frog speaker bump.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="frog cheer0000" x="0" y="0" width="261" height="437" frameX="0" frameY="0" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0001" x="0" y="0" width="261" height="437" frameX="0" frameY="0" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0002" x="261" y="0" width="256" height="432" frameX="0" frameY="-7" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0003" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0004" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0005" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0006" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0007" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0008" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0009" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0010" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0011" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0012" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0013" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0014" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0015" x="771" y="0" width="261" height="427" frameX="0" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0016" x="771" y="0" width="261" height="427" frameX="0" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0017" x="1032" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0018" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0019" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0020" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0021" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0022" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0023" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0024" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0025" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0026" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0027" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0028" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog cheer0029" x="517" y="0" width="254" height="429" frameX="-2" frameY="-10" frameWidth="261" frameHeight="439"/>
+	<SubTexture name="frog dance0000" x="1286" y="0" width="261" height="399" frameX="-1" frameY="-4" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0001" x="1286" y="0" width="261" height="399" frameX="-1" frameY="-4" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0002" x="1547" y="0" width="257" height="399" frameX="0" frameY="-6" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0003" x="1804" y="0" width="256" height="401" frameX="-1" frameY="-4" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0004" x="1804" y="0" width="256" height="401" frameX="-1" frameY="-4" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0005" x="2060" y="0" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0006" x="2060" y="0" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0007" x="2314" y="0" width="254" height="405" frameX="-3" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0008" x="2314" y="0" width="254" height="405" frameX="-3" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0009" x="2314" y="0" width="254" height="405" frameX="-3" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0010" x="2314" y="0" width="254" height="405" frameX="-3" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0011" x="2314" y="0" width="254" height="405" frameX="-3" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0012" x="2314" y="0" width="254" height="405" frameX="-3" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog dance0013" x="2314" y="0" width="254" height="405" frameX="-3" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog jump dance0000" x="2568" y="0" width="262" height="399" frameX="-5" frameY="-234" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0001" x="2830" y="0" width="262" height="545" frameX="-5" frameY="-88" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0002" x="3092" y="0" width="254" height="622" frameX="-8" frameY="-13" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0003" x="3346" y="0" width="254" height="622" frameX="-8" frameY="-13" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0004" x="3600" y="0" width="254" height="635" frameX="-8" frameY="0" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0005" x="3600" y="0" width="254" height="635" frameX="-8" frameY="0" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0006" x="3600" y="0" width="254" height="635" frameX="-8" frameY="0" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0007" x="0" y="635" width="254" height="596" frameX="-8" frameY="-39" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0008" x="254" y="635" width="254" height="523" frameX="-8" frameY="-112" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog jump dance0009" x="508" y="635" width="262" height="388" frameX="0" frameY="-247" frameWidth="267" frameHeight="635"/>
+	<SubTexture name="frog sad0000" x="770" y="635" width="262" height="404" frameX="0" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0001" x="770" y="635" width="262" height="404" frameX="0" frameY="0" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0002" x="1032" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0003" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0004" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0005" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0006" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0007" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0008" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0009" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0010" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0011" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0012" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0013" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0014" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0015" x="1540" y="635" width="262" height="401" frameX="0" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0016" x="1540" y="635" width="262" height="401" frameX="0" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0017" x="1032" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0018" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0019" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0020" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0021" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0022" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0023" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0024" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0025" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0026" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0027" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0028" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+	<SubTexture name="frog sad0029" x="1286" y="635" width="254" height="402" frameX="-3" frameY="-3" frameWidth="262" frameHeight="405"/>
+</TextureAtlas>

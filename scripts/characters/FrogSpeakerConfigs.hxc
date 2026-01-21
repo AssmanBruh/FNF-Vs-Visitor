@@ -1,0 +1,39 @@
+import funkin.play.character.SparrowCharacter;
+import funkin.play.PlayState;
+import flixel.FlxG;
+
+class FrogSpeakerConfigs extends SparrowCharacter {
+
+	/**
+		* IDK, 3 or 4 is the best way
+	**/
+	var jumpInterval = 4;
+	
+	function new() {
+		super('frog-speaker');
+	}
+	
+	override function onCreate(event)
+  	{
+    	super.onCreate(event);
+
+		animation.onFinish.add(function(animName:String){
+			switch (animName) {	
+				case "danceRight":
+					playAnimation("danceLeft",true);
+			}
+		});
+	}
+	override function onSongRetry(event:ScriptEvent):Void {
+		super.onSongRetry(event);
+		this.visible = true;
+	}
+
+	override function onBeatHit(event:SongTimeScriptEvent):Void {
+        super.onBeatHit(event);
+        if (event.beat % jumpInterval == 0)
+		{
+			playAnimation('jumpDance');
+		}
+    }
+}
