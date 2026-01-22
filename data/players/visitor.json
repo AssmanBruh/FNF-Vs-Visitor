@@ -88,8 +88,8 @@
   "charSelect": {
     "position": 3,
     "gf": {
-      "assetPath": "charSelect/gfChill",
-      "animInfoPath": "charSelect/gfAnimInfo",
+      "assetPath": "charSelect/frogChill",
+      "animInfoPath": "charSelect/frogAnimInfo",
       "visualizer": false
     }
   },
