@@ -19,8 +19,11 @@ class FrogSpeakerConfigs extends SparrowCharacter {
 
 		animation.onFinish.add(function(animName:String){
 			switch (animName) {	
-				case "danceRight":
-					playAnimation("danceLeft",true);
+				case "jumpDance":
+					if (animation?.curAnim?.name == "danceLeft")
+					playAnimation("danceLeft");
+					else if (animation?.curAnim?.name == "danceRight")
+					playAnimation("danceRight");
 			}
 		});
 	}

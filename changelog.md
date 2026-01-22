@@ -2,6 +2,10 @@
 
 ## FORMAT: MAJOR.MINOR.PATCH
 
+## [2.1.5]
+- Added Visitor Playable!
+- Added Frog Speaker Bopper!
+
 ## [2.0.3]
 - Added Pixel Visitor X-MAS Freeplay Icon
 - Fixed Pico DJ and Pico results bug
