@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "name": "Monster",
+  "assetPath": "freeplay/freeplay-visitor",
+  "renderType": "animateatlas",
+  "offsets": [0, 1],
+  "cameraOffsets": [0, 29],
+  "animations": [
+    {
+			"offsets": [
+				124.4,
+				532.5
+			],
+			"prefix": "visitor dj intro",
+			"name": "intro",
+       "animType": "symbol"
+		},
+		{
+			"offsets": [
+				120,
+				290
+			],
+			"prefix": "Visitor DJ",
+			"name": "idle",
+      "animType": "symbol"
+		},
+		{
+			"offsets": [
+				10,
+				127.2
+			],
+			"prefix": "bf dj afk",
+			"name": "idleEasterEgg",
+      "animType": "symbol"
+		},
+		{
+			"offsets": [
+				125,
+				315
+			],
+			"prefix": "Visitor DJ confirm",
+			"name": "confirm",
+      "animType": "symbol"
+		},
+		{
+			"offsets": [
+				120,
+				345.3
+			],
+			"prefix": "Visitor DJ fist pump",
+			"name": "fistPump",
+      "animType": "symbol"
+		},
+		{
+			"offsets": [
+				-10,
+				-167.5
+			],
+			"prefix": "Boyfriend DJ watchin tv OG",
+			"name": "cartoon",
+      "animType": "symbol"
+		},
+		{
+			"offsets": [
+				119,
+				285.3
+			],
+			"prefix": "Visitor DJ loss reaction 1",
+			"name": "loss",
+      "animType": "symbol"
+		},
+		{
+			"offsets": [
+				-51.5,
+				210.4
+			],
+			"prefix": "Boyfriend DJ to CS",
+			"name": "charSelect",
+      "animType": "symbol"
+		},
+		{
+			"offsets": [
+				-144.5,
+				69.2
+			],
+			"prefix": "Boyfriend DJ new character ",
+			"name": "newUnlock",
+      "animType": "symbol"
+		}
+  ]
+}

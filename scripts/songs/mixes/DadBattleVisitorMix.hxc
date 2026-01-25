@@ -19,9 +19,9 @@ import openfl.filters.ShaderFilter;
 import funkin.graphics.shaders.AdjustColorShader;
 import flixel.addons.display.FlxRuntimeShader;
 
-class BopeeboVisitorMixConfig extends Song {
+class DadBattleVisitorMix extends Song {
 	public function new() {
-		super('bopeebo');
+		super('dadbattle');
 	}
   
     public override function isSongNew(currentDifficulty: String, currentVariation: String): Bool
@@ -47,11 +47,5 @@ class BopeeboVisitorMixConfig extends Song {
 
   override function onStepHit(event:SongTimeScriptEvent):Void {
     super.onStepHit(event);
-    if (PlayState.instance.currentVariation == "visitor"){
-        switch (event.step){
-            case 514:
-            PlayState.instance.camHUD.fade(0xFF000000, 0, false);
-        }
-    }
   }
 }

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="meteorBackingCard.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="meteorBacking instancia 10000" x="0" y="0" width="300" height="460" frameX="0" frameY="0" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10001" x="300" y="0" width="299" height="401" frameX="-131" frameY="-229" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10002" x="599" y="0" width="268" height="447" frameX="-216" frameY="-349" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10003" x="867" y="0" width="304" height="531" frameX="-274" frameY="-461" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10004" x="1171" y="0" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10005" x="1171" y="0" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10006" x="0" y="531" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10007" x="587" y="531" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10008" x="1174" y="531" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10009" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10010" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10011" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10012" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10013" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10014" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10015" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10016" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10017" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10018" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10019" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10020" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10021" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10022" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10023" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10024" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10025" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10026" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10027" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10028" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+	<SubTexture name="meteorBacking instancia 10029" x="0" y="1062" width="587" height="531" frameX="-93" frameY="-334" frameWidth="680" frameHeight="992"/>
+</TextureAtlas>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="meteor.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="meteors0000" x="0" y="0" width="462" height="124"/>
+	<SubTexture name="meteors0001" x="462" y="0" width="462" height="124"/>
+	<SubTexture name="meteors0002" x="924" y="0" width="462" height="124"/>
+	<SubTexture name="meteors0003" x="1386" y="0" width="462" height="124"/>
+	<SubTexture name="meteors0004" x="0" y="124" width="462" height="124"/>
+	<SubTexture name="meteors0005" x="462" y="124" width="462" height="124"/>
+	<SubTexture name="meteors0006" x="924" y="124" width="462" height="124"/>
+	<SubTexture name="meteors0007" x="1386" y="124" width="462" height="124"/>
+	<SubTexture name="meteors0008" x="0" y="248" width="462" height="124"/>
+	<SubTexture name="meteors0009" x="462" y="248" width="462" height="124"/>
+	<SubTexture name="meteors0010" x="924" y="248" width="462" height="124"/>
+	<SubTexture name="meteors0011" x="1386" y="248" width="462" height="124"/>
+	<SubTexture name="meteors0012" x="0" y="372" width="462" height="124"/>
+	<SubTexture name="meteors0013" x="462" y="372" width="462" height="124"/>
+	<SubTexture name="meteors0014" x="924" y="372" width="462" height="124"/>
+	<SubTexture name="meteors0015" x="1386" y="372" width="462" height="124"/>
+	<SubTexture name="meteors0016" x="0" y="496" width="462" height="124"/>
+	<SubTexture name="meteors0017" x="462" y="496" width="462" height="124"/>
+	<SubTexture name="meteors0018" x="924" y="496" width="462" height="124"/>
+	<SubTexture name="meteors0019" x="1386" y="496" width="462" height="124"/>
+	<SubTexture name="meteors0020" x="0" y="620" width="462" height="124"/>
+	<SubTexture name="meteors0021" x="462" y="620" width="462" height="124"/>
+	<SubTexture name="meteors0022" x="924" y="620" width="462" height="124"/>
+	<SubTexture name="meteors0023" x="1386" y="620" width="462" height="124"/>
+	<SubTexture name="meteors0024" x="0" y="744" width="462" height="124"/>
+	<SubTexture name="meteors0025" x="462" y="744" width="462" height="124"/>
+	<SubTexture name="meteors0026" x="924" y="744" width="462" height="124"/>
+	<SubTexture name="meteors0027" x="1386" y="744" width="462" height="124"/>
+	<SubTexture name="meteors0028" x="0" y="868" width="462" height="124"/>
+	<SubTexture name="meteors0029" x="462" y="868" width="462" height="124"/>
+</TextureAtlas>

@@ -1,8 +1,8 @@
 {
  "version": "2.2.4",
- "songName": "Fresh (Visitor Mix)",
+ "songName": "DadBattle (Visitor Mix)",
  "artist": "T.T",
- "charter": "sPaarw6k + AssmanBruh (Events)",
+ "charter": "AssmanBruh!",
  "looped": false,
  "offsets": {
   "instrumental": 0,
@@ -13,6 +13,8 @@
  "playData": {
   "songVariations": [],
   "difficulties": [
+   "easy",
+   "normal",
    "hard"
   ],
   "characters": {
@@ -29,7 +31,11 @@
   },
   "stage": "mainStageErect",
   "noteStyle": "funkin",
-  "ratings": { "hard": 5 },
+  "ratings": {
+    "easy": 3,
+    "normal": 4, 
+    "hard": 5
+  },
   "previewStart": 0,
   "previewEnd": 0
  },
@@ -39,7 +45,7 @@
   {
    "t": 0,
    "b": 0,
-   "bpm": 120,
+   "bpm": 180,
    "n": 4,
    "d": 4,
    "bt": [4, 4, 4, 4]

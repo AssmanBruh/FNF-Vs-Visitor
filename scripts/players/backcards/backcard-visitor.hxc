@@ -1,0 +1,293 @@
+import funkin.ui.freeplay.BGScrollingText;
+import funkin.ui.freeplay.FreeplayState;
+import funkin.ui.freeplay.backcards.BackingCard;
+import flixel.FlxSprite;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.util.FlxSpriteUtil;
+import funkin.ui.freeplay.charselect.PlayableCharacter;
+import funkin.data.freeplay.player.PlayerRegistry;
+import flixel.FlxG;
+import funkin.Conductor;
+import funkin.ui.FullScreenScaleMode;
+import funkin.util.BitmapUtil;
+import openfl.Assets;
+import flixel.util.FlxColor;
+import flixel.addons.display.FlxBackdrop;
+import funkin.graphics.FunkinSprite;
+class VisitorCard extends BackingCard
+{
+  public var moreWays:BGScrollingText;
+  public var funnyScroll:BGScrollingText;
+  public var txtNuts:BGScrollingText;
+  public var funnyScroll2:BGScrollingText;
+  public var moreWays2:BGScrollingText;
+  public var funnyScroll3:BGScrollingText;
+
+  public var redCard:FunkinSprite;
+  public var TOP_meteor:FlxBackdrop;
+  public var BOTTOM_meteor:FlxBackdrop;
+  public var redMoon:FlxSprite;
+  public var meteor_backing:FlxSprite;
+  public var snakeVisitor:FlxSprite;
+  public var backingCardList:Array<FlxSprite> = [];
+
+  var glow:FlxSprite;
+  var glowDark:FlxSprite;
+
+  public override function applyExitMovers(?exitMovers:FreeplayState.ExitMoverData, ?exitMoversCharSel:FreeplayState.ExitMoverData):Void
+  {
+    super.applyExitMovers(exitMovers, exitMoversCharSel);
+    if (exitMovers == null || exitMoversCharSel == null) return;
+    exitMovers.set([TOP_meteor],
+      {
+        x: FlxG.width * 2,
+        y: 124.7,
+        speed: 0.4,
+        wait: 0.55
+      });
+    exitMovers.set([snakeVisitor],
+      {
+        alpha: 1,
+        speed: 0.4,
+        wait: 0
+      });
+    exitMovers.set([redMoon],
+      {
+        x: FlxG.width * 2,
+        speed: 0.4,
+      });
+      exitMovers.set([redCard],
+      {
+        x: -FlxG.width * 2,
+        speed: 0.4,
+      });
+     exitMoversCharSel.set([TOP_meteor, redCard, redMoon, funnyScroll2, moreWays2, funnyScroll3],
+      {
+        y: -60,
+        speed: 0.8,
+        wait: 0.1
+      });
+  }
+
+  public override function enterCharSel():Void
+  {
+     if (snakeVisitor != null)
+    FlxTween.tween(snakeVisitor, {alpha: 0}, 0.8, {ease: FlxEase.sineIn});
+  }
+
+  public override function new()
+  {
+    super("visitor");
+
+    var bitmap = BitmapUtil.scalePartByWidth(Assets.getBitmapData(Paths.image('freeplay/backingCards/visitor/redback')), FreeplayState.CUTOUT_WIDTH);
+    redCard = new FunkinSprite();
+    redCard.loadGraphic(bitmap);
+    var player = PlayerRegistry.instance.fetchEntry(this.currentCharacter);
+    funnyScroll = new BGScrollingText(0, 220, player.getFreeplayDJText(1), FlxG.width / 2, false, 60);
+    funnyScroll2 = new BGScrollingText(0, 335, player.getFreeplayDJText(1), FlxG.width / 2, false, 60);
+    moreWays = new BGScrollingText(0, 160, player.getFreeplayDJText(2), FlxG.width, true, 43);
+    moreWays2 = new BGScrollingText(0, 397, player.getFreeplayDJText(2), FlxG.width, true, 43);
+    txtNuts = new BGScrollingText(0, 285, player.getFreeplayDJText(3), FlxG.width / 2, true, 43);
+    funnyScroll3 = new BGScrollingText(0, orangeBackShit.y + 10, player.getFreeplayDJText(1), FlxG.width / 2, false, 60);
+
+    redMoon = new FlxSprite(53.25, 193.2).loadGraphic(Paths.image("freeplay/backingCards/visitor/redMoon"));
+    TOP_meteor = new FlxBackdrop(Paths.image("freeplay/backingCards/visitor/meteor"), 0x01, -5.5,0);
+    TOP_meteor.frames = Paths.getSparrowAtlas("freeplay/backingCards/visitor/meteor");
+    TOP_meteor.setPosition(-7.45, 124.7);
+    BOTTOM_meteor = new FlxBackdrop(Paths.image("freeplay/backingCards/visitor/meteor"), 0x01, -5.5,0);
+    BOTTOM_meteor.frames = Paths.getSparrowAtlas("freeplay/backingCards/visitor/meteor");
+    snakeVisitor = new FlxSprite(34, 205.4);
+    snakeVisitor.frames = Paths.getSparrowAtlas("freeplay/backingCards/visitor/visitorSnake");
+    meteor_backing = new FlxSprite(-157.35, -72.25);
+    meteor_backing.frames = Paths.getSparrowAtlas("freeplay/backingCards/visitor/meteorBackingCard");
+  }
+
+  public override function onCreate(event:ScriptEvent):Void
+  {
+    FlxTween.tween(pinkBack, {x: 0}, 0.6, {ease: FlxEase.quartOut});
+    FlxTween.tween(redCard, {x: 0}, 0.6, {ease: FlxEase.quartOut});
+    add(pinkBack);
+    add(redCard);
+
+    FlxSpriteUtil.alphaMaskFlxSprite(orangeBackShit, redCard, orangeBackShit);
+    orangeBackShit.visible = false;
+    alsoOrangeLOL.visible = false;
+
+    confirmTextGlow.blend = 0;
+    confirmTextGlow.visible = false;
+
+    confirmGlow.blend = 0;
+
+    confirmGlow.visible = false;
+    confirmGlow2.visible = false;
+
+    cardGlow.blend = 0;
+    cardGlow.visible = false;
+
+    moreWays.visible = false;
+    funnyScroll.visible = false;
+    txtNuts.visible = false;
+    funnyScroll2.visible = false;
+    moreWays2.visible = false;
+    funnyScroll3.visible = false;
+
+    moreWays.funnyColor = 0xFFFFF383;
+    moreWays.speed = 6.8;
+
+    funnyScroll.funnyColor = 0xFFFF9963;
+    funnyScroll.speed = -3.8;
+
+    txtNuts.speed = 3.5;
+
+    funnyScroll2.funnyColor = 0xFFFF9963;
+    funnyScroll2.speed = -3.8;
+
+    moreWays2.funnyColor = 0xFFFFF383;
+    moreWays2.speed = 6.8;
+
+    funnyScroll3.funnyColor = 0xFFFEA400;
+    funnyScroll3.speed = -3.8;
+
+    glowDark = new FlxSprite((FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI) + -300, 330).loadGraphic(Paths.image('freeplay/beatglow'));
+    glowDark.blend = 9;
+
+    glow = new FlxSprite((FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI) + -300, 330).loadGraphic(Paths.image('freeplay/beatglow'));
+    glow.blend = 0;
+
+    glowDark.visible = false;
+    glow.visible = false;
+
+
+    add(redMoon);
+    redMoon.angularVelocity = 25;
+    // redMoon?.blend = 0;
+
+    add(meteor_backing);
+    meteor_backing.animation.addByPrefix("meteor", "meteorBacking", 24, false);
+    meteor_backing.visible = false;
+    add(TOP_meteor);
+    TOP_meteor.animation.addByPrefix("meteor", "meteors", 24, true);
+    TOP_meteor.animation.play("meteor",true);
+    TOP_meteor.velocity.x = -95;
+  
+    add(BOTTOM_meteor);
+    BOTTOM_meteor.animation.addByPrefix("meteor", "meteors", 24, true);
+    BOTTOM_meteor.animation.play("meteor",true);
+    BOTTOM_meteor.setPosition(-7.45, 447.55);
+    BOTTOM_meteor.velocity.x = 95;
+
+    add(snakeVisitor);
+    snakeVisitor.animation.addByPrefix("visnake", "mini visitor backcard", 24, true);
+    snakeVisitor.animation.play("visnake",true);
+    backingCardList.push(snakeVisitor);
+    backingCardList.push(redMoon);
+    backingCardList.push(TOP_meteor);
+    backingCardList.push(BOTTOM_meteor);
+  }
+
+  var beatFreq:Int = 1;
+  var beatFreqList:Array<Int> = [1, 2, 4, 8];
+
+  public override function beatHit():Void
+  {
+    // increases the amount of beats that need to go by to pulse the glow because itd flash like craazy at high bpms.....
+    beatFreq = beatFreqList[Math.floor(Conductor.instance.bpm / 140)];
+
+    if (Conductor.instance.currentBeat % beatFreq != 0) return;
+    FlxTween.cancelTweensOf(glow);
+    FlxTween.cancelTweensOf(glowDark);
+
+    glow.alpha = 0.8;
+    FlxTween.tween(glow, {alpha: 0}, 16 / 24, {ease: FlxEase.quartOut});
+    glowDark.alpha = 0;
+    FlxTween.tween(glowDark, {alpha: 0.6}, 18 / 24, {ease: FlxEase.quartOut});
+  }
+
+  public override function introDone():Void
+  {
+    super.introDone();
+    pinkBack.color = FlxColor.BLACK;
+  }
+
+  public override function confirm():Void
+  {
+    super.confirm();
+    pinkBack.color = FlxColor.BLACK;
+    
+    FlxTween.tween(redCard, {alpha: 0}, 0.4, {ease: FlxEase.sineIn,
+    onComplete: twn->{
+    meteor_backing.visible = true;
+    meteor_backing.animation.play("meteor",true);
+    }});
+    for (objs in backingCardList){
+        FlxTween.tween(objs, {alpha: 0}, 0.3, {ease: FlxEase.sineIn});
+    }
+  }
+
+  public override function disappear():Void
+  {
+    super.disappear();
+    pinkBack?.color = FlxColor.BLACK;
+    
+    if (TOP_meteor != null)
+    FlxTween.tween(TOP_meteor, {alpha: 0, y: -100}, 0.4, {ease: FlxEase.sineIn});
+    
+    if (BOTTOM_meteor != null)
+    FlxTween.tween(BOTTOM_meteor, {alpha: 0, y: FlxG.height+100}, 0.4, {ease: FlxEase.sineIn});
+
+    snakeVisitor?.animation?.stop();
+
+    if (snakeVisitor != null)
+    FlxTween.tween(snakeVisitor, {alpha: 0}, 0.4, {ease: FlxEase.sineIn, startDelay: 0.2});
+    
+    if (redCard != null)
+    FlxTween.tween(redCard, {x: -redCard?.width}, 0.4, {ease: FlxEase.sineIn});
+    
+    if (redMoon != null)
+    FlxTween.tween(redMoon, {x: -redMoon?.width, angle: -350}, 0.4, {ease: FlxEase.sineIn});
+
+    moreWays.visible = false;
+    funnyScroll.visible = false;
+    txtNuts.visible = false;
+    funnyScroll2.visible = false;
+    moreWays2.visible = false;
+    funnyScroll3.visible = false;
+    glowDark.visible = false;
+    glow.visible = false;
+  }
+
+  var prevLevelId:String = '';
+
+  /**
+   * Called when a capsule is selected.
+   */
+  public function onCapsuleSelected(event:CapsuleScriptEvent):Void {
+    super.onCapsuleSelected(event);
+
+    var curLevelId:String = event.capsule.freeplayData?.levelId;
+
+    if(curLevelId == 'sserafim' && curLevelId != prevLevelId){
+      moreWays.updateText('SPECIAL');
+      funnyScroll.updateText('SPECIAL SPECIAL');
+      txtNuts.updateText('SPECIAL');
+      funnyScroll2.updateText('SPECIAL SPECIAL');
+      moreWays2.updateText('SPECIAL');
+      funnyScroll3.updateText('SPECIAL SPECIAL');
+    }
+    else if(prevLevelId == 'sserafim' && curLevelId != prevLevelId)
+    {
+      var player = PlayerRegistry.instance.fetchEntry(this.currentCharacter);
+
+      funnyScroll.updateText(player.getFreeplayDJText(1));
+      funnyScroll2.updateText(player.getFreeplayDJText(1));
+      moreWays.updateText(player.getFreeplayDJText(2));
+      moreWays2.updateText(player.getFreeplayDJText(2));
+      txtNuts.updateText(player.getFreeplayDJText(3));
+      funnyScroll3.updateText(player.getFreeplayDJText(1));
+    }
+
+    prevLevelId = curLevelId;
+  }
+
+}

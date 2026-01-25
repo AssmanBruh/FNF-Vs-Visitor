@@ -10,14 +10,8 @@
   "stickerPack": "visitorStickers",
   "freeplayDJ": {
     "applyStageMatrix": true,
-    "assetPath": "freeplay/freeplay-boyfriend",
-    "cartoon": {
-      "soundClickFrame": 80,
-      "soundCartoonFrame": 85,
-      "loopBlinkFrame": 112,
-      "loopFrame": 166,
-      "channelChangeFrame": 60
-    },
+    "assetPath": "freeplay/freeplay-visitor",
+    "scriptClass": "VisitorFreeplayDJ",
     "fistPump": {
       "introStartFrame": 0,
       "introEndFrame": 4,
@@ -35,54 +29,57 @@
       "transitionDelay": 0.45
     },
     "text1": "VISITOR",
-    "text2": "VISITOR AHHHH",
-    "text3": "A FUNKIN'G GUEST IN THE EARTH",
+    "text2": "VISITOR IN THE EARTH NO WAY",
+    "text3": "MUTATE YOUR NUTS",
     "animations": [
-      {
-        "name": "intro",
-        "prefix": "boyfriend dj intro",
-        "offsets": [3.4, -135.5]
-      },
-      {
-        "name": "idle",
-        "prefix": "Boyfriend DJ",
-        "offsets": [10, 290]
-      },
-      {
-        "name": "idleEasterEgg",
-        "prefix": "bf dj afk",
-        "offsets": [10, 127.2]
-      },
-      {
-        "name": "confirm",
-        "prefix": "Boyfriend DJ confirm",
-        "offsets": [-40, 289.5]
-      },
-      {
-        "name": "fistPump",
-        "prefix": "Boyfriend DJ fist pump",
-        "offsets": [10, 278.3]
-      },
-      {
-        "name": "cartoon",
-        "prefix": "Boyfriend DJ watchin tv OG",
-        "offsets": [-10, -167.5]
-      },
-      {
-        "name": "loss",
-        "prefix": "Boyfriend DJ loss reaction 1",
-        "offsets": [10, 277.3]
-      },
-      {
-        "name": "charSelect",
-        "prefix": "Boyfriend DJ to CS",
-        "offsets": [-51.5, 210.4]
-      },
-      {
-        "name": "newUnlock",
-        "prefix": "Boyfriend DJ new character ",
-        "offsets": [-144.5, 69.2]
-      }
+    {
+			"prefix": "visitor dj intro",
+			"name": "intro",
+      "offsets": [
+		7,2      ]
+		},
+		{
+			"offsets": [
+			0,0
+			],
+			"prefix": "Visitor DJ",
+			"name": "idle"
+		},
+		{
+			"offsets": [
+					649.2,58.6
+			],
+			"prefix": "visitor dj afk",
+			"name": "idleEasterEgg"
+		},
+		{
+			"offsets": [
+				0,0
+			],
+			"prefix": "Visitor DJ confirm",
+			"name": "confirm"
+		},
+		{
+			"offsets": [
+				0,0
+			],
+			"prefix": "Visitor DJ fist pump",
+			"name": "fistPump"
+		},
+		{
+			"offsets": [
+				0,0
+			],
+			"prefix": "Visitor DJ loss reaction 1",
+			"name": "loss"
+		},
+		{
+			"offsets": [
+				0,0
+			],
+			"prefix": "Visitor DJ to CS",
+			"name": "charSelect"
+		}
     ]
   },
   "charSelect": {
