@@ -102,137 +102,55 @@
     "perfectGold": [
       {
         "renderType": "animateatlas",
-        "scriptClass": "BFBedPerfectResults",
-        "startFrameLabel": "INTRO",
-        "filter": "naughty",
+        "assetPath": "shared:resultScreen/results-visitor/resultsDEFAULT",
         "zIndex": 500,
-        "offsets": [403, -305],
-        "loopFrameLabel": "LOOP START"
-      },
-      {
-        "renderType": "animateatlas",
-        "assetPath": "shared:resultScreen/results-bf/resultsPERFECT/hearts",
-        "filter": "naughty",
-        "zIndex": 501,
-        "delay": 4.41,
-        "offsets": [630, 300],
-        "loopFrame": 43
-      },
-      {
-        "renderType": "animateatlas",
-        "scriptClass": "BFBedPerfectResults",
-        "startFrameLabel": "INTRO 2",
-        "filter": "safe",
-        "zIndex": 500,
-        "offsets": [403, -305],
-        "loopFrameLabel": "LOOP 2"
-      },
-      {
-        "renderType": "animateatlas",
-        "assetPath": "shared:resultScreen/results-bf/resultsPERFECT/tickleFight",
-        "filter": "safe",
-        "zIndex": 501,
-        "delay": 4.41,
-        "offsets": [413, 314],
-        "scale": 0.6,
-        "sound": "shared:tickleFight",
-        "loopFrameLabel": "LOOP"
+        "offsets": [780,170],
+        "loopFrame": 16
       }
     ],
     "perfect": [
       {
         "renderType": "animateatlas",
-        "scriptClass": "BFBedPerfectResults",
-        "startFrameLabel": "INTRO",
-        "filter": "naughty",
+        "assetPath": "shared:resultScreen/results-visitor/resultsDEFAULT",
         "zIndex": 500,
-        "offsets": [403, -305],
-        "loopFrameLabel": "LOOP START"
-      },
-      {
-        "renderType": "animateatlas",
-        "assetPath": "shared:resultScreen/results-bf/resultsPERFECT/hearts",
-        "filter": "naughty",
-        "zIndex": 501,
-        "delay": 4.41,
-        "offsets": [630, 300],
-        "loopFrame": 43
-      },
-      {
-        "renderType": "animateatlas",
-        "scriptClass": "BFBedPerfectResults",
-        "startFrameLabel": "INTRO 2",
-        "filter": "safe",
-        "zIndex": 500,
-        "offsets": [403, -305],
-        "loopFrameLabel": "LOOP 2"
-      },
-      {
-        "renderType": "animateatlas",
-        "assetPath": "shared:resultScreen/results-bf/resultsPERFECT/tickleFight",
-        "filter": "safe",
-        "zIndex": 501,
-        "delay": 4.41,
-        "offsets": [413, 314],
-        "scale": 0.6,
-        "sound": "shared:tickleFight",
-        "loopFrameLabel": "LOOP"
+        "offsets": [780,170],
+        "loopFrame": 16
       }
     ],
     "excellent": [
       {
         "renderType": "animateatlas",
-        "assetPath": "shared:resultScreen/results-bf/resultsEXCELLENT",
+        "assetPath": "shared:resultScreen/results-visitor/resultsDEFAULT",
         "zIndex": 500,
-        "offsets": [560.85, -410.35],
-        "loopFrame": 29
+        "offsets": [780,170],
+        "loopFrame": 16
       }
     ],
     "great": [
       {
         "renderType": "animateatlas",
-        "assetPath": "shared:resultScreen/results-bf/resultsGREAT/gf",
-        "scale": 0.93,
-        "delay": 0.25,
-        "offsets": [563.364, -123.186],
-        "zIndex": 499,
-
-        "loopFrame": 9
-      },
-      {
-        "renderType": "animateatlas",
-        "assetPath": "shared:resultScreen/results-bf/resultsGREAT/bf",
-        "scale": 0.93,
+        "assetPath": "shared:resultScreen/results-visitor/resultsDEFAULT",
         "zIndex": 500,
-        "offsets": [655.3, -247.95],
-
-        "loopFrame": 15
+        "offsets": [780,170],
+        "loopFrame": 16
       }
     ],
     "good": [
       {
         "renderType": "animateatlas",
-        "assetPath": "shared:resultScreen/results-bf/resultsGOOD/bf",
-        "zIndex": 501,
-        "offsets": [645.4, -214.8],
-        "loopFrame": 14
-      },
-      {
-        "renderType": "sparrow",
-        "assetPath": "shared:resultScreen/results-bf/resultsGOOD/resultGirlfriendGOOD",
+        "assetPath": "shared:resultScreen/results-visitor/resultsDEFAULT",
         "zIndex": 500,
-        "delay": 0.91,
-        "offsets": [629, 323],
-        "loopFrame": 9
+        "offsets": [780,170],
+        "loopFrame": 16
       }
     ],
     "loss": [
       {
         "renderType": "animateatlas",
-        "scriptClass": "BFShitResults",
+        "assetPath": "shared:resultScreen/results-visitor/resultsDEFAULT",
         "zIndex": 500,
-        "offsets": [570.5, -390.5],
-        "loopFrameLabel": "Loop Start"
+        "offsets": [780,170],
+        "loopFrame": 16
       }
     ]
   }
