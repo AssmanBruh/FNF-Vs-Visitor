@@ -15,15 +15,9 @@ import openfl.Assets;
 import flixel.util.FlxColor;
 import flixel.addons.display.FlxBackdrop;
 import funkin.graphics.FunkinSprite;
+
 class VisitorCard extends BackingCard
 {
-  public var moreWays:BGScrollingText;
-  public var funnyScroll:BGScrollingText;
-  public var txtNuts:BGScrollingText;
-  public var funnyScroll2:BGScrollingText;
-  public var moreWays2:BGScrollingText;
-  public var funnyScroll3:BGScrollingText;
-
   public var redCard:FunkinSprite;
   public var TOP_meteor:FlxBackdrop;
   public var BOTTOM_meteor:FlxBackdrop;
@@ -31,9 +25,6 @@ class VisitorCard extends BackingCard
   public var meteor_backing:FlxSprite;
   public var snakeVisitor:FlxSprite;
   public var backingCardList:Array<FlxSprite> = [];
-
-  var glow:FlxSprite;
-  var glowDark:FlxSprite;
 
   public override function applyExitMovers(?exitMovers:FreeplayState.ExitMoverData, ?exitMoversCharSel:FreeplayState.ExitMoverData):Void
   {
@@ -62,7 +53,7 @@ class VisitorCard extends BackingCard
         x: -FlxG.width * 2,
         speed: 0.4,
       });
-     exitMoversCharSel.set([TOP_meteor, redCard, redMoon, funnyScroll2, moreWays2, funnyScroll3],
+     exitMoversCharSel.set([TOP_meteor, redCard, redMoon],
       {
         y: -60,
         speed: 0.8,
@@ -84,13 +75,6 @@ class VisitorCard extends BackingCard
     redCard = new FunkinSprite();
     redCard.loadGraphic(bitmap);
     var player = PlayerRegistry.instance.fetchEntry(this.currentCharacter);
-    funnyScroll = new BGScrollingText(0, 220, player.getFreeplayDJText(1), FlxG.width / 2, false, 60);
-    funnyScroll2 = new BGScrollingText(0, 335, player.getFreeplayDJText(1), FlxG.width / 2, false, 60);
-    moreWays = new BGScrollingText(0, 160, player.getFreeplayDJText(2), FlxG.width, true, 43);
-    moreWays2 = new BGScrollingText(0, 397, player.getFreeplayDJText(2), FlxG.width, true, 43);
-    txtNuts = new BGScrollingText(0, 285, player.getFreeplayDJText(3), FlxG.width / 2, true, 43);
-    funnyScroll3 = new BGScrollingText(0, orangeBackShit.y + 10, player.getFreeplayDJText(1), FlxG.width / 2, false, 60);
-
     redMoon = new FlxSprite(53.25, 193.2).loadGraphic(Paths.image("freeplay/backingCards/visitor/redMoon"));
     TOP_meteor = new FlxBackdrop(Paths.image("freeplay/backingCards/visitor/meteor"), 0x01, -5.5,0);
     TOP_meteor.frames = Paths.getSparrowAtlas("freeplay/backingCards/visitor/meteor");
@@ -111,54 +95,7 @@ class VisitorCard extends BackingCard
     add(redCard);
 
     FlxSpriteUtil.alphaMaskFlxSprite(orangeBackShit, redCard, orangeBackShit);
-    orangeBackShit.visible = false;
-    alsoOrangeLOL.visible = false;
-
-    confirmTextGlow.blend = 0;
-    confirmTextGlow.visible = false;
-
-    confirmGlow.blend = 0;
-
-    confirmGlow.visible = false;
-    confirmGlow2.visible = false;
-
-    cardGlow.blend = 0;
-    cardGlow.visible = false;
-
-    moreWays.visible = false;
-    funnyScroll.visible = false;
-    txtNuts.visible = false;
-    funnyScroll2.visible = false;
-    moreWays2.visible = false;
-    funnyScroll3.visible = false;
-
-    moreWays.funnyColor = 0xFFFFF383;
-    moreWays.speed = 6.8;
-
-    funnyScroll.funnyColor = 0xFFFF9963;
-    funnyScroll.speed = -3.8;
-
-    txtNuts.speed = 3.5;
-
-    funnyScroll2.funnyColor = 0xFFFF9963;
-    funnyScroll2.speed = -3.8;
-
-    moreWays2.funnyColor = 0xFFFFF383;
-    moreWays2.speed = 6.8;
-
-    funnyScroll3.funnyColor = 0xFFFEA400;
-    funnyScroll3.speed = -3.8;
-
-    glowDark = new FlxSprite((FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI) + -300, 330).loadGraphic(Paths.image('freeplay/beatglow'));
-    glowDark.blend = 9;
-
-    glow = new FlxSprite((FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI) + -300, 330).loadGraphic(Paths.image('freeplay/beatglow'));
-    glow.blend = 0;
-
-    glowDark.visible = false;
-    glow.visible = false;
-
-
+   
     add(redMoon);
     redMoon.angularVelocity = 25;
     // redMoon?.blend = 0;
@@ -186,22 +123,16 @@ class VisitorCard extends BackingCard
     backingCardList.push(BOTTOM_meteor);
   }
 
-  var beatFreq:Int = 1;
-  var beatFreqList:Array<Int> = [1, 2, 4, 8];
-
   public override function beatHit():Void
   {
-    // increases the amount of beats that need to go by to pulse the glow because itd flash like craazy at high bpms.....
-    beatFreq = beatFreqList[Math.floor(Conductor.instance.bpm / 140)];
+      // var anim = snakeVisitor?.animation?.curAnim;
+      // anim.frame++;
 
-    if (Conductor.instance.currentBeat % beatFreq != 0) return;
-    FlxTween.cancelTweensOf(glow);
-    FlxTween.cancelTweensOf(glowDark);
+      // if (anim.curFrame >= anim.frames.length) {
+      //     anim.curFrame = 0; // loop
+      // }
 
-    glow.alpha = 0.8;
-    FlxTween.tween(glow, {alpha: 0}, 16 / 24, {ease: FlxEase.quartOut});
-    glowDark.alpha = 0;
-    FlxTween.tween(glowDark, {alpha: 0.6}, 18 / 24, {ease: FlxEase.quartOut});
+      // snakeVisitor?.animation?.curAnim?.frame = anim.frames[anim.curFrame];
   }
 
   public override function introDone():Void
@@ -246,48 +177,38 @@ class VisitorCard extends BackingCard
     
     if (redMoon != null)
     FlxTween.tween(redMoon, {x: -redMoon?.width, angle: -350}, 0.4, {ease: FlxEase.sineIn});
-
-    moreWays.visible = false;
-    funnyScroll.visible = false;
-    txtNuts.visible = false;
-    funnyScroll2.visible = false;
-    moreWays2.visible = false;
-    funnyScroll3.visible = false;
-    glowDark.visible = false;
-    glow.visible = false;
   }
 
-  var prevLevelId:String = '';
+  // var prevLevelId:String = '';
 
   /**
    * Called when a capsule is selected.
    */
-  public function onCapsuleSelected(event:CapsuleScriptEvent):Void {
-    super.onCapsuleSelected(event);
+  //  SAVEED FOR LATER!!
+  // public function onCapsuleSelected(event:CapsuleScriptEvent):Void {
+  //   super.onCapsuleSelected(event);
 
-    var curLevelId:String = event.capsule.freeplayData?.levelId;
+  //   var curLevelId:String = event.capsule.freeplayData?.levelId;
 
-    if(curLevelId == 'sserafim' && curLevelId != prevLevelId){
-      moreWays.updateText('SPECIAL');
-      funnyScroll.updateText('SPECIAL SPECIAL');
-      txtNuts.updateText('SPECIAL');
-      funnyScroll2.updateText('SPECIAL SPECIAL');
-      moreWays2.updateText('SPECIAL');
-      funnyScroll3.updateText('SPECIAL SPECIAL');
-    }
-    else if(prevLevelId == 'sserafim' && curLevelId != prevLevelId)
-    {
-      var player = PlayerRegistry.instance.fetchEntry(this.currentCharacter);
+  //   if(curLevelId == 'sserafim' && curLevelId != prevLevelId){
+  //     funnyScroll.updateText('SPECIAL SPECIAL');
+  //     txtNuts.updateText('SPECIAL');
+  //     funnyScroll2.updateText('SPECIAL SPECIAL');
+  //     moreWays2.updateText('SPECIAL');
+  //     funnyScroll3.updateText('SPECIAL SPECIAL');
+  //   }
+  //   else if(prevLevelId == 'sserafim' && curLevelId != prevLevelId)
+  //   {
+  //     var player = PlayerRegistry.instance.fetchEntry(this.currentCharacter);
 
-      funnyScroll.updateText(player.getFreeplayDJText(1));
-      funnyScroll2.updateText(player.getFreeplayDJText(1));
-      moreWays.updateText(player.getFreeplayDJText(2));
-      moreWays2.updateText(player.getFreeplayDJText(2));
-      txtNuts.updateText(player.getFreeplayDJText(3));
-      funnyScroll3.updateText(player.getFreeplayDJText(1));
-    }
+  //     funnyScroll.updateText(player.getFreeplayDJText(1));
+  //     funnyScroll2.updateText(player.getFreeplayDJText(1));
+  //     moreWays2.updateText(player.getFreeplayDJText(2));
+  //     txtNuts.updateText(player.getFreeplayDJText(3));
+  //     funnyScroll3.updateText(player.getFreeplayDJText(1));
+  //   }
 
-    prevLevelId = curLevelId;
-  }
+  //   prevLevelId = curLevelId;
+  // }
 
 }
