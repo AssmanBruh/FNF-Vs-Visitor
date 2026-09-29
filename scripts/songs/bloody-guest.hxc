@@ -20,6 +20,7 @@ import funkin.graphics.shaders.AdjustColorShader;
 import flixel.addons.display.FlxRuntimeShader;
 import lime.app.Application;
 import flixel.math.FlxMath;
+import funkin.save.Save;
 
 class BloodySong extends Song {
   var hasPlayedCutscene:Bool;
@@ -28,6 +29,22 @@ class BloodySong extends Song {
 
   var camOutro:FlxCamera;
   var sceneAudio:FlxSound;
+  
+  public static var DEFAULT_MIX:String = "default";
+  var CURRENT_MIX:String = DEFAULT_MIX;
+
+  public function isPicoMix(){
+    return CURRENT_MIX == "pico";
+  }
+
+  public function isErectMix(){
+    return CURRENT_MIX == "erect";
+  }
+
+  public function isDefaultMix(){
+    return CURRENT_MIX != "pico" || CURRENT_MIX != "erect";
+  }
+
 	public function new() {
 		super('bloody-guest');
     playState = PlayState.instance;
@@ -36,10 +53,6 @@ class BloodySong extends Song {
 
   override function onSongLoaded(event) {
     super.onSongLoaded(event);
-
-    if (PlayState.instance.currentVariation == 'pico'){
-        // FlxG.camera.fade(0xFF000000, 0, false);
-    }
 
     camOutro = new FlxCamera();
     camOutro.bgColor = 0x00000000;
@@ -50,28 +63,34 @@ class BloodySong extends Song {
   public override function onCountdownStart(event:CountdownScriptEvent):Void {
 		super.onCountdownStart(event);
 
-    if (PlayState.instance.currentVariation == 'erect' || PlayState.instance.currentVariation == 'pico') hasPlayedCutscene = true;
+    CURRENT_MIX = PlayState.instance.currentVariation;
+
+    if (isErectMix() || isPicoMix() || PlayState.instance.isChartingMode) hasPlayedCutscene = true;
 
     if (!hasPlayedCutscene) {
       trace('Pausing countdown to play a video cutscene (`bloody-guest`)');
-
       hasPlayedCutscene = true;
-
       event.cancel(); // CANCEL THE COUNTDOWN!
-
       startVideo();
-    }
-
-    if (PlayState.instance.currentVariation == 'pico'){
-        new FlxTimer().start((((60 / Conductor.instance.bpm)*2))*5, function(t:FlxTimer)
-        {
-            // FlxG.camera.fade(0xFF000000, 4, true);
-        });  
     }
 	}
 
   function startVideo() {
+    trace("bye bbye froggie :(");
     VideoCutscene.play(Paths.videos('visitorCutscene'));
+  }
+
+  
+  override function onPause(event:PauseScriptEvent)
+  {
+    super.onPause(event);
+    FlxTween.globalManager.forEach((tween:FlxTween) -> tween.active = false);
+  }
+
+  override function onResume(e)
+  {
+    super.onResume(e);
+    FlxTween.globalManager.forEach((tween:FlxTween) -> tween.active = true);
   }
 
   /**
@@ -82,18 +101,11 @@ class BloodySong extends Song {
     super.onSongRetry(event);
 
     hasPlayedCutscene = true;
-    if (PlayState.instance.currentVariation == 'pico'){
-        // FlxG.camera.fade(0xFF000000, 0, false);
-    }
   }
 
   function onSongRestart(event:ScriptEvent)
 	{
 		super.onSongRestart(event);
-
-    if (PlayState.instance.currentVariation == 'pico'){
-        // FlxG.camera.fade(0xFF000000, 0, true);
-    }
   }
 
   /**
@@ -126,12 +138,8 @@ class BloodySong extends Song {
 	{
     var hasBeatenPicoMix = Save.instance.hasBeatenSong(this.id, null, 'pico');
 
-    if (currentVariation == "pico"){
-      if (!hasBeatenPicoMix){
-        return true;
-      }else{
-        return false;
-      }
+    if (isPicoMix()){
+        return !hasBeatenPicoMix;
     }else{
 		  return false;
     }
@@ -142,33 +150,24 @@ class BloodySong extends Song {
   public function onSongEnd(event):Void 
   {
     super.onSongEnd(event);
-      if (PlayState.instance.currentVariation == "pico"){
+      if (isPicoMix()){
         if (!hasPlayedOutro)
         {
           hasPlayedOutro = true;
           event.cancel();  
           event.stopPropagation();
-          FlxG.camera.fade(0xFF000000, 0, false);
-          quickTimer(0.4, function(tmr){
-            PlayState.instance.camHUD.alpha = 0;
-          });
-          quickTimer(0.5, function(tmr){
-            FlxG.sound.play(Paths.sound("pico se muere"), 1, false, null, true, function(){
-                quickTimer(1, function(tmr){  
-                  PlayState.instance.endSong(true);
-                });  
-            });
-          });
-        }else
+          onPicoMixEnd();
+        }else{
           hasPlayedOutro = false;
-      }else if (PlayState.instance.currentVariation != "erect"){
+        }
+      }else if (!isErectMix()){
         if (!hasPlayedOutro)
         {
               hasPlayedOutro = true;
 
               event.cancel();
               event.stopPropagation();
-              if (FlxG.save.data.GiftfirstTime){
+              if (Save.instance.modOptions.get(VisitorSaveKeys.GIFT_FIRST_TIME_SAVE_KEY)){
                   visitorGiftCinematic();
               }else{    
                   visitorCinematic();
@@ -181,6 +180,20 @@ class BloodySong extends Song {
 
   function quickTimer(t, f, ?r=1){
       new FlxTimer().start(t, f, r);
+  }
+
+  function onPicoMixEnd(){
+    FlxG.camera.fade(0xFF000000, 0, false);
+    quickTimer(0.4, function(tmr){
+      PlayState.instance.camHUD.alpha = 0;
+    });
+    quickTimer(0.5, function(tmr){
+      FlxG.sound.play(Paths.sound("pico se muere"), 1, false, null, true, function(){
+          quickTimer(1, function(tmr){  
+            PlayState.instance.endSong(true);
+          });  
+      });
+    });
   }
 
   var firstPreAttack:Bool = true;
@@ -296,7 +309,7 @@ class BloodySong extends Song {
             quickTimer(0.85, function(tmr){
                PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom+0.51, 0.14, true, FlxEase.linear);  
                // FlxG.camera.scroll.x = visitorPos[0]+visitorCamOffsets.x;
-               PlayState.instance.tweenCameraToPosition(visitorPos[0]+visitorCamOffsets.x, visitorPos[1], 0.14, FlxEase.linear);
+               PlayState.instance.tweenCameraToPosition(visitorPos[0]+visitorCamOffsets.x, visitorPos[1]+45, 0.14, FlxEase.linear);
                quickTimer(0.11, function(tmr){
                    PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom+0.29, 3.5, true, FlxEase.quadInOut);  
                });  
@@ -321,8 +334,8 @@ class BloodySong extends Song {
                   }
                 });
                 visitorScene.offset.set(22,-11);
-                PlayState.instance.tweenCameraToPosition(gfPos[0]-240, gfPos[1], 0.3, FlxEase.quadInOut);
-                PlayState.instance.tweenCameraZoom(PlayState.instance.stageZoom-0.21, 0.3, true, FlxEase.quadInOut);    
+                PlayState.instance.tweenCameraToPosition(gfPos[0]-580, gfPos[1]-180, 0.3, FlxEase.quadInOut);
+                PlayState.instance.tweenCameraZoom(PlayState.instance.stageZoom-0.14, 0.3, true, FlxEase.quadInOut);    
                 visitor.visible = false;
                 quickTimer(0.09, function(tmr){
                   visitorScene.animation.play("falling", true);
@@ -466,7 +479,7 @@ class BloodySong extends Song {
             quickTimer(0.85, function(tmr){
                PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom+0.51, 0.14, true, FlxEase.linear);  
                // FlxG.camera.scroll.x = visitorPos[0]+visitorCamOffsets.x;
-               PlayState.instance.tweenCameraToPosition(visitorPos[0]+visitorCamOffsets.x, visitorPos[1], 0.14, FlxEase.linear);
+               PlayState.instance.tweenCameraToPosition(visitorPos[0]+visitorCamOffsets.x, visitorPos[1]+45, 0.14, FlxEase.linear);
                quickTimer(0.11, function(tmr){
                    PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom+0.29, 3.5, true, FlxEase.quadInOut);  
                });  
@@ -474,8 +487,8 @@ class BloodySong extends Song {
           quickTimer(3, function(tmr){
                 visitorScene.animation.play("hurt2", true);
                 visitorScene.offset.set(22,-11);
-                PlayState.instance.tweenCameraToPosition(gfPos[0]-240, gfPos[1], 0.3, FlxEase.quadInOut);
-                PlayState.instance.tweenCameraZoom(PlayState.instance.stageZoom-0.21, 0.3, true, FlxEase.quadInOut);    
+                PlayState.instance.tweenCameraToPosition(gfPos[0]-580, gfPos[1]-180, 0.3, FlxEase.quadInOut);
+                PlayState.instance.tweenCameraZoom(PlayState.instance.stageZoom-0.14, 0.3, true, FlxEase.quadInOut);    
                 visitor.visible = false;
                 quickTimer(0.09, function(tmr){
                   visitorScene.animation.play("falling", true);
@@ -697,7 +710,7 @@ class BloodySong extends Song {
               camOutro.fade(0xFFe6f3fa, 4, false);
                 quickTimer(5, function(tmr){
                   PlayState.instance.endSong(true);
-                  FlxG.save.data.GiftfirstTime = false;
+                  Save.instance.modOptions.set(VisitorSaveKeys.GIFT_FIRST_TIME_SAVE_KEY, false);
                 }); 
               }); 
         }); 
@@ -719,63 +732,48 @@ class BloodySong extends Song {
         // DUR: 1679 to 1790
         //"finalTransitionBlood": //uuuh, would it be correct to do it only for pico mix?
         if (event.step == 1679 && PlayState.instance.currentVariation == 'pico'){
-            var adjustColorShader = new AdjustColorShader();
-            var filter = new ShaderFilter(adjustColorShader);
-            FlxG.camera.filters = [filter];
-            // adjustColorShader.strength = 0.5;
-            // FlxG.camera.bgColor.colorTransform.rOffset = 100;
-            // FlxG.camera.bgColor.colorTransform.gOffset = 0;
-            // FlxG.camera.bgColor.colorTransform.bOffset = 0;
-            PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom*1.3, 12.85, true, FlxEase.quadInOut);  
-           
-            FlxTween.num(adjustColorShader.hue, 118, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            // FlxG.camera.flash(0xFFFFFFFF, 0.4);
+            // var redToneShader = new FlxRuntimeShader(Assets.getText(Paths.frag('redTone')));
+            var redToneShader = new RedtoneShader();
+            var filter = new ShaderFilter(redToneShader);
+            FlxG.camera.filters.push(filter);
+            PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom*1.52, 12.85, true, FlxEase.quadInOut);  
+            FlxTween.tween(PlayState.instance.camHUD, {alpha: 0}, 4, {ease: FlxEase.quadInOut});
+            // FlxTween.num(redToneShader.getFloat('intensity'), 1, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
+            // {
+            //     redToneShader.setFloat('intensity', value);
+            //     // redToneShader.intensity = value;
+            // });
+            
+            FlxTween.num(redToneShader.intensity, 2, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
             {
-                adjustColorShader.hue = value;
-            });
-            FlxTween.num(adjustColorShader.saturation, 100, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
-            {
-                adjustColorShader.saturation = value;
-            });
-            FlxTween.num(adjustColorShader.contrast, 98, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
-            {
-                adjustColorShader.contrast = value;
-            });
-            FlxTween.num(adjustColorShader.brightness, -65, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
-            {
-                adjustColorShader.brightness = value;
+                redToneShader.intensity = value;
+                // redToneShader.intensity = value;
             });
         }
   }
 }
-/*
-   if (event.step == 1679 && PlayState.instance.currentVariation == 'pico'){
-            var crushShader = new FlxRuntimeShader(
-              Assets.getText(Paths.frag("shadowCrush"))
-            );
-            var crushfilter = new ShaderFilter(crushShader);
 
-            var adjustColorShader = new AdjustColorShader();
-            var filter = new ShaderFilter(adjustColorShader);
-      
-            FlxG.camera.filters = [crushfilter, filter];
-            // adjustColorShader.strength = 0.5;
-            // FlxG.camera.bgColor.colorTransform.rOffset = 100;
-            // FlxG.camera.bgColor.colorTransform.gOffset = 0;
-            // FlxG.camera.bgColor.colorTransform.bOffset = 0;
-            PlayState.instance.tweenCameraZoom(PlayState.instance.currentCameraZoom*1.3, 12.85, true, FlxEase.quadInOut);  
-                      
-            FlxTween.num(crushShader.getFloat("intensity"), 24.3701, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
-            {
-                crushShader.setFloat("intensity", value);
-            });
+class RedtoneShader extends FlxRuntimeShader
+{
+  public var intensity(default, set):Float = 0;
 
-            FlxTween.num(adjustColorShader.hue, 118, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
-            {
-                adjustColorShader.hue = value;
-            });
-            FlxTween.num(adjustColorShader.saturation, 100, 12.81, { ease: FlxEase.quadInOut }, function(value:Float)
-            {
-                adjustColorShader.saturation = value;
-            });
-        }
-        */
+  public function new()
+  {
+    super(Assets.getText(Paths.frag('redTone')));
+    intensity = 0;
+  }
+
+  function set_intensity(value:Float):Float
+  {
+    this.setFloat('intensity', value);
+    this.intensity = value;
+
+    return this.intensity;
+  }
+
+  public override function toString():String
+  {
+    return 'RedToneShader(INTENSITY: ${this.intensity})';
+  }
+}

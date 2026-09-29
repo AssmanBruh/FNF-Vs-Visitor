@@ -92,7 +92,7 @@ class VisitorForestStageChristmas extends Stage {
             PlayState.instance.currentStage.add(snowLayer2);
             snowLayer1 = new FlxBackdrop(Paths.image("visitorForest/CHRISTMAS/snowLayer"));     
             snowLayer1.screenCenter();
-            snowLayer1.blend = 6;
+            snowLayer1.blend = 0;
             snowLayer1.zIndex = getNamedProp("ambientShading").zIndex+5;
             if (snowLayer2 != null)
             snowLayer2.zIndex = snowLayer1.zIndex-1;
@@ -108,7 +108,7 @@ class VisitorForestStageChristmas extends Stage {
         FlxG.camera.filters = [adjustColorFilter];
 
         // test this banger (shader on camhud), looks crazy
-        // PlayState.instance.camHUD.filters = [adjustColorFilter];
+        PlayState.instance.camHUD.filters = [adjustColorFilter];
         switch (PlayState.instance.currentVariation){
             case "erect":
                 adjustCamColorShader.hue = -71;

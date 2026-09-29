@@ -1,8 +1,13 @@
 import funkin.play.character.MultiSparrowCharacter;
 import funkin.play.PlayState;
 import flixel.FlxG;
+import funkin.play.GameOverSubState;
+import funkin.modding.base.ScriptedFlxAtlasSprite;
+import funkin.play.character.MultiAnimateAtlasCharacter;
 
 class VisitorPlayerConfigs extends MultiSparrowCharacter {
+	var visitorDeathSprite;
+
 	function new() {
 		super('visitor-playable');
 	}
@@ -10,6 +15,9 @@ class VisitorPlayerConfigs extends MultiSparrowCharacter {
 	override function onCreate(event)
   	{
     	super.onCreate(event);
+		if (PlayState.instance == null) return;
+		
+		// visitorDeathSprite = ScriptedFlxAtlasSprite.init('VisitorAtlasGameOver',0,0);
 
 		if (PlayState.instance?.currentStage?.stageName == "Main Stage [Erect]"){
 			characterCameraOffsets[0] -= 190;
@@ -17,6 +25,7 @@ class VisitorPlayerConfigs extends MultiSparrowCharacter {
 			x-=15;
 			y-=8;
 		}
+
 		animation.onFinish.add(function(animName:String){
 			switch (animName) {	
 				case "preSee":
@@ -32,10 +41,99 @@ class VisitorPlayerConfigs extends MultiSparrowCharacter {
 			}
 		});
 	}
+	
 	override function onSongRetry(event:ScriptEvent):Void {
 		super.onSongRetry(event);
 		idleSuffix = "";
 		shouldAlternate = false;
 		this.visible = true;
+	}
+
+	// override function playAnimation(name:String,restart:Bool, ignoreOther:Bool, reversed:Bool):Void
+	// {
+	// 	if (PlayState.instance != null) 
+	// 	{
+	// 		switch (name) {	
+	// 			case "firstDeath":
+	// 				createDeathSprites();
+	// 				return;
+	// 		}
+			
+	// 	}
+	// 	super.playAnimation(name,restart,ignoreOther,reversed);
+	// }
+
+	function createDeathSprites() {
+		this.visible = false;
+		// if (visitorDeathSprite == null)
+			// visitorDeathSprite = ScriptedFlxAtlasSprite.init('VisitorAtlasGameOver',0,0);
+			
+		visitorDeathSprite.setPosition(this.x + 270, this.y + 210);
+		visitorDeathSprite.scriptCall('doDieAnim');
+
+		GameOverSubState.instance.add(visitorDeathSprite);
+
+		GameOverSubState.instance.cameraFollowPoint.x = visitorDeathSprite.x + 60;
+		GameOverSubState.instance.cameraFollowPoint.y = visitorDeathSprite.y - 30;	
+	}
+	
+	override function resetCharacter(resetCamera:Bool):Void{
+		super.resetCharacter(resetCamera);
+		danceEvery = 1;
+		shouldAlternate = null;
+		visitorDeathSprite = null;	
+		this.visible = true;
+	}
+
+	public override function onUpdate(event)
+	{
+		super.onUpdate(event);
+		if (GameOverSubState.instance == null) return;
+		
+		if (GameOverSubState.instance.controls.BACK) {
+			GameOverSubState.blueballed = true;
+			GameOverSubState.instance.goBack();
+		}
+
+		var inputCondition = (GameOverSubState.instance.controls.ACCEPT || (FlxG.onMobile && TouchUtil.pressAction() && !TouchUtil.overlaps(GameOverSubState.instance.backButton))) && GameOverSubState.instance.canInput;
+		
+		if (visitorDeathSprite != null && !GameOverSubState.instance.mustNotExit && inputCondition && !GameOverSubState.blueballed) {
+			if (!GameOverSubState.instance.isEnding)
+			{
+
+				GameOverSubState.blueballed = false;
+				GameOverSubState.instance.isEnding = true;
+				
+				GameOverSubState.instance.hasPlayedDeathQuote = true;
+				if (GameOverSubState.instance.deathQuoteSound != null)
+				{
+					GameOverSubState.instance.deathQuoteSound.stop();
+					GameOverSubState.instance.deathQuoteSound = null;
+				}
+				
+				GameOverSubState.instance.startDeathMusic(1.0, true);
+
+				visitorDeathSprite.scriptCall('doUnDieAnim');
+
+				new FlxTimer().start(2.85, function(tmr:FlxTimer) {
+					FlxG.camera.fade(0xFF000000, 2, false, function() {
+						FlxG.camera.fade(0xFF000000, 1, true, null, true);
+						
+						if (GameOverSubState.instance.parentPlayState != null) {
+							GameOverSubState.instance.parentPlayState.needsReset = true;
+							
+							if (!(GameOverSubState.instance.parentPlayState.isMinimalMode ?? true)) {
+								GameOverSubState.instance.boyfriend.isDead = false;
+								GameOverSubState.instance.remove(GameOverSubState.instance.boyfriend);
+								GameOverSubState.instance.parentPlayState.currentStage.addCharacter(GameOverSubState.instance.boyfriend, CharacterType.BF);
+							}
+						}
+						
+						GameOverSubState.instance.resetCameraZoom();
+						GameOverSubState.instance.close();
+					});
+				});
+			}
+		}
 	}
 }

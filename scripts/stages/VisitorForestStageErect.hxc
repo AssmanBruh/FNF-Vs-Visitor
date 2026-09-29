@@ -267,17 +267,23 @@ class VisitorForestStageErect extends Stage {
     override function onCountdownStart(event) {
         super.onCountdownStart(event);
 
-        for (props in ["tree", "grass"]) {
+        for (props in ["tree", "grass", "GrassDetails"]) {
             adjustPropColor(getNamedProp(props), -43, 8, 32, 0);
         }
         getNamedProp("blackScreen").scale.set(FlxG.width,FlxG.height);
-        adjustPropColor(getNamedProp("sky"), 142, 100, -17, 63);
+        // adjustPropColor(getNamedProp("sky"), 142, 100, -17, 63);
         adjustPropColor(getNamedProp("house"), -39, 1, 0, 0);
-        adjustPropColor(getNamedProp("frontPlants"), -13, 25, 7, -24);
+        adjustPropColor(getNamedProp("frontPlants"), 32, -16, 34, 15);
 
         if (getGirlfriend() != null){
             adjustPropColor(getGirlfriend(), 38, 12, -18, -45); 
             getGirlfriend().idleSuffix = "";
+
+            var gf = PlayState.instance.currentStage.getGirlfriend();
+            switch (gf.characterId){
+                case "nene":
+                    // gf.y += 135;
+            }
         }
         if (getBoyfriend() != null){
             getBoyfriend().idleSuffix = "";

@@ -443,7 +443,7 @@
    "t": 59076.9230769231,
    "e": "FocusCamera",
    "v": {
-	"char": 1
+	"char": 2
 }
   },
   {
@@ -1105,7 +1105,7 @@
    "e": "PlayAnimation",
    "v": {
 	"force": true,
-	"anim": "preSee",
+	"anim": "toGrowl",
 	"target": "dad"
 }
   },
@@ -1114,7 +1114,7 @@
    "e": "PlayAnimation",
    "v": {
 	"force": true,
-	"anim": "preSeeReverb",
+	"anim": "growlToIdle",
 	"target": "dad"
 }
   },

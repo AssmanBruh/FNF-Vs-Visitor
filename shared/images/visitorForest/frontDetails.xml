@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="frontDetails.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="FrontDetails instancia 10000" x="0" y="0" width="2481" height="694" frameX="0" frameY="-83" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10001" x="0" y="0" width="2481" height="694" frameX="0" frameY="-83" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10002" x="0" y="0" width="2481" height="694" frameX="0" frameY="-83" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10003" x="2481" y="0" width="2481" height="713" frameX="0" frameY="-64" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10004" x="2481" y="0" width="2481" height="713" frameX="0" frameY="-64" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10005" x="2481" y="0" width="2481" height="713" frameX="0" frameY="-64" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10006" x="4962" y="0" width="2481" height="725" frameX="0" frameY="-52" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10007" x="4962" y="0" width="2481" height="725" frameX="0" frameY="-52" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10008" x="4962" y="0" width="2481" height="725" frameX="0" frameY="-52" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10009" x="0" y="725" width="2481" height="743" frameX="0" frameY="-34" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10010" x="0" y="725" width="2481" height="743" frameX="0" frameY="-34" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10011" x="0" y="725" width="2481" height="743" frameX="0" frameY="-34" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10012" x="2481" y="725" width="2481" height="751" frameX="0" frameY="-26" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10013" x="2481" y="725" width="2481" height="751" frameX="0" frameY="-26" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10014" x="2481" y="725" width="2481" height="751" frameX="0" frameY="-26" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10015" x="4962" y="725" width="2481" height="757" frameX="0" frameY="-20" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10016" x="4962" y="725" width="2481" height="757" frameX="0" frameY="-20" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10017" x="4962" y="725" width="2481" height="757" frameX="0" frameY="-20" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10018" x="0" y="1482" width="2481" height="760" frameX="0" frameY="-17" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10019" x="0" y="1482" width="2481" height="760" frameX="0" frameY="-17" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10020" x="0" y="1482" width="2481" height="760" frameX="0" frameY="-17" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10021" x="2481" y="1482" width="2481" height="763" frameX="0" frameY="-14" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10022" x="2481" y="1482" width="2481" height="763" frameX="0" frameY="-14" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10023" x="2481" y="1482" width="2481" height="763" frameX="0" frameY="-14" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10024" x="4962" y="1482" width="2481" height="767" frameX="0" frameY="-10" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10025" x="4962" y="1482" width="2481" height="767" frameX="0" frameY="-10" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10026" x="4962" y="1482" width="2481" height="767" frameX="0" frameY="-10" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10027" x="0" y="2249" width="2481" height="772" frameX="0" frameY="-5" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10028" x="0" y="2249" width="2481" height="772" frameX="0" frameY="-5" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10029" x="0" y="2249" width="2481" height="772" frameX="0" frameY="-5" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10030" x="2481" y="2249" width="2481" height="774" frameX="0" frameY="-3" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10031" x="2481" y="2249" width="2481" height="774" frameX="0" frameY="-3" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10032" x="2481" y="2249" width="2481" height="774" frameX="0" frameY="-3" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10033" x="4962" y="2249" width="2481" height="777"/>
+	<SubTexture name="FrontDetails instancia 10034" x="4962" y="2249" width="2481" height="777"/>
+	<SubTexture name="FrontDetails instancia 10035" x="4962" y="2249" width="2481" height="777"/>
+	<SubTexture name="FrontDetails instancia 10036" x="0" y="3026" width="2481" height="753" frameX="0" frameY="-24" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10037" x="0" y="3026" width="2481" height="753" frameX="0" frameY="-24" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10038" x="0" y="3026" width="2481" height="753" frameX="0" frameY="-24" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10039" x="2481" y="3026" width="2481" height="755" frameX="0" frameY="-22" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10040" x="2481" y="3026" width="2481" height="755" frameX="0" frameY="-22" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10041" x="2481" y="3026" width="2481" height="755" frameX="0" frameY="-22" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10042" x="4962" y="3026" width="2481" height="748" frameX="0" frameY="-29" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10043" x="4962" y="3026" width="2481" height="748" frameX="0" frameY="-29" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10044" x="4962" y="3026" width="2481" height="748" frameX="0" frameY="-29" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10045" x="0" y="3781" width="2481" height="715" frameX="0" frameY="-62" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10046" x="0" y="3781" width="2481" height="715" frameX="0" frameY="-62" frameWidth="2481" frameHeight="777"/>
+	<SubTexture name="FrontDetails instancia 10047" x="0" y="3781" width="2481" height="715" frameX="0" frameY="-62" frameWidth="2481" frameHeight="777"/>
+</TextureAtlas>

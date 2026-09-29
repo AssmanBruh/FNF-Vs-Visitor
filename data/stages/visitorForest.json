@@ -3,8 +3,8 @@
     {
       "zIndex": 0,
       "position": [
-        -1423.6,
-        -1540.2
+        -1747,
+        -1227
       ],
       "name": "sky",
       "alpha": 1,
@@ -15,8 +15,8 @@
     {
       "zIndex": 10,
       "position": [
-        35.8,
-        -553.75
+        -9,
+        -1109.5
       ],
       "name": "house",
       "alpha": 1,
@@ -30,8 +30,8 @@
     },{
       "zIndex": 20,
       "position": [
-        -772,
-        249
+        -1247,
+        260
       ],
       "name": "grass",
       "alpha": 1,
@@ -42,8 +42,8 @@
     {
       "zIndex": 120,
       "position": [
-        -497,
-        -575
+        -472,
+        -930
       ],
       "name": "tree",
       "alpha": 1,
@@ -55,13 +55,13 @@
       "danceEvery": -1,
       "zIndex": 399,
       "position": [
-        -555.2,
-        252
+        -615,
+        379.9
       ],
       "name": "frontPlants",
       "alpha": 1,
       "isPixel": false,
-      "assetPath": "visitorForest/front",
+      "assetPath": "visitorForest/frontDetails",
       "scroll": [
         0.77,
         1
@@ -70,13 +70,24 @@
       "animations": [    
       {
         "name": "whind",
-        "prefix": "front instancia",
+        "prefix": "FrontDetails",
         "looped": true
       }
       ]
+    },{
+      "zIndex": 320,
+      "position": [
+        173.5,
+        414.05
+      ],
+      "name": "GrassDetails",
+      "alpha": 1,
+      "assetPath": "visitorForest/grassDetails",
+      "startingAnimation": "static",
+      "animations": []
     }
   ],
-  "cameraZoom": 0.67,
+  "cameraZoom": 0.59,
   "version": "1.0.0",
   "characters": {
     "bf": {
@@ -86,8 +97,8 @@
         679
       ],
       "cameraOffsets": [
-        -355,
-        -90
+        -520,
+        -110
       ]
     },
     "dad": {
@@ -97,19 +108,19 @@
         724.4
       ],
       "cameraOffsets": [
-        230,
-        -100
+        130,
+        -162
       ]
     },
     "gf": {
       "zIndex": 100,
       "cameraOffsets": [
         -12,
-        15
+        25
       ],
       "position": [
         752,
-        592
+        572
       ]
     }
   },

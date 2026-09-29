@@ -1,3 +1,5 @@
+/*
+// DISCARTED BUT CAN BE UTIL FOR THE FUTURE!!
 import funkin.modding.module.Module;
 import funkin.modding.events.ScriptEvent;
 import funkin.util.ReflectUtil;
@@ -14,8 +16,10 @@ class VisitorTitleOption extends Module {
 	function onCreate(event:ScriptEvent):Void {
 		super.onCreate(event);
 
-		if (FlxG.save.data.visitorTitleDisabled != false && FlxG.save.data.visitorTitleDisabled != true)
-			FlxG.save.data.visitorTitleDisabled = false;
+		if (Save.instance.modOptions.get(OPTION_KEY_NAME) != false && Save.instance.modOptions.get(OPTION_KEY_NAME) != true){
+			Save.instance.modOptions.set(OPTION_KEY_NAME, OPTION_KEY_VALUE);
+			Save.instance.flush();
+		}
 	}
 
 	public function onStateChangeEnd(event:StateChangeScriptEvent) {
@@ -25,10 +29,12 @@ class VisitorTitleOption extends Module {
 					.createPrefItemCheckbox("Disable Visitor Title menu Design",
 						"If disabled, the visitor design on the title screen will be replaced by the default gf design.",
 						function(value:Bool):Void {
-							FlxG.save.data.visitorTitleDisabled = value;
-							FlxG.save.data.flush;
-						}, FlxG.save.data.visitorTitleDisabled);
+							Save.instance.modOptions.set(OPTION_KEY_NAME, OPTION_KEY_VALUE);
+							Save.instance.flush();
+						}, Save.instance.modOptions.get(OPTION_KEY_NAME));
 			}
 		}
 	}
 }
+
+*/

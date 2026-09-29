@@ -1,0 +1,53 @@
+import funkin.graphics.adobeanimate.FlxAtlasSprite;
+import flixel.math.FlxPoint;
+import flixel.util.FlxTimer;
+import funkin.play.GameOverSubState;
+import flixel.FlxG;
+
+class VisitorAtlasGameOver extends FlxAtlasSprite
+{
+
+  public function new(x:Float, y:Float)
+  {
+  
+    super(x, y, Paths.animateAtlas("characters/VisitorGameOver", "shared"), {
+      FrameRate: 24.0,
+      Reversed: false,
+      ShowPivot: false,
+      Antialiasing: true,
+      ScrollFactor: new FlxPoint(1, 1),
+    });
+  }
+  
+  function doDieAnim(){
+		GameOverSubState.instance.mustNotExit = true;
+    this.playAnimation("VisitorFirstDeath");
+    if (FlxG.onMobile) {
+    GameOverSubState.instance.backButton.onConfirmEnd.removeAll();
+    GameOverSubState.instance.backButton.onConfirmEnd.add(() ->  {
+      GameOverSubState.blueballed = true;
+  		GameOverSubState.instance.goBack();
+    });
+  }
+    onAnimationComplete.addOnce((n) ->  {
+        this.playAnimation("VisitorDeathLoop", true, false, true);
+        new FlxTimer().start(1.35, function(tmr)
+        {
+          GameOverSubState.instance.startDeathMusic(1, false);
+          GameOverSubState.instance.isEnding = false;
+          GameOverSubState.instance.mustNotExit = false;
+        });
+        GameOverSubState.blueballed = false;
+    });
+  }
+
+  function doUnDieAnim(){
+    this.playAnimation("VisitorDeathConfirm", false, false, false, 0);
+    onAnimationComplete.addOnce((n) ->  {
+      this.anim.pause();
+    });
+  }
+  
+
+
+} 

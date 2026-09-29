@@ -158,6 +158,45 @@
 			"name": "singRIGHT",
 			"looped": false,
 			"flipX": false
+		},
+		{
+			"offsets": [
+				-24,
+				-2
+			],
+			"flipY": false,
+			"assetPath": "characters/visitorGrowl",
+			"frameRate": 20,
+			"prefix": "visitor growl",
+			"name": "growl",
+			"looped": true,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-17,
+				1
+			],
+			"flipY": false,
+			"assetPath": "characters/visitorGrowl",
+			"frameRate": 24,
+			"prefix": "visitor to growl",
+			"name": "toGrowl",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-17,
+				1
+			],
+			"flipY": false,
+			"assetPath": "characters/visitorGrowl",
+			"frameRate": 24,
+			"prefix": "growlToIdle",
+			"name": "growlToIdle",
+			"looped": false,
+			"flipX": false
 		}
 	]
 }

@@ -228,6 +228,45 @@
 			"name": "preSeeReverb",
 			"looped": false,
 			"flipX": false
+		},
+		{
+			"offsets": [
+				-13,
+				25
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"assetPath": "characters/visitorDeathAnim",
+			"prefix": "VisitorFirstDeath",
+			"name": "firstDeath",
+			"looped": false,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-10,
+				24
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"assetPath": "characters/visitorDeathAnim",
+			"prefix": "VisitorDeathLoop",
+			"name": "deathLoop",
+			"looped": true,
+			"flipX": false
+		},
+		{
+			"offsets": [
+				-10,
+				24
+			],
+			"flipY": false,
+			"frameRate": 24,
+			"assetPath": "characters/visitorDeathAnim",
+			"prefix": "VisitorDeathConfirm",
+			"name": "deathConfirm",
+			"looped": false,
+			"flipX": false
 		}
 	]
 }

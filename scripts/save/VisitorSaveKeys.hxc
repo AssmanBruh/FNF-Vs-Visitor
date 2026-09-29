@@ -1,0 +1,4 @@
+class VisitorSaveKeys {
+  public static var GIFT_FIRST_TIME_SAVE_KEY:String = "GiftfirstTime";
+  public static var ENABLE_VISITOR_SHADERS:String = "EnableVisitorShaders";
+}

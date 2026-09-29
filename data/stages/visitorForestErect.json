@@ -3,35 +3,35 @@
     {
       "zIndex": 0,
       "position": [
-        -1423.6,
-        -1540.2
+        -1747,
+        -1227
       ],
       "name": "sky",
       "alpha": 1,
-      "assetPath": "visitorForest/skygrp",
+      "assetPath": "visitorForest/sky_sunset",
       "startingAnimation": "static",
       "animations": []
     },  
     {
       "zIndex": 10,
       "position": [
-        35.8,
-        -553.75
-      ],
-      "scroll": [
-        0.73,
-        0.73
+        -9,
+        -1109.5
       ],
       "name": "house",
       "alpha": 1,
       "assetPath": "visitorForest/house",
+      "scroll": [
+        0.73,
+        0.73
+      ],
       "startingAnimation": "static",
       "animations": []
     },{
       "zIndex": 20,
       "position": [
-        -772,
-        249
+        -1247,
+        260
       ],
       "name": "grass",
       "alpha": 1,
@@ -42,8 +42,8 @@
     {
       "zIndex": 120,
       "position": [
-        -497,
-        -575
+        -472,
+        -930
       ],
       "name": "tree",
       "alpha": 1,
@@ -52,40 +52,39 @@
       "animations": []
     },
     {
-      "zIndex": 390,
-      "position": [
-        -530,
-        -698
-      ],
-      "name": "shade",
-      "alpha": 0,
-      "assetPath": "visitorForest/shade",
-      "startingAnimation": "static",
-      "animations": []
-    },
-    {
       "danceEvery": -1,
       "zIndex": 399,
       "position": [
-        -555.2,
-        252
+        -615,
+        379.9
       ],
       "name": "frontPlants",
       "alpha": 1,
       "isPixel": false,
-      "assetPath": "visitorForest/front",
+      "assetPath": "visitorForest/frontDetails",
       "scroll": [
-        0.73,
+        0.77,
         1
       ],
       "startingAnimation": "whind",
       "animations": [    
       {
         "name": "whind",
-        "prefix": "front instancia",
+        "prefix": "FrontDetails",
         "looped": true
       }
       ]
+    },{
+      "zIndex": 320,
+      "position": [
+        173.5,
+        414.05
+      ],
+      "name": "GrassDetails",
+      "alpha": 1,
+      "assetPath": "visitorForest/grassDetails",
+      "startingAnimation": "static",
+      "animations": []
     },
     {
       "danceEvery": 0,
@@ -133,7 +132,7 @@
       ]
     }
   ],
-  "cameraZoom": 0.67,
+  "cameraZoom": 0.62,
   "version": "1.0.0",
   "characters": {
     "bf": {
@@ -143,8 +142,8 @@
         679
       ],
       "cameraOffsets": [
-        -355,
-        -90
+        -520,
+        -110
       ]
     },
     "dad": {
@@ -154,8 +153,8 @@
         724.4
       ],
       "cameraOffsets": [
-        230,
-        -100
+        130,
+        -162
       ]
     },
     "gf": {
@@ -166,7 +165,7 @@
       ],
       "position": [
         752,
-        592
+        572
       ]
     }
   },

@@ -2,12 +2,14 @@ import flixel.FlxG;
 import funkin.graphics.shaders.AdjustColorShader;
 import funkin.play.PlayState;
 import funkin.play.stage.Stage;
+import funkin.save.Save;
 import StringTools;
 
 class VisitorForestStage extends Stage {
     function new() {
         super('visitorForest');
-        FlxG.save.data.GiftfirstTime ??= true;
+        if (Save.instance.modOptions.get(VisitorSaveKeys.GIFT_FIRST_TIME_SAVE_KEY) == null)
+            Save.instance.modOptions.set(VisitorSaveKeys.GIFT_FIRST_TIME_SAVE_KEY, true);
     }
 
     function adjustPropColor(prop, hue, saturation, contrast, brightness){
@@ -24,18 +26,20 @@ class VisitorForestStage extends Stage {
         // This is a feature was i named as "Showcase Mode", test it on your mod bro!
         // - assmanBruh.
         //PlayState.instance.camHUD.alpha = 0;
-        //PlayState.instance.isBotPlayMode = true;
+        // PlayState.instance.isBotPlayMode = true;
 
-        for (props in ["tree", "grass"]) {
+        for (props in ["tree", "grass", "GrassDetails"]) {
             adjustPropColor(getNamedProp(props), 15, -29, -11, -6);
         }
-        adjustPropColor(getNamedProp("frontPlants"), -169, -58, 4, -16);
+        adjustPropColor(getNamedProp("frontPlants"), -22, -8, -3, -6);
 
         if (getBoyfriend() != null){
-            if (StringTools.startsWith(getBoyfriend()?.characterId, "visitor"))
-            adjustPropColor(getBoyfriend(), 0, -21, -8, -4);
-            else
-            adjustPropColor(getBoyfriend(), -8, -40, 4, -30);
+            // if playable character is visitor, the shader was difffffferrrent
+            if (StringTools.startsWith(getBoyfriend()?.characterId, "visitor")){
+                adjustPropColor(getBoyfriend(), 0, -21, -8, -4);
+            }else{
+                adjustPropColor(getBoyfriend(), -8, -40, 4, -30);
+            }
             getBoyfriend().idleSuffix = "";
         }
         if (getGirlfriend() != null){

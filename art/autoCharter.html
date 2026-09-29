@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FNF Voice Auto-Charter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, sans-serif; }
+    .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+  <div class="glass max-w-2xl w-full rounded-2xl p-8 shadow-2xl space-y-6">
+    
+    <div class="text-center space-y-2">
+      <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
+        FNF Voice Auto-Charter (IA / Web Audio)
+      </h1>
+      <p class="text-slate-400 text-sm">Carga una pista de voz (Voices.ogg/mp3) para generar notas automáticamente</p>
+    </div>
+
+    <!-- Controles de Entrada -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border-2 border-dashed border-slate-700 hover:border-emerald-500 transition rounded-xl p-4 text-center cursor-pointer relative">
+        <input type="file" id="voiceInput" accept="audio/*" class="absolute inset-0 opacity-0 cursor-pointer">
+        <i class="fa-solid fa-microphone-lines text-2xl text-emerald-400 mb-2"></i>
+        <p class="text-xs font-semibold text-slate-300">Cargar Audio de Voz</p>
+        <span id="voiceName" class="text-[10px] text-slate-500 block truncate">Sin archivo</span>
+      </div>
+
+      <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50 space-y-2">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-slate-300">BPM de la Canción:</label>
+          <input type="number" id="bpmInput" value="130" min="40" max="300" 
+                 class="w-16 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-center text-emerald-300 font-bold text-xs">
+        </div>
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-slate-300">Sensibilidad de Detección:</label>
+          <input type="range" id="sensitivitySlider" min="1" max="5" value="3" step="0.5" class="w-24 accent-emerald-500">
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón de Generación -->
+    <button id="generateBtn" class="w-full py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 flex justify-center items-center gap-2">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Chartear Audio
+    </button>
+
+    <!-- Estado y Resultado -->
+    <div class="space-y-2">
+      <div class="flex justify-between items-center">
+        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Notas Generadas (Formato FNF):</label>
+        <span id="statusText" class="text-xs text-emerald-400 font-mono">Esperando archivo...</span>
+      </div>
+      <textarea id="output" readonly rows="8" 
+                class="w-full bg-slate-950/80 border border-slate-800 rounded-xl p-3 font-mono text-xs text-emerald-400 focus:outline-none resize-none"
+                placeholder="Las notas extraídas del audio aparecerán aquí..."></textarea>
+    </div>
+
+  </div>
+
+  <script>
+    const voiceInput = document.getElementById('voiceInput');
+    const bpmInput = document.getElementById('bpmInput');
+    const sensitivitySlider = document.getElementById('sensitivitySlider');
+    const generateBtn = document.getElementById('generateBtn');
+    const output = document.getElementById('output');
+    const statusText = document.getElementById('statusText');
+
+    let audioBuffer = null;
+
+    voiceInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      document.getElementById('voiceName').innerText = file.name;
+      statusText.innerText = "Decodificando audio...";
+
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const arrayBuffer = await file.arrayBuffer();
+      audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+      statusText.innerText = "Audio listo para procesar";
+    });
+
+    generateBtn.addEventListener('click', () => {
+      if (!audioBuffer) {
+        alert("Por favor carga primero un archivo de audio de voz.");
+        return;
+      }
+
+      statusText.innerText = "Analizando frecuencias y tono...";
+      
+      setTimeout(() => {
+        const bpm = parseFloat(bpmInput.value);
+        const sensitivity = parseFloat(sensitivitySlider.value);
+        
+        const generatedNotes = analyzeVoiceToNotes(audioBuffer, bpm, sensitivity);
+        
+        const chartResult = {
+          bpm: bpm,
+          autoGenerated: true,
+          notes: {
+            hard: generatedNotes
+          }
+        };
+
+        output.value = JSON.stringify(chartResult, null, 2);
+        statusText.innerText = `¡Listo! Se generaron ${generatedNotes.length} notas.`;
+      }, 50);
+    });
+
+    function analyzeVoiceToNotes(buffer, bpm, sensitivity) {
+      const pcmData = buffer.getChannelData(0); // Audio mono
+      const sampleRate = buffer.sampleRate;
+      
+      const msPerBeat = 60000 / bpm;
+      const msPerStep = msPerBeat / 4; // 1/16th Note
+      
+      // Tamaño de ventana para el análisis FFT de audio
+      const fftSize = 1024;
+      const hopSize = Math.floor(sampleRate * (msPerStep / 1000) / 2); // Revisa cada medio step
+      
+      const notes = [];
+      let lastLane = -1;
+      let repeatCount = 0;
+
+      // Calcular umbral de energía promedio
+      let totalEnergy = 0;
+      let samplesCount = 0;
+      for (let i = 0; i < pcmData.length; i += hopSize) {
+        let sum = 0;
+        for (let j = 0; j < fftSize && (i + j) < pcmData.length; j++) {
+          sum += Math.abs(pcmData[i + j]);
+        }
+        totalEnergy += (sum / fftSize);
+        samplesCount++;
+      }
+      
+      const avgEnergy = totalEnergy / samplesCount;
+      const threshold = avgEnergy * (2.2 / sensitivity); // Ajuste dinámico con el slider
+
+      let lastNoteStep = -1;
+
+      for (let i = 0; i < pcmData.length - fftSize; i += hopSize) {
+        const currentTimeMs = (i / sampleRate) * 1000;
+        
+        // 1. Calcular energía del bloque actual (Volume Onset)
+        let blockEnergy = 0;
+        for (let j = 0; j < fftSize; j++) {
+          blockEnergy += Math.abs(pcmData[i + j]);
+        }
+        blockEnergy /= fftSize;
+
+        // Si supera el umbral de energía, detectamos un golpe de voz
+        if (blockEnergy > threshold) {
+          
+          // Ajustar la nota al Step de FNF más cercano (Snap to Grid)
+          const currentStep = Math.round(currentTimeMs / msPerStep);
+
+          // Evitar notas duplicadas exactamente en el mismo Step
+          if (currentStep === lastNoteStep) continue;
+          lastNoteStep = currentStep;
+
+          // 2. Análisis Básico de Frecuencia / Pitch Dominante (Bajos vs Agudos)
+          let lowFreqEnergy = 0;
+          let highFreqEnergy = 0;
+          const half = Math.floor(fftSize / 2);
+
+          for (let j = 0; j < half; j++) {
+            const val = Math.abs(pcmData[i + j]);
+            if (j < half / 3) lowFreqEnergy += val;
+            else highFreqEnergy += val;
+          }
+
+          // 3. Elección de la flecha basada en el Pitch Dominante
+          let lane = 0;
+          if (highFreqEnergy > lowFreqEnergy * 1.2) {
+            lane = Math.random() > 0.5 ? 2 : 3; // Arriba (2) o Derecha (3) para tonos más agudos
+          } else {
+            lane = Math.random() > 0.5 ? 0 : 1; // Izquierda (0) o Abajo (1) para tonos graves
+          }
+
+          // Anti-repetición excesiva (Regla de Fluidez de IA)
+          if (lane === lastLane) {
+            repeatCount++;
+            if (repeatCount >= 2) {
+              lane = (lane + 1 + Math.floor(Math.random() * 3)) % 4; // Cambia forzosamente de flecha
+              repeatCount = 0;
+            }
+          } else {
+            repeatCount = 0;
+          }
+          lastLane = lane;
+
+          // Añadir nota en formato FNF V2 ({ t: ms, d: lane, l: sustainDuration })
+          notes.push({
+            t: Math.round(currentTimeMs),
+            d: lane,
+            l: 0 // Longitud sostenida (0 por defecto)
+          });
+        }
+      }
+
+      return notes;
+    }
+  </script>
+</body>
+</html>

@@ -11,7 +11,7 @@ class VisitorBFCharacter extends MultiAnimateAtlasCharacter {
 		switch (event.note.kind) {
 			case "cheerNote":
 				holdTimer = 0;
-				this.playAnimation("cheer", true, '');
+				this.playAnimation("hey", true, "");
 				return;
 		}
 		super.onNoteHit(event);

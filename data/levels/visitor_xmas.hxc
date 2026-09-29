@@ -14,7 +14,7 @@ class VisitorXMasWeekConfig extends Level
   }
 
   function unlockedPG():Bool {
-    return !FlxG.save.data.GiftfirstTime;
+    return !Save.instance.modOptions.get(VisitorSaveKeys.GIFT_FIRST_TIME_SAVE_KEY);
   }
 
    override function getSongs():Array<String> {

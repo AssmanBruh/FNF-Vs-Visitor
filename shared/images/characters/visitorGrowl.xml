@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="visitorGrowl.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="growlToIdle0000" x="0" y="0" width="272" height="335" frameX="-4" frameY="-4" frameWidth="272" frameHeight="335"/>
+	<SubTexture name="growlToIdle0001" x="3000" y="0" width="273" height="335" frameX="-4" frameY="-4" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="growlToIdle0002" x="2727" y="0" width="273" height="335" frameX="-4" frameY="-4" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="growlToIdle0003" x="2440" y="0" width="287" height="340" frameX="0" frameY="-13" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="growlToIdle0004" x="2162" y="0" width="278" height="314" frameX="-7" frameY="-9" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="growlToIdle0005" x="2162" y="0" width="278" height="314" frameX="-7" frameY="-9" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="growlToIdle0006" x="1879" y="0" width="283" height="340" frameX="-3" frameY="-1" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="growlToIdle0007" x="1879" y="0" width="283" height="340" frameX="-3" frameY="-1" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="growlToIdle0008" x="1615" y="0" width="264" height="340" frameX="-14" frameY="0" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="growlToIdle0009" x="1615" y="0" width="264" height="340" frameX="-14" frameY="0" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor growl0000" x="0" y="0" width="272" height="335"/>
+	<SubTexture name="visitor growl0001" x="0" y="0" width="272" height="335"/>
+	<SubTexture name="visitor growl0002" x="272" y="0" width="272" height="331" frameX="0" frameY="-3" frameWidth="272" frameHeight="335"/>
+	<SubTexture name="visitor growl0003" x="544" y="0" width="272" height="331" frameX="0" frameY="-3" frameWidth="272" frameHeight="335"/>
+	<SubTexture name="visitor growl0004" x="816" y="0" width="266" height="330" frameX="-6" frameY="-4" frameWidth="272" frameHeight="335"/>
+	<SubTexture name="visitor growl0005" x="1082" y="0" width="266" height="330" frameX="-6" frameY="-4" frameWidth="272" frameHeight="335"/>
+	<SubTexture name="visitor growl0006" x="1348" y="0" width="267" height="331" frameX="-5" frameY="-3" frameWidth="272" frameHeight="335"/>
+	<SubTexture name="visitor growl0007" x="1348" y="0" width="267" height="331" frameX="-5" frameY="-3" frameWidth="272" frameHeight="335"/>
+	<SubTexture name="visitor to growl0000" x="1615" y="0" width="264" height="340" frameX="-14" frameY="0" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0001" x="1615" y="0" width="264" height="340" frameX="-14" frameY="0" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0002" x="1879" y="0" width="283" height="340" frameX="-3" frameY="-1" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0003" x="1879" y="0" width="283" height="340" frameX="-3" frameY="-1" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0004" x="2162" y="0" width="278" height="314" frameX="-7" frameY="-9" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0005" x="2162" y="0" width="278" height="314" frameX="-7" frameY="-9" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0006" x="2440" y="0" width="287" height="340" frameX="0" frameY="-13" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0007" x="2727" y="0" width="273" height="335" frameX="-4" frameY="-4" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0008" x="3000" y="0" width="273" height="335" frameX="-4" frameY="-4" frameWidth="287" frameHeight="353"/>
+	<SubTexture name="visitor to growl0009" x="0" y="0" width="272" height="335" frameX="-4" frameY="-4" frameWidth="272" frameHeight="335"/>
+</TextureAtlas>

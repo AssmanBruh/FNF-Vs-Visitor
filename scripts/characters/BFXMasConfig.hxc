@@ -9,7 +9,7 @@ class VisitorBFXmasCharacter extends MultiSparrowCharacter {
 		switch (event.note.kind) {
 			case "cheerNote":
 				holdTimer = 0;
-				this.playAnimation("hey", true, '');
+				this.playAnimation("hey", true, "");
 				return;
 		}
 		super.onNoteHit(event);

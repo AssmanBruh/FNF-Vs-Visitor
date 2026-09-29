@@ -31,7 +31,7 @@
   },
   "stage": "mainStageErect",
   "noteStyle": "funkin",
-  "ratings": { "hard": 5 },
+  "ratings": { "hard": 5, "normal": 3, "east": 2},
   "previewStart": 0,
   "previewEnd": 0
  },

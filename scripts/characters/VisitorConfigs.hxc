@@ -20,6 +20,10 @@ class VisitorConfigs extends MultiSparrowCharacter {
 					idleSuffix = '';
 					shouldAlternate = false;
 					playAnimation("idle",true);
+				case "toGrowl":
+					playAnimation("growl",true);
+				case "growlToIdle":
+					playAnimation("idle",true);
 			}
 		});
 	}
