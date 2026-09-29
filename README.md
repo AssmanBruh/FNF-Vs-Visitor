@@ -34,11 +34,11 @@ FNF Vs Visitor! is a mod with new songs made for [Friday Night Funkin'](https://
 
 ## Programming
 - [AssmanBruh!](https://x.com/assmansito_)
-- [Waffl3](https://gamebanana.com/members/3229224)
-
+  
 ## Song Charting
 - [Clubcheems](https://youtube.com/@clubcheems14?si=eAzVEGafG5N6JwBV)
 - [Alber](https://youtube.com/@andyalber2008?si=yNVL0Db4RsLIZOiL)
+- [AssmanBruh!](https://x.com/assmansito_)
 
 ## Video Editor (Trailes and Promotional Videos for the Mod)
 - [Clubcheems](https://youtube.com/@clubcheems14?si=eAzVEGafG5N6JwBV)
