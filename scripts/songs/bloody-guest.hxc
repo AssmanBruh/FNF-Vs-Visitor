@@ -359,7 +359,7 @@ class BloodySong extends Song {
                   });
                   quickTimer(6.22, function(tmr){
                     // showUpGiftBox();
-                    FlxTween.tween(gift, {y: -800}, 0.18, {ease: FlxEase.linear});
+                    FlxTween.tween(gift, {y: -((gift.height*1.5)/FlxG.camera.zoom)}, 0.18, {ease: FlxEase.linear});
                     quickTimer(1.22, function(tmr){
                        showUpGiftBox();
                     });
