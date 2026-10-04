@@ -1,8 +1,24 @@
 import funkin.play.notes.notekind.NoteKind;
+import funkin.play.PlayState;
 
 class CheerNote extends NoteKind {
 
     function new() {
         super("cheerNote", "Play Cheer Anim", null, null, true);
     }
+
+    function onNoteHit(event:HitNoteScriptEvent) {
+		super.onNoteHit(event);
+		switch (event.note.kind) {
+			case "cheerNote":
+            // for a FUNCKING reason the bf script not runs the cheer anim on cheer note
+            // so I'll move this block to this script
+            var bf = PlayState.instance.currentStage.getBoyfriend();
+            if (bf.characterId != "bf")  return;
+				bf.holdTimer = 0;
+				bf.playAnimation("cheer", true, '');
+				return;
+		}
+		super.onNoteHit(event);
+	}
 }
