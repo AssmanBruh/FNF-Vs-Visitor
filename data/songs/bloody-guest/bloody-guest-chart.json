@@ -779,7 +779,7 @@
       "v": {
 	"x": 0,
 	"duration": 4,
-	"y": 0,
+	"y": -70,
 	"ease": "CLASSIC",
 	"char": 0
 }
